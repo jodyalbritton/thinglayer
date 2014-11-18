@@ -1,0 +1,59 @@
+
+
+
+<!-- 11. $JQUERY_DATA_TABLES ===========================================================================
+
+				jQuery Data Tables
+-->
+				<!-- Javascript -->
+				<script>
+					init.push(function () {
+						$('#jq-datatables-example').dataTable();
+						$('#jq-datatables-example_wrapper .table-caption').text('Some header text');
+						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+					});
+				</script>
+				<!-- / Javascript -->
+
+				<div class="panel">
+					<div class="panel-heading">
+						<span class="panel-title">Things</span>
+					</div>
+					<div class="panel-body">
+						<div class="table-primary">
+							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Device</th>
+										<th>Zone</th>
+										<th>Type</th>
+										<th></th>
+										
+
+									</tr>
+								</thead>
+								<tbody>
+									<% @things.each do |thing| %>
+								    
+									<tr class="gradeX">
+										<td><%= thing.name %></td>
+										<td><%=link_to thing.label, thing_path(thing) %></td>
+										<% if thing.zone %>
+										<td><%= thing.zone.name %></td>
+										<% else %>
+										<td></td>
+										<% end %>
+										<td><%= thing.device_type %></td>
+
+										<td><%= link_to "Edit", edit_thing_path(thing) %></td>
+										
+									</tr>
+								
+								<% end %>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+<!-- /11. $JQUERY_DATA_TABLES -->

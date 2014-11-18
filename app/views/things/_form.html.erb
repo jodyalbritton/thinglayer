@@ -1,0 +1,57 @@
+<%= form_for([@thing], :class=> "panel form-horizontal form-bordered" ) do |f| %>
+
+          <div class="panel-heading">
+            <span class="panel-title"></span>
+          </div>
+          <div class="panel-body no-padding-hr">
+            <% if @thing.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@thing.errors.count, "error") %> prohibited this thing from being saved:</h2>
+
+                  <ul>
+                  <% @thing.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+           <% end %>
+            <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+              <div class="row">
+                <label class="col-sm-4 control-label">Name</label>
+                <div class="col-sm-8">
+                 <%= f.text_field :name, :class=> "form-control" %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group no-margin-hr no-margin-b panel-padding-h">
+              <div class="row">
+                <label class="col-sm-4 control-label">Description</label>
+                <div class="col-sm-8">
+                  <%= f.text_area :description, :class=> "form-control" %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group no-margin-hr no-margin-b panel-padding-h">
+              <div class="row">
+                <label class="col-sm-4 control-label">Zone</label>
+                <div class="col-sm-8">
+                  <%= f.collection_select :zone_id , @user.zones.all, :id, :name, {:include_blank => 'Select One'}, {:class => 'form-control'}  %>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="form-group no-margin-hr no-margin-b panel-padding-h">
+              <div class="row">
+                <label class="col-sm-4 control-label">Visible on Dashboard</label>
+                <div class="col-sm-8">
+                  <%= f.check_box :visible, :class=> "form-control" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer text-right">
+            <%= link_to 'Cancel', things_path, :class=> "btn btn-danger" %>
+            <%= f.submit :class=> "btn btn-primary" %>
+          </div>
+        </form>
+<% end %>

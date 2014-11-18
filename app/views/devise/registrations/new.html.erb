@@ -1,0 +1,95 @@
+<body class="theme-default page-signup">
+
+<script>
+	var init = [];
+	init.push(function () {
+		
+	});
+</script>
+<!-- Demo script --> <script src="assets/demo/demo.js"></script> <!-- / Demo script -->
+
+	<!-- Page background -->
+	<div id="page-signup-bg">
+		<!-- Background overlay -->
+		<div class="overlay"></div>
+		<!-- Replace this with your bg image -->
+		<img src="assets/demo/signin-bg-1.jpg" alt="">
+	</div>
+	<!-- / Page background -->
+
+	<!-- Container -->
+	<div class="signup-container">
+		<!-- Header -->
+		<div class="signup-header">
+			<a href="index.html" class="logo">
+				
+				Thing Layer
+			</a> <!-- / .logo -->
+			<div class="slogan">
+				Alpha
+			</div> <!-- / .slogan -->
+		</div>
+		<!-- / Header -->
+
+		<!-- Form -->
+		<div class="signup-form">
+			<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+			
+				
+				<div class="signup-text">
+					<span>Create an account</span>
+				</div>
+
+				<div class="form-group w-icon">
+					<input type="text" name="signup_name" id="name_id" class="form-control input-lg" placeholder="Full name">
+					<span class="fa fa-info signup-form-icon"></span>
+				</div>
+
+				<div class="form-group w-icon">
+
+					<%= f.text_field :email, :class=> "form-control input-lg", :placeholder=> "E-mail"%>
+					<span class="fa fa-envelope signup-form-icon"></span>
+					
+				</div>
+
+				<div class="form-group w-icon">
+					<input type="text" name="signup_username" id="username_id" class="form-control input-lg" placeholder="Username">
+					<span class="fa fa-user signup-form-icon"></span>
+				</div>
+
+				<div class="form-group w-icon">
+					<%= f.password_field :password, :class=> "form-control input-lg", :placeholder=> "Password", :label=> false %>
+					<span class="fa fa-lock signup-form-icon"></span>
+				</div>
+				<div class="form-group w-icon">
+					<%= f.password_field :password_confirmation, :class=> "form-control input-lg", :placeholder=> "Confirm Password", :label=> false %>
+					<span class="fa fa-lock signup-form-icon"></span>
+				</div>
+
+				<div class="form-group" style="margin-top: 20px;margin-bottom: 20px;">
+					<label class="checkbox-inline">
+						<input type="checkbox" name="signup_confirm" class="px" id="confirm_id">
+						<span class="lbl">I agree with the <a href="#" target="_blank">Terms and Conditions</a></span>
+					</label>
+				</div>
+
+				<div class="form-actions">
+					<%= f.submit "Sign up", :class=> "signup-btn bg-primary" %>
+					
+				</div>
+			<% end %>
+			<!-- / Form -->
+		</div>
+		<!-- Right side -->
+	</div>
+
+		<div class="have-account">
+		<%= render "devise/shared/links" %>
+	</div>
+
+</body>
+
+
+
+
+

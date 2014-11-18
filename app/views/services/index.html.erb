@@ -1,0 +1,13 @@
+
+
+<div class="container">
+	<% @services.each do |service| %>
+		<h3><%= service.name %> <%= link_to  "Disconnect", service_path(service), method: :delete, data: { confirm: 'Are you sure?' }, :class=> "hidden-sm hidden-xs"%></h3></br>
+	<% end %>
+
+
+	<% if @user.services.smartthings == nil %>
+		<h2>Connect to Smart Things</h2>
+		<%= link_to "connect", "/auth/smartthings" %>
+	<% end %>
+</div>

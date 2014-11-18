@@ -1,0 +1,25 @@
+<%= @url%>
+<%= @parsed %>
+<%= ordered_items = @parsed_items.sort_by {|e| e["label"]}  %>
+<br>
+<br>
+<% @domain = "http://graph.api.smartthings.com:80" %>
+
+<% ordered_items.each do |item|  %>
+    <% off_url = @url+'/switches/'+item['id']+"/off"+'?access_token='+@token %>
+	<% on_url =  @url+'/switches/'+item['id']+"/on"+'?access_token='+@token %>
+	<% toggle_url = @url+'/switches/'+item['id']+"/toggle"+'?access_token='+@token %>
+	<br>
+    <a target='cmd' href='<%= @domain %><%= off_url%>' value='Off'>Off</a>
+	<a target='cmd' href='<%= @domain %><%= on_url%>' value='Off'>On</a>
+	<a target='cmd' href='<%= @domain %><%= toggle_url%>' value='Off'>Toggle</a>
+	
+	<%= HTTParty.get('http://graph.api.smartthings.com'+@url+'/switches/'+item['id']+'?access_token='+@token) %> 
+	<br> 
+	<%= off_url %>
+	<br>
+	<%= on_url %>
+	<br>
+    <%= toggle_url %>
+	<br>
+<% end %>

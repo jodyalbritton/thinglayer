@@ -1,0 +1,40 @@
+<%= form_for([@location], :class=> "panel form-horizontal form-bordered" ) do |f| %>
+
+          <div class="panel-heading">
+            <span class="panel-title">New Location</span>
+          </div>
+          <div class="panel-body no-padding-hr">
+            <% if @location.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+                  <ul>
+                  <% @location.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+           <% end %>
+            <div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
+              <div class="row">
+                <label class="col-sm-4 control-label">Name</label>
+                <div class="col-sm-8">
+                 <%= f.text_field :name, :class=> "form-control" %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group no-margin-hr no-margin-b panel-padding-h">
+              <div class="row">
+                <label class="col-sm-4 control-label">Description</label>
+                <div class="col-sm-8">
+                  <%= f.text_area :description, :class=> "form-control" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer text-right">
+            <%= link_to 'Cancel', locations_path, :class=> "btn btn-danger" %>
+            <%= f.submit :class=> "btn btn-primary" %>
+          </div>
+        </form>
+<% end %>

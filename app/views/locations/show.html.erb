@@ -1,0 +1,5 @@
+<% @location.zones.each do |zone| %>
+	<%= link_to zone.name, location_zone_path(@location, zone) %></br>
+<% end %>
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

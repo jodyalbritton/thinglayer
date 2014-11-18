@@ -1,0 +1,45 @@
+ <h1><%= @thing.label %></h1>
+<style>
+					.ui-slider-colors-demo { margin-bottom: 20px; }
+					.ui-v-slider-colors-demo { float: left; margin-right: 20px; }
+					.right-to-left .ui-v-slider-colors-demo { float: right; margin-left: 20px; margin-right: 0; }
+</style>
+
+ <%= form_for @thing, :remote=> true do |t| %>
+
+ <div class="switcher">
+ 			
+             <%= check_box("thing", "switch_value", {class: 'switch_value'}, "on", "off") %>
+             
+ </div>
+ <%= t.text_field :dimmer_value, :hidden => true %>
+ <div class="ui-slider-success ui-slider-colors-demo"></div>
+<% end %>
+<script>
+          init.push(function () {
+          	$('.switch_value').switcher();
+          	$('#thing_switch_value').change(function() {
+            	$("#edit_thing_<%= @thing.id%>").submit();
+            });
+            
+            
+          	<% if @thing.device_type == "dimmer" %>
+            var colorful_sliders_options = {
+							'range': 'min',
+							'min': 0,
+							'max': 100,
+							'value': <%= @thing.dimmer_value %>,
+							'change': function(event, ui) {
+								var value = $(".ui-slider-colors-demo").slider("value");
+								$("#thing_dimmer_value").val(value);
+					            $("#edit_thing_<%= @thing.id%>").submit();
+
+					        }
+						};
+						$('.ui-slider-colors-demo').slider(colorful_sliders_options);
+						
+		     <% end %>
+
+          });
+
+</script>

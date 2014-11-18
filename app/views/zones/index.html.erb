@@ -1,0 +1,38 @@
+
+
+
+<div class="panel">
+  <div class="panel-heading">
+    <h4>Listing zones</h4>
+  </div>
+  <div class="panel-body">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Ancestry</th>
+          <th>Description</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @zones.each do |zone| %>
+          <tr>
+            <td><%= zone.name %></td>
+            <td><%= zone.ancestry %></td>
+            <td><%= zone.description %></td>
+            <td><%= link_to 'Show', location_zone_path(@location, zone) %></td>
+            <td><%= link_to 'Edit', edit_location_zone_path(@location, zone) %></td>
+            <td><%= link_to 'Destroy', location_zone_path(@location, zone), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Zone', new_location_zone_path(@location) %>
