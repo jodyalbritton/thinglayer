@@ -1,28 +1,23 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+== Thing Layer
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+You need the following set up:
+
+* mySql
+
+* ruby 2.1.2 (I use rvm)
+
+Do the following 
+
+clone the repository 
+
+* Fill in application.yml with your info
+
+* bundle install 
+
+* rake db:create 
+
+* rake db:migrate 
+
+rails s 
