@@ -74,6 +74,16 @@
 
 }
 
+.device-wrapper{
+
+  height: 30%;
+  margin: auto;
+
+  padding-top: 5%;
+  
+}
+
+
 .handle {
   font-size: 12px;
   color: #777;
@@ -142,7 +152,7 @@
                   
                   <% things.each do |thing| %>
                     <% if thing.zone_id != nil %>
-                    <% if thing.device_type == "dimmer" %>
+                 <% if thing.device_type == "dimmer" %>
                       <% dimmer = thing %>
                       <div id="thing_<%= dimmer.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
                       <div class="dummy"></div>
@@ -154,7 +164,7 @@
                               <% dimmer_switch = Thing.find_by(:device_type => "switch", :uid=> dimmer.uid ) %>
                               <%= form_for dimmer_switch, :remote=> true do |t| %>
                                    
-                                   
+                              <div class="device-wrapper">
                               <div class="switcher">
                                     
                                     <% if dimmer_switch.device_value == "on" %>
@@ -179,8 +189,8 @@
                                    <div class="ui-slider-success ui-slider-colors-demo dimmer_<%= dimmer.uid%>"></div>
                                   
                               <% end %>
-                            
-
+                            </div>
+                           
                           </div>
                     </div>
 
@@ -195,7 +205,7 @@
                               </div>
                               <%= form_for switch, :remote=> true do |t| %>
                                    
-                                   
+                                   <div class= "temp">
                                    <div class="switcher">
                                     <% if switch.device_value == "on" %>
                                    
@@ -209,12 +219,14 @@
                                    <%= t.text_field :switch_type, :value => "", :hidden => true %>
                                    <%= t.text_field :source, :value => "remote", :hidden => true %>
                                    
-                                  <h5><%= switch.label %></h5>
+                                   </div>
+                                    <h5><%= switch.label %></h5>
                               <% end %>
                               
 
                           </div>
                     </div>
+
 
                     <% elsif thing.device_type == "temperatureMeasurement" %>
                       <% temp = thing %>
