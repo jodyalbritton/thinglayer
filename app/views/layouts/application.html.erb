@@ -196,6 +196,11 @@ Use search to find needed section.
 								</li>
 								<% end %>
 								<li>
+									<%= link_to location_zones_path(location) do %>
+										<span class="mm-text">Manage Zones</span>
+									<% end %>
+								</li>
+								<li>
 									<%= link_to new_location_zone_path(location) do %>
 										<span class="mm-text">Add Zone</span>
 									<% end %>
@@ -203,6 +208,11 @@ Use search to find needed section.
 							</ul>
 						</li>
 						<% end %>
+						<li>
+							<%= link_to locations_path do %>
+								<span class="mm-text">Manage Locations</span>
+							<% end %>
+						</li>
 						<li>
 							<%= link_to new_location_path do %>
 								<span class="mm-text">Add Location</span>
