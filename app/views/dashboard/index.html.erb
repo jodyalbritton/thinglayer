@@ -243,6 +243,7 @@
                                 <div class="temp humidity_<%= humidity.uid %> widget-profile-avatar">
                                   %
                                 </div>
+                                 <h5><%= humidity.label %></h5>
                             </div>
                       </div>
                     <% elsif thing.device_type == "motion" %>
@@ -258,7 +259,7 @@
                                 <div class="temp motion_<%= motion.uid %> img-circle">
                                  
                                 </div>
-                                 <h5><%= humidity.label %></h5>
+                                 <h5><%= motion.label %></h5>
                             </div>
                     
                     <% end %>
