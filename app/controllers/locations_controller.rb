@@ -9,7 +9,7 @@ class LocationsController < ApplicationController
       @locations = @user.locations.order(:name).where("name like ?", "%#{params[:term]}%")
       render json: @locations.map(&:name)
     else 
-      @locations = Location.all
+      @locations = @user.locations
     end
   end
 
