@@ -209,7 +209,7 @@
                                    <%= t.text_field :switch_type, :value => "", :hidden => true %>
                                    <%= t.text_field :source, :value => "remote", :hidden => true %>
                                    
-                                  <h5><%= switch.device %></h5>
+                                  <h5><%= switch.label %></h5>
                               <% end %>
                               
 
@@ -228,7 +228,7 @@
                                 <div class="temp temperature_<%= temp.uid %>">
                                   °F
                                 </div>
-                                 <h5><%= temp.device %></h5>
+                                 <h5><%= temp.label %></h5>
                             </div>
                       </div>
                       <% elsif thing.device_type == "relativeHumidityMeasurement" %>
@@ -237,7 +237,7 @@
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
-                                <h4><%= humidity.zone.name %></h4>
+                                <h4><%= humidity.zone.label %></h4>
 
                                 </div>
                                 <div class="temp humidity_<%= humidity.uid %> widget-profile-avatar">
@@ -252,7 +252,7 @@
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
-                                <h4><%= motion.zone.device %></h4>
+                                <h4><%= motion.zone.label %></h4>
 
                                 </div>
                                 <div class="temp motion_<%= motion.uid %> img-circle">
@@ -273,7 +273,7 @@
                                 <div class="temp contact_<%= contact.uid %> img-circle">
                                  
                                 </div>
-                                <h5><%= contact.device %></h5>
+                                <h5><%= contact.label %></h5>
                             </div>
                       </div>
                     <% elsif thing.device_type == "lock" %>
@@ -288,7 +288,7 @@
                                 <div class="temp lock_<%= lock.uid %> img-circle">
                                  
                                 </div>
-                                <h5><%= lock.device %></h5>
+                                <h5><%= lock.label %></h5>
                             </div>
                       </div>
                      <% elsif thing.device_type == "battery" %>
@@ -303,7 +303,7 @@
                                 <div class="temp battery_<%= battery.uid %>">
                                   <%= battery.device_value %> %
                                 </div>
-                                <h5><%= battery.device %></h5>
+                                <h5><%= battery.label %></h5>
                             </div>
                       </div>
                     <% elsif thing.device_type == "illuminant" %>
@@ -318,7 +318,7 @@
                                 <div class="temp illuminant_<%= illuminant.uid %>">
                                  
                                 </div>
-                                 <h5><%= illuminant.device %></h5>
+                                 <h5><%= illuminant.label %></h5>
                             </div>
                       </div>
                     
