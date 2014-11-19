@@ -9,6 +9,8 @@ module Stapi
 		include Contacts
 		include Illuminants
 		include Humidities
+		include Locks
+		include Batteries
 		include Import
 		attr_reader :oauth_token, :thing_user
 

@@ -91,6 +91,32 @@ module Stapi
 					stuff.save!
 			end
 
+			items = locks.parsed_response 
+            @user = User.find(@thing_user)
+            items.each do |it|
+        
+			        stuff = Thing.where("device_type = ?  AND  uid = ? ", it["type"], it["id"]).first_or_initialize
+			        stuff.uid = it["id"]
+					stuff.device_type = it["type"]
+					stuff.label = it["name"]
+					stuff.provider = "smartthings"
+					stuff.user = @user
+					stuff.save!
+			end
+
+			items = batteries.parsed_response 
+            @user = User.find(@thing_user)
+            items.each do |it|
+        
+			        stuff = Thing.where("device_type = ?  AND  uid = ? ", it["type"], it["id"]).first_or_initialize
+			        stuff.uid = it["id"]
+					stuff.device_type = it["type"]
+					stuff.label = it["name"]
+					stuff.provider = "smartthings"
+					stuff.user = @user
+					stuff.save!
+			end
+
 		
 			
 		end 

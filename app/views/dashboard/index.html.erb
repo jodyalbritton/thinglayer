@@ -95,6 +95,16 @@
   color: white;
 }
 
+.door-locked {
+  background-color: #00CC66;
+  color: white;
+}
+
+.door-unlocked {
+  background-color: #FF6600;
+  color: white;
+}
+
 </style>
 
            
@@ -118,8 +128,12 @@
                 <h3>Doors and Windows</h3>
               <% elsif device_type == "motion"%>
                 <h3>Motion</h3>
-               <% elsif device_type == "illuminant"%>
+              <% elsif device_type == "illuminant"%>
                 <h3>Light Levels</h3>
+              <% elsif device_type == "lock"%>
+                <h3>Locks</h3>
+              <% elsif device_type == "battery"%>
+                <h3>Batteries</h3>
               <% else %>
                 <h3>Unknown</h3>
               <% end %>
@@ -262,6 +276,36 @@
                                 <h5><%= contact.name %></h5>
                             </div>
                       </div>
+                    <% elsif thing.device_type == "lock" %>
+                    <% lock = thing %>
+                     <div id="thing_<%= lock.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                        <div class="dummy"></div>
+                            <div class="thumbnail">
+                                <div class="widget-title handle">
+                                <h4><%= lock.zone.name %></h4>
+
+                                </div>
+                                <div class="temp lock_<%= lock.uid %> img-circle">
+                                 
+                                </div>
+                                <h5><%= lock.name %></h5>
+                            </div>
+                      </div>
+                     <% elsif thing.device_type == "battery" %>
+                    <% battery = thing %>
+                     <div id="thing_<%= battery.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                        <div class="dummy"></div>
+                            <div class="thumbnail">
+                                <div class="widget-title handle">
+                                <h4><%= battery.zone.name %></h4>
+
+                                </div>
+                                <div class="temp battery_<%= battery.uid %>">
+                                  <%= battery.device_value %> %
+                                </div>
+                                <h5><%= battery.name %></h5>
+                            </div>
+                      </div>
                     <% elsif thing.device_type == "illuminant" %>
                     <% illuminant = thing %>
                      <div id="thing_<%= illuminant.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
@@ -321,6 +365,10 @@ $('.switch_class').switcher();
     var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/contact");
     <% elsif thing.device_type == "illuminant" %>
     var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/illuminance");
+    <% elsif thing.device_type == "battery" %>
+    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/battery");
+    <% elsif thing.device_type == "lock" %>
+    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/lock");
     <% end %>
 
 
@@ -367,8 +415,25 @@ $('.switch_class').switcher();
 
             }
 
+            if (value.name == "lock"){
+              $('.lock_'+value.device).html(value.value);
+              if(value.value == "unlocked"){
+                  $('.lock_'+value.device).removeClass("door-locked");
+                  $('.lock_'+value.device).addClass("door-"+value.value);
+                }else{
+                   $('.lock_'+value.device).removeClass("door-unlocked");
+                   $('.lock_'+value.device).addClass("door-"+value.value);
+                }
+
+            }
+
             if (value.name == "illuminance"){
               $('.illuminant_'+value.device).html(value.value+ " Lux");
+
+            }
+
+             if (value.name == "battery"){
+              $('.battery_'+value.device).html(value.value+ " %");
 
             }
 

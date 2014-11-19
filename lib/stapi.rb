@@ -10,6 +10,8 @@ module Stapi
          require 'stapi/contacts'
          require 'stapi/illuminants'
          require 'stapi/humidities'
+         require 'stapi/locks'
+         require 'stapi/batteries'
    		require 'stapi/import'
 		   require 'stapi/client'
 

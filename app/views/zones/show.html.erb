@@ -65,8 +65,13 @@
 }
 
 .temp {
-    height: 50%;
-    font-size: 200%;
+  width:  40%;
+  height: 45%;
+  margin: auto;
+  font-size: 120%;
+  padding-top: 10%;
+
+
 }
 
 .handle {
@@ -75,6 +80,30 @@
   cursor: move;
 }
 
+.motion-active {
+  background-color: #00CC66;
+  color: white;
+}
+
+.door-closed {
+  background-color: #00CC66;
+  color: white;
+}
+
+.door-open {
+  background-color: #FF6600;
+  color: white;
+}
+
+.door-locked {
+  background-color: #00CC66;
+  color: white;
+}
+
+.door-unlocked {
+  background-color: #FF6600;
+  color: white;
+}
 
 
 </style>
@@ -85,70 +114,79 @@
     <div class="row grid" data-update-url='<%= sort_location_zones_url(@location) %>'>
     
     <% @things.each do |thing| %>
-      <% if thing.device_type == "dimmer" %>
-        <% dimmer = thing %>
-        <div id="thing_<%= dimmer.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
-        <div class="dummy"></div>
-            <div class="thumbnail">
-                <div class="widget-title handle">
-                <h4><%= dimmer.name %></h4>
+    <% if thing.device_type == "dimmer" %>
+                      <% dimmer = thing %>
+                      <div id="thing_<%= dimmer.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                      <div class="dummy"></div>
+                          <div class="thumbnail">
+                              <div class="widget-title handle">
+                              <h4><%= dimmer.zone.name %></h4>
 
-                </div>
-                <%= form_for dimmer, :remote=> true do |t| %>
-                     
-                     
-                     <div class="switcher">
-                      <% dimmer_switch = Thing.find_by(:device_type => "switch", :uid=> dimmer.uid ) %>
-                      <% if dimmer_switch.device_value == "on" %>
-                     
-                      <%= t.check_box(:switch_value,  {class: 'switch_'+dimmer.uid+' switch_class', :checked => true}, "on", "off") %>
-                      <% else %>
-                      <%= t.check_box(:switch_value,  {class: 'switch_'+dimmer.uid+' switch_class', :checked => false}, "on", "off") %>
-                      <% end %>
-                     
-                     </div>
-                    
-                     <%= t.text_field :switch_type, :value => "", :hidden => true %>
-                     <%= t.text_field :dimmer_value, :value => "", :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
-                     <%= t.text_field :source, :value => "remote", :hidden => true %>
-                     <div class="ui-slider-success ui-slider-colors-demo dimmer_<%= dimmer.uid%>"></div>
-                <% end %>
-                
+                              </div>
+                              <% dimmer_switch = Thing.find_by(:device_type => "switch", :uid=> dimmer.uid ) %>
+                              <%= form_for dimmer_switch, :remote=> true do |t| %>
+                                   
+                                   
+                              <div class="switcher">
+                                    
+                                    <% if dimmer_switch.device_value == "on" %>
+                                   
+                                    <%= t.check_box(:switch_value,  {class: 'switch_'+dimmer.uid+' switch_class', :checked => true}, "on", "off") %>
+                                    <% else %>
+                                    <%= t.check_box(:switch_value,  {class: 'switch_'+dimmer.uid+' switch_class', :checked => false}, "on", "off") %>
+                                    <% end %>
+                                   
+                                   </div>
+                                  
+                                   <%= t.text_field :switch_type, :value => "", :hidden => true %>
+                            
+                                   <%= t.text_field :source, :value => "remote", :hidden => true %>
+                               
+                                  
+                              <% end %>
 
-            </div>
-      </div>
+                              <%= form_for dimmer, :remote=> true do |t| %>
+                                   <%= t.text_field :dimmer_value, :value => "", :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
+                                   <%= t.text_field :source, :value => "remote", :hidden => true %>
+                                   <div class="ui-slider-success ui-slider-colors-demo dimmer_<%= dimmer.uid%>"></div>
+                                  
+                              <% end %>
+                            
 
-      <% elsif thing.device_type == "switch" %>
-      <% switch = thing %>
-      <div id="thing_<%= switch.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
-        <div class="dummy"></div>
-            <div class="thumbnail">
-                <div class="widget-title handle">
-                <h4><%= switch.name %></h4>
+                          </div>
+                    </div>
 
-                </div>
-                <%= form_for switch, :remote=> true do |t| %>
-                     
-                     
-                     <div class="switcher">
-                      <% if switch.device_value == "on" %>
-                     
-                      <%= t.check_box(:switch_value,  {class: 'switch_'+switch.uid+' switch_class', :checked => true}, "on", "off") %>
-                      <% else %>
-                      <%= t.check_box(:switch_value,  {class: 'switch_'+switch.uid+' switch_class', :checked => false}, "on", "off") %>
-                      <% end %>
-                     
-                     </div>
-                    
-                     <%= t.text_field :switch_type, :value => switch.device_value, :hidden => true %>
-                     <%= t.text_field :source, :value => "remote", :hidden => true %>
-                     
-                    
-                <% end %>
-                
+                    <% elsif thing.device_type == "switch" %>
+                    <% switch = thing %>
+                    <div id="thing_<%= switch.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                      <div class="dummy"></div>
+                          <div class="thumbnail">
+                              <div class="widget-title handle">
+                              <h4><%= switch.zone.name %></h4>
 
-            </div>
-      </div>
+                              </div>
+                              <%= form_for switch, :remote=> true do |t| %>
+                                   
+                                   
+                                   <div class="switcher">
+                                    <% if switch.device_value == "on" %>
+                                   
+                                    <%= t.check_box(:switch_value,  {class: 'switch_'+switch.uid+' switch_class', :checked => true}, "on", "off") %>
+                                    <% else %>
+                                    <%= t.check_box(:switch_value,  {class: 'switch_'+switch.uid+' switch_class', :checked => false}, "on", "off") %>
+                                    <% end %>
+                                   
+                                   </div>
+                                  
+                                   <%= t.text_field :switch_type, :value => "", :hidden => true %>
+                                   <%= t.text_field :source, :value => "remote", :hidden => true %>
+                                   
+                                  <h5><%= switch.name %></h5>
+                              <% end %>
+                              
+
+                          </div>
+                    </div>
 
       <% elsif thing.device_type == "temperatureMeasurement" %>
         <% temp = thing %>
@@ -185,10 +223,10 @@
           <div class="dummy"></div>
               <div class="thumbnail">
                   <div class="widget-title handle">
-                  <h4><%= motion.name %></h4>
+                  <h4><%= motion.zone.name %></h4>
 
                   </div>
-                  <div class="temp motion_<%= motion.uid %>">
+                  <div class="temp motion_<%= motion.uid %> img-circle">
                    
                   </div>
               </div>
@@ -200,12 +238,43 @@
           <div class="dummy"></div>
               <div class="thumbnail">
                   <div class="widget-title handle">
-                  <h4><%= contact.name %></h4>
+                  <h4><%= contact.zone.name %></h4>
 
                   </div>
-                  <div class="temp contact_<%= contact.uid %>">
+                  <div class="temp contact_<%= contact.uid %> img-circle">
                    
                   </div>
+                  <h5><%= contact.name %></h5>
+              </div>
+        </div>
+      <% elsif thing.device_type == "lock" %>
+      <% lock = thing %>
+       <div id="thing_<%= lock.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+          <div class="dummy"></div>
+              <div class="thumbnail">
+                  <div class="widget-title handle">
+                  <h4><%= lock.zone.name %></h4>
+
+                  </div>
+                  <div class="temp lock_<%= lock.uid %> img-circle">
+                   
+                  </div>
+                  <h5><%= lock.name %></h5>
+              </div>
+        </div>
+       <% elsif thing.device_type == "battery" %>
+      <% battery = thing %>
+       <div id="thing_<%= battery.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+          <div class="dummy"></div>
+              <div class="thumbnail">
+                  <div class="widget-title handle">
+                  <h4><%= battery.zone.name %></h4>
+
+                  </div>
+                  <div class="temp battery_<%= battery.uid %>">
+                   
+                  </div>
+                  <h5><%= battery.name %></h5>
               </div>
         </div>
       <% elsif thing.device_type == "illuminant" %>
@@ -214,7 +283,7 @@
           <div class="dummy"></div>
               <div class="thumbnail">
                   <div class="widget-title handle">
-                  <h4><%= illuminant.name %></h4>
+                  <h4><%= illuminant.zone.name %></h4>
 
                   </div>
                   <div class="temp illuminant_<%= illuminant.uid %>">
@@ -284,7 +353,7 @@ $('.switch_class').switcher();
 <% @zone.things.each do |thing| %>
 <script>
  
-    <% if thing.device_type == "switch" %>
+   <% if thing.device_type == "switch" %>
     var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/switch");
     <% elsif thing.device_type == "dimmer" %>
     var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/level");
@@ -298,6 +367,10 @@ $('.switch_class').switcher();
     var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/contact");
     <% elsif thing.device_type == "illuminant" %>
     var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/illuminance");
+    <% elsif thing.device_type == "battery" %>
+    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/battery");
+    <% elsif thing.device_type == "lock" %>
+    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/lock");
     <% end %>
 
 
@@ -324,14 +397,45 @@ $('.switch_class').switcher();
             if (value.name == "motion"){
               $('.motion_'+value.device).html(value.value);
 
+                if(value.value == "active"){
+                  $('.motion_'+value.device).addClass("motion-"+value.value);
+                }else{
+                   $('.motion_'+value.device).removeClass("motion-active");
+                }
+              
+
             }
             if (value.name == "contact"){
               $('.contact_'+value.device).html(value.value);
+              if(value.value == "open"){
+                  $('.contact_'+value.device).removeClass("door-closed");
+                  $('.contact_'+value.device).addClass("door-"+value.value);
+                }else{
+                   $('.contact_'+value.device).removeClass("door-open");
+                   $('.contact_'+value.device).addClass("door-"+value.value);
+                }
+
+            }
+
+            if (value.name == "lock"){
+              $('.lock_'+value.device).html(value.value);
+              if(value.value == "unlocked"){
+                  $('.lock_'+value.device).removeClass("door-locked");
+                  $('.lock_'+value.device).addClass("door-"+value.value);
+                }else{
+                   $('.lock_'+value.device).removeClass("door-unlocked");
+                   $('.lock_'+value.device).addClass("door-"+value.value);
+                }
 
             }
 
             if (value.name == "illuminance"){
               $('.illuminant_'+value.device).html(value.value+ " Lux");
+
+            }
+
+             if (value.name == "battery"){
+              $('.battery_'+value.device).html(value.value+ " %");
 
             }
 
