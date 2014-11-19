@@ -2,6 +2,12 @@ class ThingsController < ApplicationController
 	def index
 		@user = User.find(current_user)
 		@things = @user.things 
+
+		smartthings = @user.services.where(:provider => "smartthings")
+		if smartthings != nil 
+			@user.smartthings.import
+		end 
+		
 	end 
 
 	def show

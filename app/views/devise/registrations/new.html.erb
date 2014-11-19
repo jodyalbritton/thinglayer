@@ -6,7 +6,7 @@
 		
 	});
 </script>
-<!-- Demo script --> <script src="assets/demo/demo.js"></script> <!-- / Demo script -->
+
 
 	<!-- Page background -->
 	<div id="page-signup-bg">
@@ -21,10 +21,10 @@
 	<div class="signup-container">
 		<!-- Header -->
 		<div class="signup-header">
-			<a href="index.html" class="logo">
+			<%= link_to root_path,  :class=>"logo" do %>
 				
 				Thing Layer
-			</a> <!-- / .logo -->
+			<% end %> <!-- / .logo -->
 			<div class="slogan">
 				Alpha
 			</div> <!-- / .slogan -->
@@ -66,12 +66,7 @@
 					<span class="fa fa-lock signup-form-icon"></span>
 				</div>
 
-				<div class="form-group" style="margin-top: 20px;margin-bottom: 20px;">
-					<label class="checkbox-inline">
-						<input type="checkbox" name="signup_confirm" class="px" id="confirm_id">
-						<span class="lbl">I agree with the <a href="#" target="_blank">Terms and Conditions</a></span>
-					</label>
-				</div>
+				
 
 				<div class="form-actions">
 					<%= f.submit "Sign up", :class=> "signup-btn bg-primary" %>
