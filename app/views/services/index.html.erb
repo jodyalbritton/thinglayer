@@ -3,7 +3,8 @@
 <div class="container">
 	<% @services.each do |service| %>
 		<h2><%= service.name %></h2>
-		 <h3><%= link_to "Import", :controller => "things", :import => true %>
+		 <h3><a href="/auth/smartthings/">Authrorize Devices</a></h3>
+		 <h3><%= link_to "Import", :controller => "things", :import => true %></h3>
 		 <h3><%= link_to  "Disconnect", service_path(service), method: :delete, data: { confirm: 'Are you sure?' }, :class=> "hidden-sm hidden-xs"%></h3></br>
 	<% end %>
 
