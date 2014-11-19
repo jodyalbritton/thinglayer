@@ -235,10 +235,9 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= temp.zone.name %></h4>
-                                   <%= temp.device_value %> F
                                 </div>
                                 <div class="temp temperature_<%= temp.uid %>">
-                                  °F
+                                  <%= temp.device_value %> °F
                                 </div>
                                  <h5><%= temp.label %></h5>
                             </div>
@@ -297,10 +296,10 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= lock.zone.name %></h4>
-                                  <%= lock.device_value %>
+                                  
                                 </div>
                                 <div class="temp lock_<%= lock.uid %> img-circle door-<% lock.device_value%> ">
-                                 
+                                 <%= lock.device_value %>
                                 </div>
                                 <h5><%= lock.label %></h5>
                             </div>
