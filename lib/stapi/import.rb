@@ -3,11 +3,61 @@ module Stapi
 		def import
              
 
-             items = switches.parsed_response 
+             switch_devices = switches.parsed_response 
              @user = User.find(@thing_user)
-             items.each do |it|
+             switch_devices.each do |it|
         
-			        stuff = Thing.where("device_type = ?  AND  uid = ? ", it["type"], it["id"]).first_or_initialize
+			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
+			        stuff.uid = it["id"]
+					stuff.device_type = it["type"]
+					stuff.label = it["name"]
+					stuff.provider = "smartthings"
+					stuff.user = @user
+					stuff.save
+			end
+			dimmer_devices = dimmers.parsed_response 
+            @user = User.find(@thing_user)
+            dimmer_devices.each do |it|
+        
+			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
+			        stuff.uid = it["id"]
+					stuff.device_type = it["type"]
+					stuff.label = it["name"]
+					stuff.provider = "smartthings"
+					stuff.user = @user
+					stuff.save
+			end
+
+			temp_devices = temperatures.parsed_response 
+            @user = User.find(@thing_user)
+            temp_devices.each do |it|
+        
+			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
+			        stuff.uid = it["id"]
+					stuff.device_type = it["type"]
+					stuff.label = it["name"]
+					stuff.provider = "smartthings"
+					stuff.user = @user
+					stuff.save!
+			end
+			hum_devices = humidities.parsed_response 
+            @user = User.find(@thing_user)
+            hum_devices.each do |it|
+        
+			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
+			        stuff.uid = it["id"]
+					stuff.device_type = it["type"]
+					stuff.label = it["name"]
+					stuff.provider = "smartthings"
+					stuff.user = @user
+					stuff.save!
+			end
+			
+			mot_devices = motions.parsed_response 
+            @user = User.find(@thing_user)
+            mot_devices.each do |it|
+        
+			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
 			        stuff.uid = it["id"]
 					stuff.device_type = it["type"]
 					stuff.label = it["name"]
@@ -16,47 +66,11 @@ module Stapi
 					stuff.save!
 			end
 
-			items = temperatures.parsed_response 
+			conts = contacts.parsed_response 
             @user = User.find(@thing_user)
-            items.each do |it|
+            conts.each do |it|
         
-			        stuff = Thing.where("device_type = ?  AND  uid = ? ", it["type"], it["id"]).first_or_initialize
-			        stuff.uid = it["id"]
-					stuff.device_type = it["type"]
-					stuff.label = it["name"]
-					stuff.provider = "smartthings"
-					stuff.user = @user
-					stuff.save!
-			end
-			items = humidities.parsed_response 
-            @user = User.find(@thing_user)
-            items.each do |it|
-        
-			        stuff = Thing.where("device_type = ?  AND  uid = ? ", it["type"], it["id"]).first_or_initialize
-			        stuff.uid = it["id"]
-					stuff.device_type = it["type"]
-					stuff.label = it["name"]
-					stuff.provider = "smartthings"
-					stuff.user = @user
-					stuff.save!
-			end
-			items = dimmers.parsed_response 
-            @user = User.find(@thing_user)
-            items.each do |dimmer|
-        
-			        stuff = Thing.where("device_type = ?  AND  uid = ? ", "dimmer", dimmer["id"]).first_or_initialize
-			        stuff.uid = dimmer["id"]
-					stuff.device_type = "dimmer"
-					stuff.label = dimmer["name"]
-					stuff.provider = "smartthings"
-					stuff.user = @user
-					stuff.save!
-			end
-			items = motions.parsed_response 
-            @user = User.find(@thing_user)
-            items.each do |it|
-        
-			        stuff = Thing.where("device_type = ?  AND  uid = ? ", it["type"], it["id"]).first_or_initialize
+			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
 			        stuff.uid = it["id"]
 					stuff.device_type = it["type"]
 					stuff.label = it["name"]
@@ -65,11 +79,11 @@ module Stapi
 					stuff.save!
 			end
 
-			items = contacts.parsed_response 
+			illums = illuminants.parsed_response 
             @user = User.find(@thing_user)
-            items.each do |it|
+            illums.each do |it|
         
-			        stuff = Thing.where("device_type = ?  AND  uid = ? ", it["type"], it["id"]).first_or_initialize
+			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
 			        stuff.uid = it["id"]
 					stuff.device_type = it["type"]
 					stuff.label = it["name"]
@@ -78,11 +92,11 @@ module Stapi
 					stuff.save!
 			end
 
-			items = illuminants.parsed_response 
+			lock_devices = locks.parsed_response 
             @user = User.find(@thing_user)
-            items.each do |it|
+            lock_devices.each do |it|
         
-			        stuff = Thing.where("device_type = ?  AND  uid = ? ", it["type"], it["id"]).first_or_initialize
+			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
 			        stuff.uid = it["id"]
 					stuff.device_type = it["type"]
 					stuff.label = it["name"]
@@ -91,24 +105,11 @@ module Stapi
 					stuff.save!
 			end
 
-			items = locks.parsed_response 
+			bats = batteries.parsed_response 
             @user = User.find(@thing_user)
-            items.each do |it|
+            bats.each do |it|
         
-			        stuff = Thing.where("device_type = ?  AND  uid = ? ", it["type"], it["id"]).first_or_initialize
-			        stuff.uid = it["id"]
-					stuff.device_type = it["type"]
-					stuff.label = it["name"]
-					stuff.provider = "smartthings"
-					stuff.user = @user
-					stuff.save!
-			end
-
-			items = batteries.parsed_response 
-            @user = User.find(@thing_user)
-            items.each do |it|
-        
-			        stuff = Thing.where("device_type = ?  AND  uid = ? ", it["type"], it["id"]).first_or_initialize
+			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
 			        stuff.uid = it["id"]
 					stuff.device_type = it["type"]
 					stuff.label = it["name"]

@@ -1,7 +1,7 @@
 module Stapi
 	module Dimmers
 		def dimmers
-			@switches ||= HTTParty.get(url+'/dimmers?access_token='+connection) 
+			@dimmers ||= HTTParty.get(url+'/dimmers?access_token='+connection) 
 	    end 
 	    def show_dimmer(dimmer_id)
 	    	@dimmer ||= HTTParty.get(url+'/dimmers/'+dimmer_id+'?access_token='+connection)

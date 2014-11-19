@@ -6,13 +6,14 @@ class OmniauthCallbacksController < ApplicationController
     @auth = request.env["omniauth.auth"]
     @provider = request.env["omniauth.provider"]
     @token = @auth.credentials.token
-    @service = @user.services.find_or_initialize_by(provider: @provider)
+    @service = @user.services.find_or_initialize_by(provider: params[:provider])
     @service.name = params[:provider]
     @service.provider = params[:provider]
     @service.token = @token
-    @service.save
+    @service.save!
     redirect_to services_path
     
     
   end
+
 end
