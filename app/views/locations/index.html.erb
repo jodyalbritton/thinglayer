@@ -1,14 +1,27 @@
+<% content_for :page_actions do %>
+    <%= link_to root_path, :class => 'btn btn-primary btn-labeled', :style=>"width: 100%;" do %>
+                <span class="btn-label icon fa fa-chevron-left"></span>Back
+    <% end %>
+  <% end %>
+  <% content_for :page_search do %>
+  <form action="" class="pull-right col-xs-12 col-sm-6">
+              <div class="input-group no-margin">
+                <span class="input-group-addon" style="border:none;background: #fff;background: rgba(0,0,0,.05);"><i class="fa fa-search"></i></span>
+                <input type="search" id="search" placeholder="Search..." class="form-control no-padding-hr" style="border:none;background: #fff;background: rgba(0,0,0,.05);">
+              </div>
+            </form>
+  <% end %>
+<%= render 'shared/header' %>
+
+
 <div class="panel">
-  <div class="panel-heading">
-    <h4>Listing Locations</h4>
-  </div>
   <div class="panel-body">
-    <table class="table" class="table">
+    <table class="table table-striped table-bordered table-hover" id="table">
       <thead>
         <tr>
           <th>Name</th>
           <th>Description</th>
-          <th colspan="3"></th>
+          <th> </th>
         </tr>
       </thead>
 
@@ -17,9 +30,18 @@
           <tr>
             <td><%= location.name %></td>
             <td><%= location.description %></td>
-            <td><%= link_to 'Show', location %></td>
-            <td><%= link_to 'Edit', edit_location_path(location) %></td>
-            <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="text-center">
+                    
+               <%= link_to location_path(location) do %>
+                <span class="btn btn-default icon fa fa-eye"></span>
+              <% end %>
+              <%= link_to edit_location_path(location) do %>
+                <span class="btn btn-default icon fa fa-pencil"></span>
+              <% end %>
+              <%= link_to  location_path(location), method: :delete, data: { confirm: 'Are you sure?' }, :class=> "hidden-sm hidden-xs" do %>
+                <span class="btn btn-danger icon fa fa-trash-o"></span>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
@@ -27,3 +49,25 @@
   </div>
 </div>
 <%= link_to 'New Location', new_location_path %>
+
+
+
+
+    <!-- Javascript -->
+        <script>
+          oTable = $('#table').dataTable({
+            "sPaginationType": "bootstrap",
+             "dom": 'T<"clear">lfrtip',
+             "sDom": '<"H"lr>t<"F"ip>',
+             "aoColumnDefs" : [ {
+                      'bSortable' : false,
+                      'aTargets' : ["no-sort"]
+                  } ]
+                  
+          });
+
+            $("#search").keyup(function() {
+             oTable.fnFilter(this.value);
+            });
+        </script>
+        <!-- / Javascript -->
