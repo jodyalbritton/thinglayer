@@ -237,7 +237,7 @@
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
-                                <h4><%= humidity.zone.label %></h4>
+                                <h4><%= humidity.zone.name %></h4>
 
                                 </div>
                                 <div class="temp humidity_<%= humidity.uid %> widget-profile-avatar">
@@ -252,12 +252,13 @@
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
-                                <h4><%= motion.zone.label %></h4>
+                                <h4><%= motion.zone.name %></h4>
 
                                 </div>
                                 <div class="temp motion_<%= motion.uid %> img-circle">
                                  
                                 </div>
+                                 <h5><%= humidity.label %></h5>
                             </div>
                     
                     <% end %>
