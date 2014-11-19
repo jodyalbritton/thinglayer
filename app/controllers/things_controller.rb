@@ -4,7 +4,7 @@ class ThingsController < ApplicationController
 		@things = @user.things 
 
 		smartthings = @user.services.where(:provider => "smartthings")
-		if smartthings != nil 
+		if params["import"] == true 
 			@user.smartthings.import
 		end 
 		
