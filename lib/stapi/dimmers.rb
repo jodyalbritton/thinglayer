@@ -5,7 +5,6 @@ module Stapi
 	    end 
 	    def show_dimmer(dimmer_id)
 	    	@dimmer ||= HTTParty.get(url+'/dimmers/'+dimmer_id+'?access_token='+connection)
-	    	@dimmer.parsed_response
 	    end
 
 	    def dimmer_level(thing, level)

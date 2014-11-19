@@ -184,7 +184,7 @@
                               <% end %>
 
                               <%= form_for dimmer, :remote=> true do |t| %>
-                                   <%= t.text_field :dimmer_value, :value => "", :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
+                                   <%= t.text_field :dimmer_value, :value => dimmer.device_value, :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
                                    <%= t.text_field :source, :value => "remote", :hidden => true %>
                                    <div class="ui-slider-success ui-slider-colors-demo dimmer_<%= dimmer.uid%>"></div>
                                   
@@ -235,7 +235,7 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= temp.zone.name %></h4>
-
+                                   <%= humidity.device_value %> F
                                 </div>
                                 <div class="temp temperature_<%= temp.uid %>">
                                   °F
@@ -253,7 +253,7 @@
 
                                 </div>
                                 <div class="temp humidity_<%= humidity.uid %> widget-profile-avatar">
-                                  %
+                                  <%= humidity.device_value %> %
                                 </div>
                                  <h5><%= humidity.label %></h5>
                             </div>
@@ -268,8 +268,8 @@
                                 <h4><%= motion.zone.name %></h4>
 
                                 </div>
-                                <div class="temp motion_<%= motion.uid %> img-circle">
-                                 
+                                <div class="temp motion_<%= motion.uid %> img-circle motion-<%= motion.device_value %>">
+                                 <%= motion.device_value %>
                                 </div>
                                  <h5><%= motion.label %></h5>
                             </div>
@@ -284,8 +284,8 @@
                                 <h4><%= contact.zone.name %></h4>
 
                                 </div>
-                                <div class="temp contact_<%= contact.uid %> img-circle">
-                                 
+                                <div class="temp contact_<%= contact.uid %> img-circle door-<%= contact.device_value %>">
+                                  <%= contact.device_value %>
                                 </div>
                                 <h5><%= contact.label %></h5>
                             </div>
@@ -297,9 +297,9 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= lock.zone.name %></h4>
-
+                                  <%= lock.device_value %>
                                 </div>
-                                <div class="temp lock_<%= lock.uid %> img-circle">
+                                <div class="temp lock_<%= lock.uid %> img-circle door-<% lock.device_value%> ">
                                  
                                 </div>
                                 <h5><%= lock.label %></h5>
