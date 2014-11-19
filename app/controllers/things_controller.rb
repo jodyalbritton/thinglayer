@@ -61,6 +61,15 @@ class ThingsController < ApplicationController
 		
 
 	end
+	def destroy
+		@user = User.find(current_user)
+      	@thing = @user.things.find(params[:id])
+	    @thing.destroy
+	    respond_to do |format|
+	      format.html { redirect_to things_path, notice: 'Thing was successfully destroyed.' }
+	      format.json { head :no_content }
+    end
+  end
 
 
 	private
