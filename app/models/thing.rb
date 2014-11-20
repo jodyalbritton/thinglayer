@@ -1,6 +1,7 @@
 class Thing < ActiveRecord::Base
 	belongs_to :user
     belongs_to :zone
+    has_many :events
     
      acts_as_list :scope => :zone
     
@@ -58,10 +59,10 @@ class Thing < ActiveRecord::Base
                 if events.success? 
                     if events.response.body != "null"
                     event =  JSON.parse(events.response.response_body).to_a
-                    event.last.second["value"]
+                     return event.last.second["value"]
                     else
-                        device_event = self.dimmer_details
-                        return device_event.parsed_response["value"]
+                      Resque.enqueue(GetDimmer, self.id)
+                      return nil
                     end
                 else 
                     events = nil 
@@ -75,8 +76,8 @@ class Thing < ActiveRecord::Base
                     event =  JSON.parse(events.response.response_body).to_a
                     event.last.second["value"]
                     else
-                        device_event = self.temperature_details
-                        return device_event.parsed_response["value"]
+                      Resque.enqueue(GetTemperature, self.id)
+                      return nil
                     end
                 else 
                     events = nil
@@ -90,8 +91,8 @@ class Thing < ActiveRecord::Base
                     event =  JSON.parse(events.response.response_body).to_a
                     event.last.second["value"]
                     else
-                        device_event = self.humidity_details
-                        return device_event.parsed_response["value"]
+                      Resque.enqueue(GetHumidity, self.id)
+                      return nil
                     end
                 else 
                     events = nil
@@ -105,8 +106,8 @@ class Thing < ActiveRecord::Base
                     event =  JSON.parse(events.response.response_body).to_a
                     event.last.second["value"]
                     else
-                        device_event = self.motion_details
-                        return device_event.parsed_response["value"]
+                      Resque.enqueue(GetMotion, self.id)
+                      return nil
                     end
                 else 
                     events = nil
@@ -120,8 +121,8 @@ class Thing < ActiveRecord::Base
                     event =  JSON.parse(events.response.response_body).to_a
                     event.last.second["value"]
                     else
-                        device_event = self.contact_details
-                        return device_event.parsed_response["value"]
+                      Resque.enqueue(GetContact, self.id)
+                      return nil
                     end
                 else 
                     events = nil
@@ -135,8 +136,8 @@ class Thing < ActiveRecord::Base
                     event =  JSON.parse(events.response.response_body).to_a
                     event.last.second["value"]
                     else
-                        device_event = self.lock_details
-                        return device_event.parsed_response["value"]
+                      Resque.enqueue(GetLock, self.id)
+                      return nil
                     end
                 else 
                     events = nil
@@ -150,8 +151,8 @@ class Thing < ActiveRecord::Base
                     event =  JSON.parse(events.response.response_body).to_a
                     event.last.second["value"]
                     else
-                        device_event = self.battery_details
-                        return device_event.parsed_response["value"]
+                      Resque.enqueue(GetBattery, self.id)
+                      return nil
                     end
                 else 
                     events = nil
@@ -164,8 +165,8 @@ class Thing < ActiveRecord::Base
                     event =  JSON.parse(events.response.response_body).to_a
                     event.last.second["value"]
                     else
-                        device_event = self.switch_details
-                        return device_event.parsed_response["value"]
+                      Resque.enqueue(GetSwitch, self.id)
+                      return nil
                     end
                 else 
                     events = nil
@@ -179,8 +180,8 @@ class Thing < ActiveRecord::Base
                     event =  JSON.parse(events.response.response_body).to_a
                     event.last.second["value"]
                     else
-                        device_event = self.illuminant_details
-                        return device_event.parsed_response["value"]
+                      Resque.enqueue(GetIlluminant, self.id)
+                      return nil
                     end
                 else 
                     events = nil
