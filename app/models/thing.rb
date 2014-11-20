@@ -10,6 +10,11 @@ class Thing < ActiveRecord::Base
         @user.smartthings.show_switch(self.uid)
     end
 
+    def contact_details
+        @user ||= User.find(user_id)
+        @user.smartthings.show_contact(self.uid)
+    end
+
     def dimmer_details
         @user ||= User.find(user_id)
         @user.smartthings.show_dimmer(self.uid)
