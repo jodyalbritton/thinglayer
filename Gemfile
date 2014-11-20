@@ -44,6 +44,7 @@ gem 'pusher'
 gem 'rest-client'
 gem 'firebase'
 gem 'acts_as_list'
+gem 'resque', :require => "resque/server"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
