@@ -18,10 +18,6 @@ class Thing < ActiveRecord::Base
         @user ||= User.find(user_id)
         @user.smartthings.show_motion(self.uid)
     end
-    def motion_details
-        @user ||= User.find(user_id)
-        @user.smartthings.show_motion(self.uid)
-    end 
     def lock_details
         @user ||= User.find(user_id)
         @user.smartthings.show_lock(self.uid)
@@ -34,7 +30,19 @@ class Thing < ActiveRecord::Base
     def battery_details
         @user ||= User.find(user_id)
         @user.smartthings.show_battery(self.uid)
-    end  
+    end 
+    def temperature_details
+        @user ||= User.find(user_id)
+        @user.smartthings.show_temperature(self.uid)
+    end
+    def humidity_details
+        @user ||= User.find(user_id)
+        @user.smartthings.show_humidity(self.uid)
+    end
+    def  lock_details
+        @user ||= User.find(user_id)
+        @user.smartthings.show_lock(self.uid)
+    end    
     
     def device_value 
         
@@ -186,7 +194,21 @@ class Thing < ActiveRecord::Base
 
 
 
-
+    def temperature_value
+        self.temperature_details.parsed_response["value"]
+    end
+    def humidity_value
+        self.humidity_details.parsed_response["value"]
+    end
+    def lock_value
+        self.lock_details.parsed_response["value"]
+    end
+    def contact_value
+        self.contact_details.parsed_response["value"]
+    end
+    def battery_value
+        self.battery_details.parsed_response["value"]
+    end
     def switch_value
         self.switch_details.parsed_response["value"]
     end
@@ -198,7 +220,9 @@ class Thing < ActiveRecord::Base
     def motion_value
         self.motion_details.parsed_response["value"]
     end
-
+    def illuminant_value
+        self.illuminant_details.parsed_response["value"]
+    end
     def dimmer_value=(val)
         @dimmer_value = val
     end 
