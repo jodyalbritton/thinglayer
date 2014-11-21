@@ -130,7 +130,7 @@
                           <div class="thumbnail">
                               <div class="widget-title handle">
                               <h4><%= dimmer.zone.name %></h4>
-                              <h5><%= dimmer.display_type %></h5>
+                             
 
                               </div>
                               <% dimmer_switch = Thing.find_by(:device_type => "switch", :uid=> dimmer.uid ) %>
@@ -240,7 +240,7 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= motion.zone.name %></h4>
-                                <h5><%= motion.display_type %></h5>
+                               
 
                                 </div>
                                 <div class="temp motion_<%= motion.uid %> img-circle">
@@ -257,7 +257,7 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= contact.zone.name %></h4>
-                                <h5><%= contact.display_type %></h5>
+                               
 
                                 </div>
                                 <div class="temp contact_<%= contact.uid %> img-circle">
@@ -273,7 +273,7 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= lock.zone.name %></h4>
-                                <h5><%= lock.display_type %></h5>
+                               
                                 </div>
                                 <div class="temp lock_<%= lock.uid %> img-circle">
                                  
