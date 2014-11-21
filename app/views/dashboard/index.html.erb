@@ -43,14 +43,14 @@
     margin-left:0 !important;
 }
 .ui-slider-colors-demo { 
-    margin-bottom: 10%; 
+    margin-bottom: 1%; 
     width: 80%;
     margin-top: 12%;
     margin-left: 10%;
 }
 
 .switcher{
-    margin-top: 10%;
+
 }
 
 .widget-title {
@@ -58,9 +58,8 @@
 }
 
 .ui-slider-success { 
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: 10%;
-    margin-bottom: 20px; 
     width: 80%;
 }
 
@@ -78,11 +77,9 @@
 
   height: 30%;
   margin: auto;
-
   padding-top: 5%;
   
 }
-
 
 .handle {
   font-size: 12px;
@@ -117,7 +114,7 @@
 
 .widget-profile-bg-icon {
     position: absolute;
-    font-size:  100px;
+    font-size:  6em;
     color: rgba(0,0,0,.2);
     right: 30%;
     
@@ -163,14 +160,14 @@
                   
                   <% things.each do |thing| %>
                     <% if thing.zone_id != nil %>
-                 <% if thing.device_type == "dimmer" %>
+                  <% if thing.device_type == "dimmer" %>
                       <% dimmer = thing %>
                       <div id="thing_<%= dimmer.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
                       <div class="dummy"></div>
                           <div class="thumbnail">
-                            <div class="widget-profile-bg-icon"><i class="fa fa-lightbulb-o"></i></div>
                               <div class="widget-title handle">
                               <h4><%= dimmer.zone.name %></h4>
+                             
 
                               </div>
                               <% dimmer_switch = Thing.find_by(:device_type => "switch", :uid=> dimmer.uid ) %>
@@ -196,13 +193,13 @@
                               <% end %>
 
                               <%= form_for dimmer, :remote=> true do |t| %>
-                                   <%= t.text_field :dimmer_value, :value => dimmer.device_value, :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
+                                   <%= t.text_field :dimmer_value, :value => "", :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
                                    <%= t.text_field :source, :value => "remote", :hidden => true %>
                                    <div class="ui-slider-success ui-slider-colors-demo dimmer_<%= dimmer.uid%>"></div>
                                   
                               <% end %>
                             </div>
-                           
+                            <h5><%= dimmer.label %></h5>
                           </div>
                     </div>
 
