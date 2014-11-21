@@ -1,0 +1,67 @@
+<% if @thing.device_type == "temperatureMeasurement" %>
+<% uri = "https://dazzling-heat-3134.firebaseio.com" %>
+<% firebase = Firebase::Client.new(uri) %>
+<% temps = firebase.get("events/"+@thing.uid+"/temperature") %>
+<% results = JSON.parse(temps.response.response_body).to_hash %>
+
+
+
+<!-- 5. $MORRISJS_GRAPH ============================================================================
+
+                Morris.js Graph
+-->
+                <!-- Javascript -->
+                <script>
+                    init.push(function () {
+                        var temp_data =                           
+                          <% temps = results.map do |item1, item2| %>
+                            <% if item2["date"] != nil %>
+                                <% if item2["value"] != nil %>
+                                <%  { date: item2["date"].to_datetime.strftime('%Y-%m-%d %H:%M'), value: item2["value"] } %>
+                                <% end %>
+                            <% end %>
+                         <% end %>
+
+                         <%= raw(temps.compact.to_json) %>
+                       
+                              
+                        ;
+                        Morris.Line({
+                            element: 'hero-graph',
+                            data: temp_data,
+                            xkey: ['date'],
+                            ykeys: ['value'],
+                            labels: ['Value'],
+                            lineColors: PixelAdmin.settings.consts.COLORS,
+                            lineWidth: 2,
+                            pointSize: 1,
+                            gridLineColor: '#cfcfcf',
+                            resize: true
+                        });
+                    });
+                </script>
+                <!-- / Javascript -->
+                
+
+                 <% temps = results.map do |item1, item2| %>
+                            <% if item2["date"] != nil %>
+                                <% if item2["value"] != nil %>
+                                <%  { date: item2["date"].to_datetime.strftime('%Y-%m-%d %H:%M'), value: item2["value"] } %>
+                                <% end %>
+                            <% end %>
+                         <% end %>
+
+               
+                <div class="panel">
+                    <div class="panel-heading">
+                        <span class="panel-title">Recent Temps</span>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="graph-container">
+                            <div id="hero-graph" class="graph"></div>
+                        </div>
+                    </div>
+                </div>
+<!-- /5. $MORRISJS_GRAPH -->
+<% end %>

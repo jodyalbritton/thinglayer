@@ -26,6 +26,8 @@
 //= require pixel-tasks
 //= require jquery.slimscroll
 //= require pixel-slimscroll
+//= require raphael.min 
+//= require morris
 //= require papercrop
 //= require bootstrap
 //= require main-navbar
