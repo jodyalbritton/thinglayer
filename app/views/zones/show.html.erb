@@ -130,6 +130,7 @@
                           <div class="thumbnail">
                               <div class="widget-title handle">
                               <h4><%= dimmer.zone.name %></h4>
+                              <h5><%= dimmer.display_type %></h5>
 
                               </div>
                               <% dimmer_switch = Thing.find_by(:device_type => "switch", :uid=> dimmer.uid ) %>
@@ -172,6 +173,7 @@
                           <div class="thumbnail">
                               <div class="widget-title handle">
                               <h4><%= switch.zone.name %></h4>
+                              <h5><%= switch.display_type %></h5>
 
                               </div>
                               <%= form_for switch, :remote=> true do |t| %>
@@ -205,6 +207,7 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= temp.zone.name %></h4>
+                                <h5><%= temp.display_type %></h5>
 
                                 </div>
                                 <div class="temp temperature_<%= temp.uid %>">
@@ -220,6 +223,7 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= humidity.zone.name %></h4>
+                                <h5><%= humidity.display_type %></h5>
 
                                 </div>
                                 <div class="temp humidity_<%= humidity.uid %> widget-profile-avatar">
@@ -236,6 +240,7 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= motion.zone.name %></h4>
+                                <h5><%= motion.display_type %></h5>
 
                                 </div>
                                 <div class="temp motion_<%= motion.uid %> img-circle">
@@ -252,6 +257,7 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= contact.zone.name %></h4>
+                                <h5><%= contact.display_type %></h5>
 
                                 </div>
                                 <div class="temp contact_<%= contact.uid %> img-circle">
@@ -267,7 +273,7 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= lock.zone.name %></h4>
-
+                                <h5><%= lock.display_type %></h5>
                                 </div>
                                 <div class="temp lock_<%= lock.uid %> img-circle">
                                  
@@ -282,6 +288,7 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= battery.zone.name %></h4>
+                                <h5><%= battery.display_type %></h5>
 
                                 </div>
                                 <div class="temp battery_<%= battery.uid %>">
@@ -297,6 +304,7 @@
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= illuminant.zone.name %></h4>
+                                <h5><%= illuminant.display_type %></h5>
 
                                 </div>
                                 <div class="temp illuminant_<%= illuminant.uid %>">
