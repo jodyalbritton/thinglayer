@@ -241,7 +241,7 @@ class Thing < ActiveRecord::Base
             return "Temperature"
         elsif self.device_type == "contact"
             return "Contact"
-        elsif self.device_type == "illuminance"
+        elsif self.device_type == "illuminant"
             return "Illuminance"
         elsif self.device_type == "battery"
             return "Battery"
