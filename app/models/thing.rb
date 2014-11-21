@@ -232,4 +232,28 @@ class Thing < ActiveRecord::Base
     def dimmer_value=(val)
         @dimmer_value = val
     end 
+
+
+    def display_type
+        if self.device_type == "relativeHumidityMeasurement" 
+            return "Humidity"
+        elsif self.device_type == "temperatureMeasurement"
+            return "Temperature"
+        elsif self.device_type == "contact"
+            return "Contact"
+        elsif self.device_type == "illuminance"
+            return "Illuminance"
+        elsif self.device_type == "battery"
+            return "Battery"
+        elsif self.device_type == "lock"
+            return "Lock"
+        elsif self.device_type == "switch"
+            return "Switch"
+        elsif self.device_type == "dimmer"
+            return "Dimmer"
+        elsif self.device_type == "motion"
+            return "Motion"
+        end
+            
+    end
 end
