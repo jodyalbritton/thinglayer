@@ -213,7 +213,7 @@
                                 <div class="temp temperature_<%= temp.uid %>">
                                   °F
                                 </div>
-                                 <h5><%= temp.label %></h5>
+                                 <h5><%= link_to temp.label, thing_path(temp) %></h5>
                             </div>
                       </div>
                       <% elsif thing.device_type == "relativeHumidityMeasurement" %>
@@ -229,7 +229,7 @@
                                 <div class="temp humidity_<%= humidity.uid %> widget-profile-avatar">
                                   %
                                 </div>
-                                 <h5><%= humidity.label %></h5>
+                                 <h5><%= link_to humidity.label, thing_path(humidity) %></h5>
                             </div>
                       </div>
                     <% elsif thing.device_type == "motion" %>
