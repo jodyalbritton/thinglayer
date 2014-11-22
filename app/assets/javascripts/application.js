@@ -28,6 +28,9 @@
 //= require pixel-slimscroll
 //= require raphael.min 
 //= require morris
+//= require amcharts
+//= require serial
+//= require themes/light
 //= require papercrop
 //= require bootstrap
 //= require main-navbar
