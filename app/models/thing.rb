@@ -54,139 +54,32 @@ class Thing < ActiveRecord::Base
         
             base_uri = 'https://dazzling-heat-3134.firebaseio.com/'
             if self.device_type == "dimmer"
-                firebase = Firebase::Client.new(base_uri)
-                events = firebase.get("events/"+self.uid+"/level")
-                if events.success? 
-                    if events.response.body != "null"
-                    event =  JSON.parse(events.response.response_body).to_a
-                     return event.last.second["value"]
-                    else
-                      Resque.enqueue(GetDimmer, self.id)
-                      return nil
-                    end
-                else 
-                    events = nil 
-                    
-                end
+                Resque.enqueue(GetDimmer, self.id)
+                return nil
             elsif self.device_type == "temperatureMeasurement" 
-                firebase = Firebase::Client.new(base_uri)
-                events = firebase.get("events/"+self.uid+"/temperature")
-                if events.success? 
-                    if events.response.body != "null"
-                    event =  JSON.parse(events.response.response_body).to_a
-                    event.last.second["value"]
-                    else
-                      Resque.enqueue(GetTemperature, self.id)
-                      return nil
-                    end
-                else 
-                    events = nil
-                    
-                end
+                Resque.enqueue(GetTemperature, self.id)
+                return nil 
             elsif self.device_type == "relativeHumidityMeasurement" 
-                firebase = Firebase::Client.new(base_uri)
-                events = firebase.get("events/"+self.uid+"/humidity")
-                if events.success? 
-                    if events.response.body != "null"
-                    event =  JSON.parse(events.response.response_body).to_a
-                    event.last.second["value"]
-                    else
-                      Resque.enqueue(GetHumidity, self.id)
-                      return nil
-                    end
-                else 
-                    events = nil
-                   
-                end  
+                Resque.enqueue(GetHumidity, self.id)
+                return nil
             elsif self.device_type == "motion" 
-                firebase = Firebase::Client.new(base_uri)
-                events = firebase.get("events/"+self.uid+"/motion")
-                if events.success? 
-                   if events.response.body != "null"
-                    event =  JSON.parse(events.response.response_body).to_a
-                    event.last.second["value"]
-                    else
-                      Resque.enqueue(GetMotion, self.id)
-                      return nil
-                    end
-                else 
-                    events = nil
-                   
-                end 
+                Resque.enqueue(GetMotion, self.id)
+                return nil
             elsif self.device_type == "contact" 
-                firebase = Firebase::Client.new(base_uri)
-                events = firebase.get("events/"+self.uid+"/contact")
-                if events.success? 
-                    if events.response.body != "null"
-                    event =  JSON.parse(events.response.response_body).to_a
-                    event.last.second["value"]
-                    else
-                      Resque.enqueue(GetContact, self.id)
-                      return nil
-                    end
-                else 
-                    events = nil
-                    
-                end 
+                Resque.enqueue(GetContact, self.id)
+                return nil
             elsif self.device_type == "lock" 
-                firebase = Firebase::Client.new(base_uri)
-                events = firebase.get("events/"+self.uid+"/lock")
-                if events.success? 
-                   if events.response.body != "null"
-                    event =  JSON.parse(events.response.response_body).to_a
-                    event.last.second["value"]
-                    else
-                      Resque.enqueue(GetLock, self.id)
-                      return nil
-                    end
-                else 
-                    events = nil
-                    
-                end 
+                Resque.enqueue(GetLock, self.id)
+                return nil
             elsif self.device_type == "battery" 
-                firebase = Firebase::Client.new(base_uri)
-                events = firebase.get("events/"+self.uid+"/battery")
-                if events.success? 
-                    if events.response.body != "null"
-                    event =  JSON.parse(events.response.response_body).to_a
-                    event.last.second["value"]
-                    else
-                      Resque.enqueue(GetBattery, self.id)
-                      return nil
-                    end
-                else 
-                    events = nil
-                end 
+                Resque.enqueue(GetBattery, self.id)
+                return nil
             elsif self.device_type == "switch" 
-                firebase = Firebase::Client.new(base_uri)
-                events = firebase.get("events/"+self.uid+"/switch")
-                if events.success? 
-                   if events.response.body != "null"
-                    event =  JSON.parse(events.response.response_body).to_a
-                    event.last.second["value"]
-                    else
-                      Resque.enqueue(GetSwitch, self.id)
-                      return nil
-                    end
-                else 
-                    events = nil
-                    
-                end     
+                Resque.enqueue(GetSwitch, self.id)
+                return nil
             elsif self.device_type == "illuminant" 
-                firebase = Firebase::Client.new(base_uri)
-                events = firebase.get("events/"+self.uid+"/illuminance")
-                if events.success? 
-                   if events.response.body != "null"
-                    event =  JSON.parse(events.response.response_body).to_a
-                    event.last.second["value"]
-                    else
-                      Resque.enqueue(GetIlluminant, self.id)
-                      return nil
-                    end
-                else 
-                    events = nil
-                  
-                end 
+                Resque.enqueue(GetIlluminant, self.id)
+                return nil
            
             end
         
