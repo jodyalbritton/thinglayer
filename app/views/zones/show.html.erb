@@ -43,7 +43,7 @@
     margin-left:0 !important;
 }
 .ui-slider-colors-demo { 
-    
+    margin-bottom: 5%; 
     width: 80%;
     margin-top: 12%;
     margin-left: 10%;
@@ -58,9 +58,8 @@
 }
 
 .ui-slider-success { 
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: 10%;
-   
     width: 80%;
 }
 
@@ -73,12 +72,10 @@
 
 
 }
-
 .device-wrapper{
 
-  height: 25%;
-
-
+  height: 30%;
+  margin: auto;
   padding-top: 5%;
   
 }
@@ -123,7 +120,7 @@
     <div class="row grid" data-update-url='<%= sort_location_zones_url(@location) %>'>
     
     <% @things.each do |thing| %>
-    <% if thing.device_type == "dimmer" %>
+  <% if thing.device_type == "dimmer" %>
                       <% dimmer = thing %>
                       <div id="thing_<%= dimmer.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
                       <div class="dummy"></div>
@@ -165,6 +162,8 @@
                             <h5><%= dimmer.label %></h5>
                           </div>
                     </div>
+
+
 
                     <% elsif thing.device_type == "switch" %>
                     <% switch = thing %>
@@ -499,7 +498,7 @@ var colorful_sliders_options = {
     'range': 'min',
     'min': 1,
     'max': 99,
-    'value': <%= dimmer.device_value %>,
+    'value': 0,
         'stop': function(event, ui) {
             var value = $(".dimmer_<%= dimmer.uid %>").slider("value");
             $(".dimmer_value_<%= dimmer.uid %>").val(value);
