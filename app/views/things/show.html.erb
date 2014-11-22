@@ -1,3 +1,18 @@
+  <% content_for :page_header do %>
+    <%= @thing.label %>
+  <% end %>
+  <% content_for :page_actions do %>
+    <%= link_to root_path, :class => 'btn btn-primary btn-labeled', :style=>"width: 100%;" do %>
+                <span class="btn-label icon fa fa-chevron-left"></span>Back
+    <% end %>
+  <% end %>
+  <% content_for :page_search do %>
+
+  <% end %>
+<%= render 'shared/header' %>
+
+
+
 <% if @thing.device_type == "temperatureMeasurement" %>
 <% uri = "https://dazzling-heat-3134.firebaseio.com" %>
 <% firebase = Firebase::Client.new(uri) %>
