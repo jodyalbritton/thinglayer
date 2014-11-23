@@ -5,4 +5,7 @@ class Service < ActiveRecord::Base
   def self.smartthings
   	Service.find_by_provider('smartthings')
   end 
+  def self.wink
+  	Service.find_by_provider('wink')
+  end 
 end
