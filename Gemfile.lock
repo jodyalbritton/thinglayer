@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/jodyalbritton/omniauth-wink.git
-  revision: cf80bbcfd714d8882df443ace2c67f9460aa8fe6
+  revision: 6300f2401918e8f9778fcebf7dfe19b1d131e0ea
   specs:
     omniauth-wink (1.0)
       omniauth (~> 1.0)
@@ -92,9 +92,9 @@ GEM
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    httpclient (2.5.3.2)
+    httpclient (2.5.3.3)
     i18n (0.6.11)
-    jbuilder (2.2.4)
+    jbuilder (2.2.5)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-datatables-rails (2.1.10.0.3)
