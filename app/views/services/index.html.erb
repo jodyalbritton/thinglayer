@@ -3,7 +3,12 @@
 <div class="container">
 	<% @services.each do |service| %>
 		<h2><%= service.name %></h2>
-		 <h3><a href="/auth/smartthings/">Authrorize Devices</a></h3>
+		 <% if service.provider == "smartthings" %>
+		 	<h3><a href="/auth/smartthings/">Authrorize Devices</a></h3>
+		 <% elsif service.provider == "wink" %>
+		 	<h3><a href="/auth/wink/">Authrorize Devices</a></h3>
+		 <% else %>
+		 <% end %>
 		 <h3><%= link_to "Import", :controller => "things", :import => true %></h3>
 		 <h3><%= link_to  "Disconnect", service_path(service), method: :delete, data: { confirm: 'Are you sure?' }, :class=> "hidden-sm hidden-xs"%></h3></br>
 	<% end %>
@@ -12,6 +17,11 @@
 	<% if @user.services.smartthings == nil %>
 		<h2>Connect to Smart Things</h2>
 		<%= link_to "connect", "/auth/smartthings" %>
+	<% end %>
+
+	<% if @user.services.wink == nil %>
+		<h2>Connect to Wink</h2>
+		<%= link_to "connect", "/auth/wink" %>
 	<% end %>
 
 </div>
