@@ -3,7 +3,7 @@ class Thing < ActiveRecord::Base
     belongs_to :zone
     has_many :events
     
-     acts_as_list :scope => :zone
+    acts_as_list :scope => :zone
     
     
     def switch_details
@@ -50,10 +50,8 @@ class Thing < ActiveRecord::Base
         @user.smartthings.show_lock(self.uid)
     end    
     
-    def device_value 
-        
-            base_uri = 'https://dazzling-heat-3134.firebaseio.com/'
-            if self.device_type == "dimmer"
+    def device_value        
+           if self.device_type == "dimmer"
                 Resque.enqueue(GetDimmer, self.id)
                 return nil
             elsif self.device_type == "temperatureMeasurement" 
@@ -80,13 +78,7 @@ class Thing < ActiveRecord::Base
             elsif self.device_type == "illuminant" 
                 Resque.enqueue(GetIlluminant, self.id)
                 return nil
-           
             end
-        
-   
-         
-
-
     end
 
 
