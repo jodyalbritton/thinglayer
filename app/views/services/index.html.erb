@@ -21,7 +21,12 @@
 
 	<% if @user.services.wink == nil %>
 		<h2>Connect to Wink</h2>
-		<%= link_to "connect", "/auth/wink" %>
+		<h3><%= link_to "connect", "/auth/wink" %></h3>
+	<% end %>
+
+	<% if @user.services.ubi == nil %>
+		<h2>Connect to Ubi</h2>
+		<h3><%= link_to "connect", "/auth/ubi" %></h3>
 	<% end %>
 
 </div>
