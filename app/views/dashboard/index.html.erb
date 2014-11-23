@@ -456,26 +456,50 @@ $('.switch_class').switcher();
             }
 
             if (value.name == "illuminance"){
-              $('.illuminant_'+value.device).html(value.value+ " Lux");
+                if(value.unit == undefined){
+                   var display_unit = "Lux"
+                  
+                }else{
+                 var display_unit = value.unit 
+                }
+              $('.illuminant_'+value.device).html(value.value+" "+display_unit);
 
             }
 
              if (value.name == "battery"){
-              $('.battery_'+value.device).html(value.value+ " %");
+              if(value.unit == undefined){
+                   var display_unit = "%"
+                  
+                }else{
+                 var display_unit = value.unit 
+                }
+              $('.battery_'+value.device).html(value.value+" "+display_unit);
 
             }
 
             if (value.name == "temperature"){
-              $('.temperature_'+value.device).html(value.value+" °F");
+              if(value.unit == undefined){
+                   var display_unit = "F"
+                  
+                }else{
+                 var display_unit = value.unit 
+                }
+              $('.temperature_'+value.device).html(value.value+" "+display_unit);
 
             }
 
             if (value.name == "humidity"){
-              $('.humidity_'+value.device).html(value.value+" %");
+              if(value.unit == undefined){
+                   var display_unit = "%"
+                  
+                }else{
+                 var display_unit = value.unit 
+                }
+              $('.humidity_'+value.device).html(value.value+" "+display_unit);
 
             }
            
-        console.log(value.device+' '+value.value);
+        console.log(value.device+' '+value.value+' '+value.unit);
         
     });
 </script>

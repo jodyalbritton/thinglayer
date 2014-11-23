@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   def index
   	@user = User.find(current_user)
     @grouped_things = @user.things.all.where.not(:zone_id => nil).group_by(&:device_type)
-    @things = @user.things
+    @things = @user.things.where(:visible => true)
   end
 
   def show
