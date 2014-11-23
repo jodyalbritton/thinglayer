@@ -8,4 +8,7 @@ class Service < ActiveRecord::Base
   def self.wink
   	Service.find_by_provider('wink')
   end 
+  def self.ubi
+  	Service.find_by_provider('wink')
+  end
 end
