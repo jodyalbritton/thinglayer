@@ -9,11 +9,15 @@ module Stapi
 	    end 
 	    
 	     def switch_value(thing, value)
-	    	@dimmer ||= url+'/switches/'+thing+'/'+value+'?access_token='+connection 
+	    	@switch ||= url+'/switches/'+thing+'/'+value+'?access_token='+connection 
 	    	Rails.logger.debug(@dimmer)
-	    	HTTParty.get(@dimmer)
+	    	HTTParty.get(@switch)
 
 	    end
+
+	    def switch_events(switch_id)
+	    	@switch ||= HTTParty.get(url+'/switches/'+switch_id+'/events?access_token='+connection)
+	    end 
 
     end
 end
