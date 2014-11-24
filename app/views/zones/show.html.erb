@@ -131,10 +131,12 @@
 
                               </div>
                               <% dimmer_switch = Thing.find_by(:device_type => "switch", :uid=> dimmer.uid ) %>
+                              <div class="device-wrapper">
+                              <% if dimmer_switch %>
                               <%= form_for dimmer_switch, :remote=> true do |t| %>
                                    
-                              <div class="device-wrapper">
-                              <div class="switcher">
+                             
+                                    <div class="switcher">
                                     
                                     <% if dimmer_switch.device_value == "on" %>
                                    
@@ -148,22 +150,22 @@
                                    <%= t.text_field :switch_type, :value => "", :hidden => true %>
                             
                                    <%= t.text_field :source, :value => "remote", :hidden => true %>
+
                                
                                   
+                              <% end %>
                               <% end %>
 
                               <%= form_for dimmer, :remote=> true do |t| %>
                                    <%= t.text_field :dimmer_value, :value => "", :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
                                    <%= t.text_field :source, :value => "remote", :hidden => true %>
                                    <div class="ui-slider-success ui-slider-colors-demo dimmer_<%= dimmer.uid%>"></div>
-                                  
+                                   <h5><%= dimmer.label %></h5>
                               <% end %>
                             </div>
-                            <h5><%= dimmer.label %></h5>
+                          
                           </div>
                     </div>
-
-
 
                     <% elsif thing.device_type == "switch" %>
                     <% switch = thing %>
@@ -172,7 +174,6 @@
                           <div class="thumbnail">
                               <div class="widget-title handle">
                               <h4><%= switch.zone.name %></h4>
-                              <h5><%= switch.display_type %></h5>
 
                               </div>
                               <%= form_for switch, :remote=> true do |t| %>
@@ -198,6 +199,7 @@
 
                           </div>
                     </div>
+
 
                   <% elsif thing.device_type == "temperatureMeasurement" %>
                       <% temp = thing %>

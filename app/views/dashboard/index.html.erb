@@ -43,7 +43,7 @@
     margin-left:0 !important;
 }
 .ui-slider-colors-demo { 
-    margin-bottom: 1%; 
+    margin-bottom: 5%; 
     width: 80%;
     margin-top: 12%;
     margin-left: 10%;
@@ -200,10 +200,10 @@
                                    <%= t.text_field :dimmer_value, :value => "", :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
                                    <%= t.text_field :source, :value => "remote", :hidden => true %>
                                    <div class="ui-slider-success ui-slider-colors-demo dimmer_<%= dimmer.uid%>"></div>
-                                  
+                                   <h5><%= dimmer.label %></h5>
                               <% end %>
                             </div>
-                            <h5><%= dimmer.label %></h5>
+                          
                           </div>
                     </div>
 
