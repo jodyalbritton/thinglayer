@@ -37,6 +37,7 @@ gem 'httparty'
 gem 'devise'
 gem "rolify"
 gem 'authority'
+gem 'foreman'
 gem 'high_voltage', '~> 2.2.1'
 gem 'jquery-datatables-rails', '~> 2.1.10.0.2'
 gem 'jquery-fileupload-rails'
