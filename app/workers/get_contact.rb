@@ -10,7 +10,7 @@ class GetContact
                     if events.response.body != "null"
                     	return nil
                     else
-                    	firebase.push("events/"+device.uid+"/contact", {device: device_event["id"],  name: "contact", value: device_event["value"]})
+                    	firebase.push("events/"+device.uid+"/contact", {device: device_event["id"],  name: "contact", date: Time.now.to_time.iso8601, value: device_event["value"]})
                 	end
                 end
 	end

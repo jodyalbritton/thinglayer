@@ -10,7 +10,7 @@ class GetTemperature
                     if events.response.body != "null"
                     	return nil
                     else
-                    	firebase.push("events/"+device.uid+"/temperature", {device: device_event["id"],  name: "temperature", value: device_event["value"]})
+                    	firebase.push("events/"+device.uid+"/temperature", {device: device_event["id"],  name: "temperature", date: Time.now.to_time.iso8601, value: device_event["value"]})
                 	end
                 end
 	end

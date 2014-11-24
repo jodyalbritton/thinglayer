@@ -10,7 +10,7 @@ class GetLock
                     if events.response.body != "null"
                     	return nil
                     else
-                    	firebase.push("events/"+device.uid+"/lock", {device: device_event["id"],  name: "lock", value: device_event["value"]})
+                    	firebase.push("events/"+device.uid+"/lock", {device: device_event["id"],  name: "lock", date: Time.now.to_time.iso8601, value: device_event["value"]})
                 	end
                 end
 	end
