@@ -62,7 +62,9 @@
 				<div class="form-actions">
 					<%= f.submit "Submit", :class=> "signin-btn bg-primary"%>
 					
-					<a href="#" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
+					<%= link_to "Forgot your password?", new_password_path(resource_name),  :class=>"forgot-password"%>
+										
+		
 				</div> <!-- / .form-actions -->
 			<% end %>
 	
@@ -70,30 +72,7 @@
 
           
 
-			<!-- Password reset form -->
-			<div class="password-reset-form" id="password-reset-form">
-				<div class="header">
-					<div class="signin-text">
-						<span>Password reset</span>
-						<div class="close">&times;</div>
-					</div> <!-- / .signin-text -->
-				</div> <!-- / .header -->
-				
-				<!-- Form -->
-				<form action="index.html" id="password-reset-form_id">
-					<div class="form-group w-icon">
-						</div>
-						<input type="text" name="password_reset_email" id="p_email_id" class="form-control input-lg" placeholder="Enter your email">
-						<span class="fa fa-envelope signin-form-icon"></span>
-					</div> <!-- / Email -->
 
-					<div class="form-actions">
-						<input type="submit" value="SEND PASSWORD RESET LINK" class="signin-btn bg-primary">
-					</div> <!-- / .form-actions -->
-				</form>
-				<!-- / Form -->
-			</div>
-			<!-- / Password reset form -->
 		</div>
 		<!-- Right side -->
 	</div>
