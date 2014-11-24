@@ -24,6 +24,10 @@ class Thing < ActiveRecord::Base
         @user ||= User.find(user_id)
         @user.smartthings.show_motion(self.uid)
     end
+    def motion_events
+        @user ||= User.find(user_id)
+        @user.smartthings.motion_events(self.uid)
+    end
     def lock_details
         @user ||= User.find(user_id)
         @user.smartthings.show_lock(self.uid)
