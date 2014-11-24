@@ -1,11 +1,144 @@
+<body class="theme-default page-signup">
+
+<script>
+	var init = [];
+	init.push(function () {
+		
+	});
+</script>
+
+
+	<!-- Page background -->
+	<div id="page-signup-bg">
+		<!-- Background overlay -->
+		<div class="overlay"></div>
+		<!-- Replace this with your bg image -->
+		
+	</div>
+	<!-- / Page background -->
+
+	<!-- Container -->
+	<div class="signup-container">
+		<!-- Header -->
+		<div class="signup-header">
+			<%= link_to root_path,  :class=>"logo" do %>
+				
+				Thing Layer
+			<% end %> <!-- / .logo -->
+			<div class="slogan">
+				Alpha
+			</div> <!-- / .slogan -->
+		</div>
+		<!-- / Header -->
+		  
+
+		<!-- Form -->
+		<div class="signup-form">
+			<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+			
+				<%= devise_error_messages! %>
+  		  		<%= f.hidden_field :reset_password_token %>
+				<div class="signup-text">
+					<span>Reset Password</span>
+				</div>
+
+	
+				<div class="form-group w-icon">
+					<%= f.password_field :password, autofocus: true, autocomplete: "off", :class=> "form-control input-lg", :required => true%></div>
+					
+					<span class="fa fa-envelope signup-form-icon"></span>
+					
+				</div>
+				<div class="form-group w-icon">
+					<%= f.password_field :password_confirmation, autofocus: true, autocomplete: "off", :class=> "form-control input-lg", :required => true%></div>
+					
+					<span class="fa fa-envelope signup-form-icon"></span>
+					
+				</div>
+
+				
+
+				<div class="form-actions">
+					<%= f.submit "Submit", :class=> "signin-btn bg-primary"%>
+					
+				</div>
+			<% end %>
+			<!-- / Form -->
+		</div>
+		<!-- Right side -->
+	</div>
+
+		<div class="have-account">
+		<%= render "devise/shared/links" %>
+	</div>
+
+</body>
+
+
+
+
+
+<script type="text/javascript">
+	// Resize BG
+	init.push(function () {
+		var $ph  = $('#page-signup-bg'),
+		    $img = $ph.find('> img');
+
+		$(window).on('resize', function () {
+			$img.attr('style', '');
+			if ($img.height() < $ph.height()) {
+				$img.css({
+					height: '100%',
+					width: 'auto'
+				});
+			}
+		});
+
+		$("#new_user").validate({ focusInvalid: true, errorPlacement: function () {} });
+
+		// Validate name
+		$("#user_full_name").rules("add", {
+			required: true,
+			minlength: 1
+		});
+
+		// Validate email
+		$("#user_email").rules("add", {
+			required: true,
+			email: true
+		});
+		
+		// Validate username
+		$("#user_username").rules("add", {
+			required: true,
+			minlength: 3
+		});
+
+		// Validate password
+		$("#user_password").rules("add", {
+			required: true,
+			minlength: 6
+		});
+
+		// Validate confirm checkbox
+		$("#user_password_confirmation").rules("add", {
+			required: true
+		});
+	});
+
+	window.PixelAdmin.start(init);
+</script>
+
+
+
+
+
 <h2>Change your password</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+
 
   <div><%= f.label :password, "New password" %><br />
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %></div>
+    
 
   <div><%= f.label :password_confirmation, "Confirm new password" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
