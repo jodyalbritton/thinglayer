@@ -10,7 +10,7 @@ class GetHumidity
                     if events.response.body != "null"
                     	return nil
                     else
-                    	firebase.push("events/"+device.uid+"/humidity", {device: device_event["id"],  name: "humidity", value: device_event["value"]})
+                    	firebase.push("events/"+device.uid+"/humidity", {device: device_event["id"],  name: "humidity", date: Time.now.to_time.iso8601, value: device_event["value"]})
                 	end
                 end
 	end

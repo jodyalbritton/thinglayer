@@ -10,7 +10,7 @@ class GetSwitch
                     if events.response.body != "null"
                     	return nil
                     else
-                    	firebase.push("events/"+device.uid+"/switch", {device: device_event["id"],  name: "switch", value: device_event["value"]})
+                    	firebase.push("events/"+device.uid+"/switch", {device: device_event["id"],  name: "switch", date: Time.now.to_time.iso8601, value: device_event["value"]})
                 	end
                 end
 	end

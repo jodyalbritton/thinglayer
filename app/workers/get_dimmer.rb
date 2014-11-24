@@ -10,7 +10,7 @@ class GetDimmer
                     if events.response.body != "null"
                     	return nil
                     else
-                    	firebase.push("events/"+device.uid+"/level", {device: device_event["id"],  name: "level", value: device_event["value"]})
+                    	firebase.push("events/"+device.uid+"/level", {device: device_event["id"],  name: "level", date: Time.now.to_time.iso8601.to_s, value: device_event["value"]})
                 	end
                 end
 	end
