@@ -1,7 +1,9 @@
 require 'api_contraints'
 Rails.application.routes.draw do
  
-
+  resque_constraint = lambda do |request|
+    request.env['warden'].authenticate? && (request.env['warden'].user.has_role? :admin)
+  end
   
   get 'dashboard/index'
 
@@ -24,8 +26,9 @@ Rails.application.routes.draw do
       post 'sort', on: :collection
     end
   end
-
-  mount Resque::Server, :at => "/resque"
+  constraints resque_constraint do
+   mount Resque::Server, :at => "/resque"
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
