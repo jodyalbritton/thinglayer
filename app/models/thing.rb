@@ -11,6 +11,12 @@ class Thing < ActiveRecord::Base
         @user.smartthings.show_switch(self.uid)
     end
 
+    def switch_value
+        @user ||= User.find(user_id)
+        value = @user.smartthings.show_switch(self.uid)
+        value.parsed_response["value"]
+    end
+
     def contact_details
         @user ||= User.find(user_id)
         @user.smartthings.show_contact(self.uid)
@@ -20,6 +26,12 @@ class Thing < ActiveRecord::Base
         @user ||= User.find(user_id)
         @user.smartthings.show_dimmer(self.uid)
     end
+    def dimmer_value
+        @user ||= User.find(user_id)
+        value = @user.smartthings.show_dimmer(self.uid)
+        value.parsed_response["value"]
+    end
+
      def motion_details
         @user ||= User.find(user_id)
         @user.smartthings.show_motion(self.uid)
@@ -103,13 +115,6 @@ class Thing < ActiveRecord::Base
     end
     def battery_value
         self.battery_details.parsed_response["value"]
-    end
-    def switch_value
-        self.switch_details.parsed_response["value"]
-    end
-
-    def dimmer_value
-        self.dimmer_details.parsed_response["value"]
     end
 
     def motion_value

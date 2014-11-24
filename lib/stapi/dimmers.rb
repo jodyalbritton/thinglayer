@@ -14,6 +14,10 @@ module Stapi
 
 	    end
 
+	    def dimmer_events(dimmer_id)
+	    	@dimmer ||= HTTParty.get(url+'/dimmers/'+dimmer_id+'/events?access_token='+connection)
+	    end 
+
 	   
 	end
 end

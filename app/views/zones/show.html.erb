@@ -138,7 +138,7 @@
                              
                                     <div class="switcher">
                                     
-                                    <% if dimmer_switch.device_value == "on" %>
+                                    <% if dimmer_switch.switch_value == "on" %>
                                    
                                     <%= t.check_box(:switch_value,  {class: 'switch_'+dimmer.uid+' switch_class', :checked => true}, "on", "off") %>
                                     <% else %>
@@ -147,7 +147,7 @@
                                    
                                    </div>
                                   
-                                   <%= t.text_field :switch_type, :value => "", :hidden => true %>
+                                   <%= t.text_field :switch_type, :value => dimmer_switch.switch_value, :hidden => true %>
                             
                                    <%= t.text_field :source, :value => "remote", :hidden => true %>
 
@@ -157,7 +157,7 @@
                               <% end %>
 
                               <%= form_for dimmer, :remote=> true do |t| %>
-                                   <%= t.text_field :dimmer_value, :value => "", :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
+                                   <%= t.text_field :dimmer_value, :value => dimmer.dimmer_value , :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
                                    <%= t.text_field :source, :value => "remote", :hidden => true %>
                                    <div class="ui-slider-success ui-slider-colors-demo dimmer_<%= dimmer.uid%>"></div>
                                    <h5><%= dimmer.label %></h5>
@@ -180,7 +180,7 @@
                                    
                                    <div class= "temp">
                                    <div class="switcher">
-                                    <% if switch.device_value == "on" %>
+                                    <% if switch.switch_value == "on" %>
                                    
                                     <%= t.check_box(:switch_value,  {class: 'switch_'+switch.uid+' switch_class', :checked => true}, "on", "off") %>
                                     <% else %>
@@ -199,7 +199,6 @@
 
                           </div>
                     </div>
-
 
                   <% elsif thing.device_type == "temperatureMeasurement" %>
                       <% temp = thing %>
