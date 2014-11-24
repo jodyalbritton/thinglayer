@@ -44,13 +44,13 @@
 
 	
 				<div class="form-group w-icon">
-					<%= f.password_field :password, autofocus: true, autocomplete: "off", :class=> "form-control input-lg", :required => true%></div>
+					<%= f.password_field :password, autofocus: true, autocomplete: "off", :class=> "form-control input-lg", :required => true%>
 					
 					<span class="fa fa-envelope signup-form-icon"></span>
 					
 				</div>
 				<div class="form-group w-icon">
-					<%= f.password_field :password_confirmation, autocomplete: "off", :class=> "form-control input-lg", :required => true%></div>
+					<%= f.password_field :password_confirmation, autocomplete: "off", :class=> "form-control input-lg", :required => true%>
 					
 					<span class="fa fa-envelope signup-form-icon"></span>
 					
@@ -63,71 +63,16 @@
 					
 				</div>
 			<% end %>
-			<!-- / Form -->
-		</div>
-		<!-- Right side -->
-	</div>
 
 		<div class="have-account">
 		<%= render "devise/shared/links" %>
 	</div>
-
-</body>
-
+	</div>
 
 
 
 
-<script type="text/javascript">
-	// Resize BG
-	init.push(function () {
-		var $ph  = $('#page-signup-bg'),
-		    $img = $ph.find('> img');
 
-		$(window).on('resize', function () {
-			$img.attr('style', '');
-			if ($img.height() < $ph.height()) {
-				$img.css({
-					height: '100%',
-					width: 'auto'
-				});
-			}
-		});
-
-		$("#new_user").validate({ focusInvalid: true, errorPlacement: function () {} });
-
-		// Validate name
-		$("#user_full_name").rules("add", {
-			required: true,
-			minlength: 1
-		});
-
-		// Validate email
-		$("#user_email").rules("add", {
-			required: true,
-			email: true
-		});
-		
-		// Validate username
-		$("#user_username").rules("add", {
-			required: true,
-			minlength: 3
-		});
-
-		// Validate password
-		$("#user_password").rules("add", {
-			required: true,
-			minlength: 6
-		});
-
-		// Validate confirm checkbox
-		$("#user_password_confirmation").rules("add", {
-			required: true
-		});
-	});
-
-	window.PixelAdmin.start(init);
-</script>
 
 
 
