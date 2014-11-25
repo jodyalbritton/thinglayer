@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base 
+  include Authority::UserAbilities
   rolify
   require 'stapi'
   # Include default devise modules. Others available are:
