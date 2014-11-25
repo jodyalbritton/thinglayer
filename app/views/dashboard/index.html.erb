@@ -176,18 +176,15 @@
                               <%= form_for dimmer_switch, :remote=> true do |t| %>
                                    
                              
-                                    <div class="switcher">
+                                    <div class="toggle">
                                     
-                                    <% if dimmer_switch.switch_value == "on" %>
-                                   
-                                    <%= t.check_box(:switch_value,  {class: 'switch_'+dimmer.uid+' switch_class', :checked => true}, "on", "off") %>
-                                    <% else %>
-                                    <%= t.check_box(:switch_value,  {class: 'switch_'+dimmer.uid+' switch_class', :checked => false}, "on", "off") %>
-                                    <% end %>
+                            
+                                    <%= t.check_box(:switch_value, {data: {"toggle"=> "toggle"}, class: 'switch_'+dimmer_switch.uid+' switch_class', :checked => false}, "off", "on") %>
+                                
                                    
                                    </div>
                                   
-                                   <%= t.text_field :switch_type, :value => dimmer_switch.switch_value, :hidden => true %>
+                                   <%= t.text_field :switch_type, :value => 0, :hidden => true %>
                             
                                    <%= t.text_field :source, :value => "remote", :hidden => true %>
 
@@ -197,7 +194,7 @@
                               <% end %>
 
                               <%= form_for dimmer, :remote=> true do |t| %>
-                                   <%= t.text_field :dimmer_value, :value => dimmer.dimmer_value , :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
+                                   <%= t.text_field :dimmer_value, :value => 0 , :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
                                    <%= t.text_field :source, :value => "remote", :hidden => true %>
                                    <div class="ui-slider-success ui-slider-colors-demo dimmer_<%= dimmer.uid%>"></div>
                                    <h5><%= dimmer.label %></h5>
@@ -219,14 +216,8 @@
                               <%= form_for switch, :remote=> true do |t| %>
                                    
                                    <div class= "temp">
-                                   <div class="switcher">
-                                    <% if switch.switch_value == "on" %>
-                                   
-                                    <%= t.check_box(:switch_value,  {class: 'switch_'+switch.uid+' switch_class', :checked => true}, "on", "off") %>
-                                    <% else %>
-                                    <%= t.check_box(:switch_value,  {class: 'switch_'+switch.uid+' switch_class', :checked => false}, "on", "off") %>
-                                    <% end %>
-                                   
+                                   <div class="toggle">
+                                    <%= t.check_box(:switch_value, {data: {"toggle"=> "toggle"}, class: 'switch_'+switch.uid+' switch_class', :checked => false}, "off", "on") %>
                                    </div>
                                   
                                    <%= t.text_field :switch_type, :value => "", :hidden => true %>
@@ -377,7 +368,7 @@ init.push(function () {
 
   });            
 });
-$('.switch_class').switcher();
+
    
 </script>
 <% @things.each do |thing| %>
@@ -409,7 +400,7 @@ $('.switch_class').switcher();
     query_<%=thing.id %>.on('child_added', function(snapshot) {
         var value = snapshot.val()
             if (value.name == "switch"){
-                     $('.switch_'+value.device).switcher(value.value)
+                     $('.switch_'+value.device).bootstrapToggle(value.value)
                      console.log("changed switch value")
                      
             
@@ -511,7 +502,7 @@ $('.switch_class').switcher();
 
 
 <script>
-    $('.switch_class').click(function() {
+    $('.toggle').on('click',function() {
 
           var form = $(this).parents('form:first');
 
@@ -537,9 +528,9 @@ var colorful_sliders_options = {
             var value = $(".dimmer_<%= dimmer.uid %>").slider("value");
             $(".dimmer_value_<%= dimmer.uid %>").val(value);
             var form = $(this).parents('form:first');
-            $("switch_<%= dimmer.uid %>").switcher("disable");
+           
             form.submit();
-            $("switch_<%= dimmer.uid %>").switcher("enable");
+           
             
 
         }

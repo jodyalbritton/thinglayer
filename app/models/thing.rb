@@ -5,16 +5,12 @@ class Thing < ActiveRecord::Base
     
     acts_as_list :scope => :zone
     
+    def switch_value 
+    end 
     
     def switch_details
         @user ||= User.find(user_id)
         @user.smartthings.show_switch(self.uid)
-    end
-
-    def switch_value
-        @user ||= User.find(user_id)
-        value = @user.smartthings.show_switch(self.uid)
-        value.parsed_response["value"]
     end
 
     def contact_details
@@ -26,11 +22,7 @@ class Thing < ActiveRecord::Base
         @user ||= User.find(user_id)
         @user.smartthings.show_dimmer(self.uid)
     end
-    def dimmer_value
-        @user ||= User.find(user_id)
-        value = @user.smartthings.show_dimmer(self.uid)
-        value.parsed_response["value"]
-    end
+
 
      def motion_details
         @user ||= User.find(user_id)

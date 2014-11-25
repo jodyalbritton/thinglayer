@@ -36,7 +36,7 @@
 //= require main-navbar
 //= require main-menu
 //= require microphone.min
-//= require switcher.js
+//= require bootstrap-toggle
 //= require fastclick
 //= require jquery.searchable
 //= require jquery.timer
