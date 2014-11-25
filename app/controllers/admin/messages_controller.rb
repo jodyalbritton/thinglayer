@@ -1,20 +1,21 @@
-class MessagesController < ApplicationController
+class Admin::MessagesController < ApplicationController
+  authorize_actions_for ApplicationAuthorizer
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
     @messages = Message.all
-    respond_with(@messages)
+    respond_with([:admin, @message])
   end
 
   def show
-    respond_with(@message)
+    respond_with([:admin, @message])
   end
 
   def new
     @message = Message.new
-    respond_with(@message)
+    respond_with([:admin, @message])
   end
 
   def edit
@@ -23,7 +24,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     flash[:notice] = 'Message was successfully created.' if @message.save
-    respond_with(@message)
+   respond_with([:admin, @message])
   end
 
   def update
@@ -33,7 +34,7 @@ class MessagesController < ApplicationController
 
   def destroy
     @message.destroy
-    respond_with(@message)
+    respond_with([:admin, @message])
   end
 
   private

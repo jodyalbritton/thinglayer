@@ -1,6 +1,6 @@
 <h1>Listing messages</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>User</th>
@@ -13,12 +13,12 @@
   <tbody>
     <% @messages.each do |message| %>
       <tr>
-        <td><%= message.user %></td>
+        <td><%= message.user.full_name %></td>
         <td><%= message.subject %></td>
         <td><%= message.body %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', ([:admin, message]) %></td>
+        <td><%= link_to 'Edit', edit_admin_message_path([:admin, @message]) %></td>
+        <td><%= link_to 'Destroy', ([:admin, message]) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
