@@ -319,7 +319,7 @@
                                 <div class="temp battery_<%= battery.uid %>">
                                   <%= battery.device_value %> %
                               </div>
-                               <h5><%= battery.label %></h5>
+                               <h5><%= link_to battery.label, thing_path(battery) %></h5>
                             </div>
                       </div>
                     <% elsif thing.device_type == "illuminant" %>
