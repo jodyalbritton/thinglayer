@@ -125,7 +125,7 @@ module Stapi
         
 			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
 			        stuff.uid = it["id"]
-					stuff.device_type = "illuminant"
+					stuff.device_type = it["type"]
 					stuff.label = it["name"]
 					stuff.provider = "smartthings"
 					stuff.user = @user
