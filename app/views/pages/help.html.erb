@@ -11,7 +11,7 @@
 			<div class="modal-dialog ">
 				<div class="modal-content">
 					<%= form_for([@message], html: {class: "modal-body"}) do |f| %>
-						 <%= f.hidden_field :user, :value => current_user %>
+						 <%= f.hidden_field :user_id, :value => current_user.id %>
 						 <%= f.text_field :subject, :placeholder => "subject", :class=> "form-control form-group-margin input-lg" %>
 						 <%= f.text_area :body, :placeholder => "message", :class=> "form-control form-group-margin input-lg", :rows => 6 %>
 						

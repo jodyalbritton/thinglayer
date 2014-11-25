@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :services
   has_many :things
   has_many :locations
+  has_many :messages
   has_many :zones, through: :locations
 
 def st_token
