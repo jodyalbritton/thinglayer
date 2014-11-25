@@ -20,15 +20,20 @@ Authority.configure do |config|
   #
   # Defaults are as follows:
   #
-  # config.controller_action_map = {
-  #   :index   => 'read',
-  #   :show    => 'read',
-  #   :new     => 'create',
-  #   :create  => 'create',
-  #   :edit    => 'update',
-  #   :update  => 'update',
-  #   :destroy => 'delete'
-  # }
+  config.controller_action_map = {
+ :index   => 'read',    # `index` controller action will check `readable_by?`
+ :show    => 'read',
+ :new     => 'create',  # `new` controller action will check `creatable_by?`
+ :create  => 'create',  # ...etc
+ :edit    => 'update',
+ :update  => 'update',
+ :update_all => 'update',
+ :sort => 'sort',
+ :crop =>  'crop',
+ :print => 'print',
+ :destroy => 'delete',
+ :tags => 'tags'
+}
 
   # ABILITIES
   # =========
@@ -38,12 +43,16 @@ Authority.configure do |config|
   #
   # Defaults are as follows:
   #
-  # config.abilities =  {
-  #   :create => 'creatable',
-  #   :read   => 'readable',
-  #   :update => 'updatable',
-  #   :delete => 'deletable'
-  # }
+  config.abilities =  {
+     :sort => 'sortable',
+     :crop => "croppable",
+     :print=> 'printable',
+     :tags => 'taggable',
+     :create => 'creatable',
+     :read   => 'readable',
+     :update => 'updatable',
+     :delete => 'deletable'
+   }
 
   # LOGGER
   # ======

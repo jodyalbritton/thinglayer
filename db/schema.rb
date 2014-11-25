@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124223341) do
+ActiveRecord::Schema.define(version: 20141124234839) do
 
   create_table "events", force: true do |t|
     t.string   "date"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20141124223341) do
     t.string   "name"
     t.string   "value"
     t.integer  "thing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "faqs", force: true do |t|
+    t.string   "question"
+    t.text     "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +39,16 @@ ActiveRecord::Schema.define(version: 20141124223341) do
   end
 
   add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
+
+  create_table "messages", force: true do |t|
+    t.integer  "user_id"
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"

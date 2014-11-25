@@ -1,6 +1,8 @@
 require 'api_contraints'
 Rails.application.routes.draw do
  
+
+
   resque_constraint = lambda do |request|
     request.env['warden'].authenticate? && (request.env['warden'].user.has_role? :admin)
   end
@@ -17,6 +19,8 @@ Rails.application.routes.draw do
   resources :services
   resources :things
   resources :dashboard
+  resources :messages, only: [:new, :create]
+
   match '/dashboard/search/:query' => 'dashboard#search', :as => 'search', via: [:get, :post]
   match "/auth/:provider/callback" => "omniauth_callbacks#create", via: [:get, :post]
 
@@ -39,6 +43,13 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 # Api definition
+  resources :admin, only: [:index]
+
+  namespace :admin do
+        resources :faqs
+        resources :messages
+  end 
+  
   namespace :api, defaults: { format: :json },
                               constraints: { subdomain: 'api' }, path: '/'  do
     scope module: :v1,

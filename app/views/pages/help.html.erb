@@ -1,3 +1,6 @@
+<% @faqs = Faq.all %>
+<% @message = Message.new %>
+
 <!-- 5. $FAQ =======================================================================================
 
 		F.A.Q.
@@ -7,12 +10,13 @@
 		<div id="modal-faq" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
 			<div class="modal-dialog ">
 				<div class="modal-content">
-					<form action="" class="modal-body">
-						<input type="text" placeholder="Your name" class="form-control form-group-margin input-lg">
-						<input type="text" placeholder="Your email" class="form-control form-group-margin input-lg">
-						<textarea placeholder="Your question" class="form-control form-group-margin input-lg" rows="6"></textarea>
-						<div class="clearfix"><button type="submit" class="btn btn-lg btn-block btn-flat btn-primary">Send your question</button></div>
-					</form>
+					<%= form_for([@message], html: {class: "modal-body"}) do |f| %>
+						 <%= f.hidden_field :user, :value => current_user %>
+						 <%= f.text_field :subject, :placeholder => "subject", :class=> "form-control form-group-margin input-lg" %>
+						 <%= f.text_area :body, :placeholder => "message", :class=> "form-control form-group-margin input-lg", :rows => 6 %>
+						
+						<div class="clearfix"><%= f.submit :class=> "btn btn-lg btn-block btn-flat btn-primary" %></div>
+					<% end %>
 				</div> <!-- / .modal-content -->
 			</div> <!-- / .modal-dialog -->
 		</div>
@@ -44,20 +48,22 @@
 			</div>
 
 			<div class="col-sm-8 col-sm-pull-4">
+				<% @faqs.each do |faq| %>
 				<div class="panel-group" id="accordion-example">
 					<div class="panel">
 						<div class="panel-heading">
 							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-example" href="#collapseOne">
-								<strong>Q:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?
+								<strong>Q:</strong> <%= faq.question %>
 							</a>
 						</div> <!-- / .panel-heading -->
 						<div id="collapseOne" class="panel-collapse in">
 							<div class="panel-body">
-								<strong>A:</strong> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+								<strong>A:</strong> <%= faq.answer %>
 							</div> <!-- / .panel-body -->
 						</div> <!-- / .collapse -->
 					</div> <!-- / .panel -->
 				</div> <!-- / .panel-group -->
+				<% end %>
 			</div>
 		</div>
 
