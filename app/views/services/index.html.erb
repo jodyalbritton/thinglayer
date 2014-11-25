@@ -9,7 +9,7 @@
 		 	<h3><a href="/auth/wink/">Authrorize Devices</a></h3>
 		 <% else %>
 		 <% end %>
-		 <h3><%= link_to "Import", :controller => "things", :import => true %></h3>
+		 <h3>Import Disabled For Maintenance</h3>
 		 <h3><%= link_to  "Disconnect", service_path(service), method: :delete, data: { confirm: 'Are you sure?' }, :class=> "hidden-sm hidden-xs"%></h3></br>
 	<% end %>
 
@@ -20,3 +20,4 @@
 	<% end %>
 
 </div>
+
