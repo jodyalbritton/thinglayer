@@ -30,11 +30,9 @@ class ThingsController < ApplicationController
 				if @user.services.smartthings
 	    			if params[:thing][:source] == "remote"
 						if @thing.device_type == "switch" 
-							if params[:thing][:switch_value] != ""
-								if @thing.device_value != params[:thing][:switch_value]
+							
 			    					@user.smartthings.switch_value(@thing.uid, params[:thing][:switch_value])
-			    				end
-			    			end
+			 
 		    			elsif @thing.device_type == "dimmer"
 		    			    if params[:thing][:dimmer_value] != ""
 			    				if @thing.device_value != params[:thing][:dimmer_value]
