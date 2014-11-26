@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   namespace :admin do
         resources :faqs
         resources :messages
+        resources :users
   end 
   
   namespace :api, defaults: { format: :json },
