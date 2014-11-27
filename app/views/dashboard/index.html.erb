@@ -285,7 +285,7 @@
                                 <div class="temp contact_<%= contact.uid %> img-circle door-<%= contact.device_value %>">
                                   <%= contact.device_value %>
                                 </div>
-                                <h5><%= contact.label %></h5>
+                                <h5><%= link_to contact.label, thing_path(contact) %></h5>
                             </div>
                       </div>
                     <% elsif thing.device_type == "lock" %>
