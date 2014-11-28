@@ -5,7 +5,7 @@ class GetDimmer
 		firebase = Firebase::Client.new(base_uri)
 		device = Thing.find(device_id)
 		device_event = device.dimmer_details.parsed_response
-		events = firebase.get("events/"+device.uid+"/level")
+		events = firebase.get("events/"+device.uid+"/level",  :limit => 1)
                 if events.success? 
                     if events.response.body != "null"
                     	return nil

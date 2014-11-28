@@ -5,7 +5,7 @@ class GetLock
 		firebase = Firebase::Client.new(base_uri)
 		device = Thing.find(device_id)
 		device_event = device.lock_details.parsed_response
-		events = firebase.get("events/"+device.uid+"/lock")
+		events = firebase.get("events/"+device.uid+"/lock",  :shallow => true)
                 if events.success? 
                     if events.response.body != "null"
                     	return nil

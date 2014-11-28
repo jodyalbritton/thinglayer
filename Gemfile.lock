@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/CodementorIO/rest-firebase.git
+  revision: 1a39fbb98865801192b311a05de3b2ba0af4c31d
+  submodules: true
+  specs:
+    rest-firebase (0.9.5)
+      rest-core (>= 3.3.0)
+
+GIT
   remote: git://github.com/jodyalbritton/omniauth-smartthings.git
   revision: 88b3a5cdcd907f3a14471158c716f0ea8993f119
   specs:
@@ -96,6 +104,7 @@ GEM
     hashie (3.3.2)
     high_voltage (2.2.1)
     hike (1.2.3)
+    hitimes (1.2.2)
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -199,6 +208,10 @@ GEM
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rest-core (3.4.0)
+      httpclient
+      mime-types
+      timers (>= 4.0.1)
     rolify (3.4.1)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -229,6 +242,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+    timers (4.0.1)
+      hitimes
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -278,6 +293,7 @@ DEPENDENCIES
   rails (= 4.1.2)
   resque
   rest-client
+  rest-firebase!
   rolify
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

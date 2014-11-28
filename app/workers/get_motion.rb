@@ -5,7 +5,7 @@ class GetMotion
 		firebase = Firebase::Client.new(base_uri)
 		device = Thing.find(device_id)
 		device_event = device.motion_details.parsed_response
-		events = firebase.get("events/"+device.uid+"/motion")
+		events = firebase.get("events/"+device.uid+"/motion",  :shallow => true)
                 if events.success? 
                     if events.response.body != "null"
                     	return nil

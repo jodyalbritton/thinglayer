@@ -5,7 +5,7 @@ class GetContact
 		firebase = Firebase::Client.new(base_uri)
 		device = Thing.find(device_id)
 		device_event = device.contact_details.parsed_response
-		events = firebase.get("events/"+device.uid+"/contact")
+		events = firebase.get("events/"+device.uid+"/contact",  :shallow => true)
                 if events.success? 
                     if events.response.body != "null"
                     	return nil
