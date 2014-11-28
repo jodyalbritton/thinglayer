@@ -5,7 +5,7 @@ class GetIlluminant
 		firebase = Firebase::Client.new(base_uri)
 		device = Thing.find(device_id)
 		device_event = device.illuminant_details.parsed_response
-		events = firebase.get("events/"+device.uid+"/illuminance")
+		events = firebase.get("events/"+device.uid+"/illuminance", :shallow => true)
                 if events.success? 
                     if events.response.body != "null"
                     	return nil

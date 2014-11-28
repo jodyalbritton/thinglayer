@@ -46,6 +46,8 @@ gem "papercrop"
 gem 'pusher'
 gem 'rest-client'
 gem 'firebase'
+gem 'rest-firebase', :git => 'git://github.com/CodementorIO/rest-firebase.git',
+                     :submodules => true
 gem 'acts_as_list'
 gem 'resque', :require => "resque/server"
 # Use ActiveModel has_secure_password
