@@ -49,7 +49,11 @@
     <% temps = results.map do |item1, item2| %>
                             <% if item2["date"] != nil %>
                                 <% if item2["value"] != nil %>
-                                <%  { date: item2["date"].to_datetime.strftime('%Y-%m-%d %H:%M:%S'), temps: item2["value"] } %>
+                                    <% if current_user.time_zone %>
+                                        <%  { date: item2["date"].to_datetime.in_time_zone(current_user.time_zone).strftime('%Y-%m-%d %H:%M:%S'), temps: item2["value"] } %>
+                                    <% else %>
+                                        <%  { date: item2["date"].to_datetime.strftime('%Y-%m-%d %H:%M:%S'), temps: item2["value"] } %>
+                                    <% end %>
                                 <% end %>
                             <% end %>
                          <% end %>
@@ -157,7 +161,11 @@ function zoomChart() {
     <% hums = results.map do |item1, item2| %>
                             <% if item2["date"] != nil %>
                                 <% if item2["value"] != nil %>
-                                <%  { date: item2["date"].to_datetime.strftime('%Y-%m-%d %H:%M:%S'), hum: item2["value"] } %>
+                                <% if current_user.time_zone %>
+                                        <%  { date: item2["date"].to_datetime.in_time_zone(current_user.time_zone).strftime('%Y-%m-%d %H:%M:%S'), hum: item2["value"] } %>
+                                    <% else %>
+                                        <%  { date: item2["date"].to_datetime.strftime('%Y-%m-%d %H:%M:%S'), hum: item2["value"] } %>
+                                    <% end %>
                                 <% end %>
                             <% end %>
                          <% end %>
@@ -263,7 +271,11 @@ function zoomChart() {
     <% bats = results.map do |item1, item2| %>
                             <% if item2["date"] != nil %>
                                 <% if item2["value"] != nil %>
-                                <%  { date: item2["date"].to_datetime.strftime('%Y-%m-%d %H:%M:%S'), bat: item2["value"] } %>
+                                <% if current_user.time_zone %>
+                                        <%  { date: item2["date"].to_datetime.in_time_zone(current_user.time_zone).strftime('%Y-%m-%d %H:%M:%S'), bat: item2["value"] } %>
+                                    <% else %>
+                                        <%  { date: item2["date"].to_datetime.strftime('%Y-%m-%d %H:%M:%S'), bat: item2["value"] } %>
+                                    <% end %>
                                 <% end %>
                             <% end %>
                          <% end %>
@@ -370,9 +382,17 @@ function zoomChart() {
         <% if item2["date"] != nil %>
             <% if item2["value"] != nil %>
                 <% if item2["value"] == "open" %>
-                <%  { date: item2["date"].to_datetime.strftime('%Y-%m-%d %H:%M:%S'), cont: "1" } %>
+                    <% if current_user.time_zone %>
+                        <%  { date: item2["date"].to_datetime.in_time_zone(current_user.time_zone).strftime('%Y-%m-%d %H:%M:%S'), cont: 1, name: "Opened" } %>
+                    <% else %>
+                        <%  { date: item2["date"].to_datetime.strftime('%Y-%m-%d %H:%M:%S'), cont: 1, name: "Opened" } %>
+                    <% end %>
                 <% elsif  item2["value"] == "closed" %>
-                <%  { date: item2["date"].to_datetime.strftime('%Y-%m-%d %H:%M:%S'), cont: "0" } %>
+                    <% if current_user.time_zone %>
+                        <%  { date: item2["date"].to_datetime.in_time_zone(current_user.time_zone).strftime('%Y-%m-%d %H:%M:%S'), cont: 0, name: "Closed"} %>
+                    <% else %>
+                        <%  { date: item2["date"].to_datetime.strftime('%Y-%m-%d %H:%M:%S'), cont: 0, name: "Closed" } %>
+                    <% end %>
                 <% end %>
             <% end %>
         <% end %>
@@ -394,15 +414,11 @@ function zoomChart() {
     "mouseWheelZoomEnabled":true,
     "graphs": [{
         "id":"g1",
-        "balloonText": "[[category]]<br /><b><span style='font-size:14px;'>value: [[value]]</span></b>",
+        "balloonText": "[[category]]<br /><b><span style='font-size:14px;'>value: [[name]]</span></b>",
         "type": "step",
-        "bullet": "none",
-        "bulletBorderAlpha": 1,
-        "bulletColor":"#FFFFFF",
-        "hideBulletsCount": 50,
-        "title": "red line",
-        "valueField": "cont",
-        "useLineColorForBulletBorder":true,
+        "lineThickness": 3,
+        "noStepRisers": true,
+        "valueField": "cont"
        
     }],
     "chartScrollbar": {
