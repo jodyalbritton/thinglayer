@@ -11,10 +11,12 @@
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-  <div class="form-group"><%= f.label :username %><br />
+  <div class="form-group"><%= f.label :username, :required => true %><br />
    <%= f.text_field :username, :class=> "form-control" %></div>
   <div class="form-group"><%= f.label :full_name %><br />
    <%= f.text_field :full_name, :class=> "form-control" %></div>
+  <div class="form-group"><%= f.label :time_zone %><br />
+   <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.all, {:default=> "Pacific Time (US & Canada)"}, {:class => 'form-control'}  %></div>
   <div class="form-group"><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off", :class=> "form-control" %></div>
 
@@ -22,7 +24,7 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", :class=> "form-control" %></div>
 
   <div class="form-group"><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off", :class=> "form-control" %></div>
+    <%= f.password_field :current_password, autocomplete: "off", :class=> "form-control", :required => true %></div>
 
   <div class="form-group"><%= f.submit "Update", :class=> "btn btn-primary" %></div>
 <% end %>

@@ -35,9 +35,9 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.username %></td>
-        <td><%= user.current_sign_in_at %></td>
+        <td><%= user.current_sign_in_at.to_datetime.in_time_zone(current_user.time_zone).strftime('%m/%d/%Y %l:%M %p') %></td>
         <td><%= user.current_sign_in_ip %></td>
-        <td><%= user.last_sign_in_at %></td>
+        <td><%= user.last_sign_in_at.to_datetime.in_time_zone(current_user.time_zone).strftime('%m/%d/%Y %l:%M %p') %></td>
         <td><%= user.last_sign_in_ip %></td>
         <td><%= user.things.size %></td>
         <td><%= link_to 'Show', ([:admin, user]) %></td>
