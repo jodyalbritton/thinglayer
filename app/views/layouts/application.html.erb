@@ -236,23 +236,28 @@ Use search to find needed section.
 					<% end %>
 				</li>
 				<% if user_signed_in? %>
-				<% if current_user.has_role? :admin %>
-				<li class="mm-dropdown">
-					<a tabindex="-1" href="#"><i class="menu-icon fa fa-home"></i><span class="mm-text">Admin</span></a>
-					<ul>
-						<li>
-						<%= link_to admin_messages_path do %>
-							<span class="mm-text">Messages</span>
-						<% end %>
+					<% if current_user.has_role? :admin %>
+						<li class="mm-dropdown">
+							<a tabindex="-1" href="#"><i class="menu-icon fa fa-home"></i><span class="mm-text">Admin</span></a>
+							<ul>
+								<li>
+								<%= link_to admin_messages_path do %>
+									<span class="mm-text">Messages</span>
+								<% end %>
+								</li>
+								<li>
+									<%= link_to admin_users_path do %>
+									<span class="mm-text">Users</span>
+									<% end %>
+								</li>
+								<li>
+									<%= link_to admin_faqs_path do %>
+									<span class="mm-text">Faqs</span>
+									<% end %>
+								</li>
+							</ul>
 						</li>
-						<li>
-							<%= link_to admin_users_path do %>
-							<span class="mm-text">Users</span>
-							<% end %>
-						</li>
-					</ul>
-				</li>
-				<% end %>
+					<% end %>
 				<% end %>
 			</ul>
 		</ul> <!-- / .navigation -->
