@@ -132,14 +132,14 @@
 </style>
 
            
-<div class="container">
+
 
    
     
-        <div id="ui-accordion">
+        <div id="ui-accordion" class="no-padding-hr no-margin-hr">
           <% @grouped_things.each do |device_type, things| %>
                
-              <div class="group">
+              <div class="group no-margin-hr">
               <% if device_type == "dimmer" %>
                 <h3>Dimmers</h3>
               <% elsif device_type == "switch"%>
@@ -168,7 +168,7 @@
                     <% if thing.zone_id != nil %>
                   <% if thing.device_type == "dimmer" %>
                       <% dimmer = thing %>
-                      <div id="thing_<%= dimmer.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                      <div id="thing_<%= dimmer.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                       <div class="dummy"></div>
                           <div class="thumbnail">
                               <div class="widget-title handle">
@@ -203,7 +203,7 @@
 
                     <% elsif thing.device_type == "switch" %>
                     <% switch = thing %>
-                    <div id="thing_<%= switch.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                    <div id="thing_<%= switch.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                       <div class="dummy"></div>
                           <div class="thumbnail">
                               <div class="widget-title handle">
@@ -227,7 +227,7 @@
                     </div>
                      <% elsif thing.device_type == "lock" %>
                       <% lock = thing %>
-                      <div id="thing_<%= lock.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                      <div id="thing_<%= lock.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
@@ -250,7 +250,7 @@
 
                     <% elsif thing.device_type == "temperatureMeasurement" %>
                       <% temp = thing %>
-                        <div id="thing_<%= temp.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                        <div id="thing_<%= temp.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
@@ -264,7 +264,7 @@
                       </div>
                       <% elsif thing.device_type == "relativeHumidityMeasurement" %>
                       <% humidity = thing %>
-                        <div id="thing_<%= humidity.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                        <div id="thing_<%= humidity.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
@@ -279,7 +279,7 @@
                       </div>
                     <% elsif thing.device_type == "motion" %>
                     <% motion = thing %>
-                    <%= content_tag_for :div, motion, :class=> "tile col-md-2 col-sm-4 col-xs-6" do %>
+                    <%= content_tag_for :div, motion, :class=> "tile col-md-2 col-sm-4 col-xs-10" do %>
                     
                         <div class="dummy"></div>
                             <div class="thumbnail">
@@ -296,7 +296,7 @@
                     <% end %>
                     <% elsif thing.device_type == "contact" %>
                     <% contact = thing %>
-                     <div id="thing_<%= contact.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                     <div id="thing_<%= contact.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
@@ -313,7 +313,7 @@
               
                     <% elsif thing.device_type == "battery" %>
                     <% battery = thing %>
-                     <div id="thing_<%= battery.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                     <div id="thing_<%= battery.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                         <div class="dummy"></div>
 
                             <div class="thumbnail">
@@ -332,7 +332,7 @@
                       </div>
                     <% elsif thing.device_type == "illuminant" %>
                     <% illuminant = thing %>
-                     <div id="thing_<%= illuminant.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                     <div id="thing_<%= illuminant.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
@@ -359,7 +359,7 @@
         </div>
 
 
-</div>
+
 
 <script>
 
