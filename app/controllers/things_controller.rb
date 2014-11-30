@@ -27,42 +27,36 @@ class ThingsController < ApplicationController
 		@thing = @user.things.find(params[:id])
 
 			if params[:thing][:source]
-				if @user.services.smartthings
-	    			if params[:thing][:source] == "remote"
+				if params[:thing][:source] == "remote"
+					if @user.services.smartthings
 						if @thing.device_type == "switch" 
-							
-			    					@user.smartthings.switch_value(@thing.uid, params[:thing][:switch_value])
-			 
+							if params[:thing][:switch_value] != ""
+			    				@user.smartthings.switch_value(@thing.uid, params[:thing][:switch_value])
+			    			end
 		    			elsif @thing.device_type == "dimmer"
 		    			    if params[:thing][:dimmer_value] != ""
-			    				if @thing.device_value != params[:thing][:dimmer_value]
-			        				@user.smartthings.dimmer_level(@thing.uid, params[:thing][:dimmer_value])
-			        			end
+			        			@user.smartthings.dimmer_level(@thing.uid, params[:thing][:dimmer_value])
 			        		end
-		    			end
-				    end 
-			    end
-			        
-	        else 
-	        	respond_to do |format|
+		    			elsif @thing.device_type == "lock"
+	    			   		if params[:thing][:lock_value] != ""
+	    						@user.smartthings.lock_value(@thing.uid, params[:thing][:lock_value])
+	    					end
+					    end
+					end
+				end
+			
+				else 
+        		respond_to do |format|
 		      	if @thing.update(thing_params)
-		        format.html { redirect_to things_path, notice: 'Thing was successfully updated.' }
-		        format.json { render :show, status: :created, location: @thing }
-		   
+			        format.html { redirect_to things_path, notice: 'Thing was successfully updated.' }
+			        format.json { render :show, status: :created, location: @thing }
+			   
 		      	else
-		        format.html { render :new }
-		        format.json { render json: @thing, status: :unprocessable_entity }
+			        format.html { render :new }
+			        format.json { render json: @thing, status: :unprocessable_entity }
       			end
-     		end 
-
-  
-
-    		
-	        end
-			 
-
-		
-
+	     	end 
+	    end   
 	end
 	def destroy
 		@user = User.find(current_user)

@@ -6,7 +6,11 @@ class Thing < ActiveRecord::Base
     acts_as_list :scope => :zone
     
     def switch_value 
-    end 
+    end
+    def lock_value
+    end
+    def dimmer_value
+    end    
     
     def switch_details
         @user ||= User.find(user_id)
@@ -56,7 +60,8 @@ class Thing < ActiveRecord::Base
     def  lock_details
         @user ||= User.find(user_id)
         @user.smartthings.show_lock(self.uid)
-    end    
+    end
+      
     
     def device_value        
            if self.device_type == "dimmer"
@@ -88,37 +93,6 @@ class Thing < ActiveRecord::Base
                 return nil
             end
     end
-
-
-
-
-
-    def temperature_value
-        self.temperature_details.parsed_response["value"]
-    end
-    def humidity_value
-        self.humidity_details.parsed_response["value"]
-    end
-    def lock_value
-        self.lock_details.parsed_response["value"]
-    end
-    def contact_value
-        self.contact_details.parsed_response["value"]
-    end
-    def battery_value
-        self.battery_details.parsed_response["value"]
-    end
-
-    def motion_value
-        self.motion_details.parsed_response["value"]
-    end
-    def illuminant_value
-        self.illuminant_details.parsed_response["value"]
-    end
-    def dimmer_value=(val)
-        @dimmer_value = val
-    end 
-
 
     def display_type
         if self.device_type == "relativeHumidityMeasurement" 
