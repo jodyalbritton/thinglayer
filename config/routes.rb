@@ -3,13 +3,15 @@ Rails.application.routes.draw do
  
 
 
+
+
   resque_constraint = lambda do |request|
     request.env['warden'].authenticate? && (request.env['warden'].user.has_role? :admin)
   end
   
   get 'dashboard/index'
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
   resources :services
   resources :things
   resources :dashboard
+  resources :speech
   resources :messages, only: [:new, :create]
 
   match '/dashboard/search/:query' => 'dashboard#search', :as => 'search', via: [:get, :post]
