@@ -50,8 +50,8 @@ Use search to find needed section.
                 ga('require', 'displayfeatures');
                 ga('send', 'pageview');
     </script>
-    
- 	
+
+
 
 
 
@@ -64,7 +64,7 @@ Use search to find needed section.
 
 
 <!-- 1. $BODY ======================================================================================
-	
+
 	Body
 
 	Classes:
@@ -91,16 +91,16 @@ Use search to find needed section.
 	<div id="main-navbar" class="navbar navbar-inverse hidden-print " role="navigation">
 		<!-- Main menu toggle -->
 		<button type="button" id="main-menu-toggle"><i class="navbar-icon fa fa-bars icon"></i><span class="hide-menu-text">HIDE MENU</span></button>
-		
+
 		<div class="navbar-inner">
 			<!-- Main navbar header -->
 			<div class="navbar-header">
 
 				<!-- Logo -->
-				
+
 				<%= link_to root_path, :class=>"navbar-brand"  do %>
 
-					
+
 					Thing Layer
 			    <% end %>
 
@@ -113,15 +113,15 @@ Use search to find needed section.
 				<div>
 					<ul class="nav navbar-nav">
 						<li>
-					       <%= link_to "Home", root_path %>	
+					       <%= link_to "Home", root_path %>
 						</li>
 						<li>
-					       <%= link_to "Services", services_path %>	
+					       <%= link_to "Services", services_path %>
 						</li>
 						<li>
-					       <%= link_to "Help", page_path('help') %>	
+					       <%= link_to "Help", page_path('help') %>
 						</li>
-					
+
 					</ul> <!-- / .navbar-nav -->
 
 					<div class="right clearfix">
@@ -137,10 +137,10 @@ Use search to find needed section.
 							* 'nav-icon-btn-info'
 							* 'nav-icon-btn-success'
 							* 'nav-icon-btn-warning'
-							* 'nav-icon-btn-danger' 
+							* 'nav-icon-btn-danger'
 -->
 
-							
+
 
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
@@ -163,7 +163,7 @@ Use search to find needed section.
 <!-- 4. $MAIN_MENU =================================================================================
 
 		Main menu
-		
+
 		Notes:
 		* to make the menu item active, add a class 'active' to the <li>
 		  example: <li class="active">...</li>
@@ -196,7 +196,6 @@ Use search to find needed section.
 					<ul>
 						<% current_user.locations.each do |location| %>
 						<li class="mm-dropdown">
-
 							<a tabindex="-1" href="#"><span class="mm-text"><%= location.name %></span></a>
 							<ul>
 								<% location.zones.each do |zone| %>
@@ -229,7 +228,6 @@ Use search to find needed section.
 								<span class="mm-text">Manage Locations</span>
 							<% end %>
 						</li>
-
 					</ul>
 				</li>
 				<li>
@@ -237,20 +235,29 @@ Use search to find needed section.
 					<i class="menu-icon fa fa-cloud"></i><span class="mm-text">Things</span>
 					<% end %>
 				</li>
-				
-					
-
-
-									
+				<% if user_signed_in? %>
+				<% if current_user.has_role? :admin %>
+				<li class="mm-dropdown">
+					<a tabindex="-1" href="#"><i class="menu-icon fa fa-home"></i><span class="mm-text">Admin</span></a>
+					<ul>
+						<li>
+						<%= link_to admin_messages_path do %>
+							<span class="mm-text">Messages</span>
+						<% end %>
+						</li>
+						<li>
+							<%= link_to admin_users_path do %>
+							<span class="mm-text">Users</span>
+							<% end %>
+						</li>
+					</ul>
+				</li>
+				<% end %>
+				<% end %>
 			</ul>
-				</li>
-				
-				</li>
-
-				
-			</ul> <!-- / .navigation -->
-		</div> <!-- / #main-menu-inner -->
-	</div> <!-- / #main-menu -->
+		</ul> <!-- / .navigation -->
+	</div> <!-- / #main-menu-inner -->
+</div> <!-- / #main-menu -->
 <!-- /4. $MAIN_MENU -->
 
 	<div id="content-wrapper" class="hidden-print">
@@ -264,7 +271,7 @@ Use search to find needed section.
 				         <% end %>
 				        </div><!-- / .notifications bar -->
 					<%= yield %>
-	
+
 	<div id="main-menu-bg" class="hidden-print"></div>
 	</div> <!-- / #main-wrapper -->
 

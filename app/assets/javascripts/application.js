@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require jquery-ui/sortable
@@ -26,7 +25,7 @@
 //= require pixel-tasks
 //= require jquery.slimscroll
 //= require pixel-slimscroll
-//= require raphael.min 
+//= require raphael.min
 //= require morris
 //= require amcharts
 //= require serial
@@ -64,5 +63,3 @@ ready = function() {
 
 $(document).ready(ready);
 $(window).on('page:load', ready);
-
-
