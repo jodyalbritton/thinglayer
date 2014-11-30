@@ -136,10 +136,10 @@
 
    
     
-        <div id="ui-accordion" class="no-padding-hr no-margin-hr">
+        <div id="ui-accordion" class="">
           <% @grouped_things.each do |device_type, things| %>
                
-              <div class="group no-margin-hr">
+              <div class="group">
               <% if device_type == "dimmer" %>
                 <h3>Dimmers</h3>
               <% elsif device_type == "switch"%>
