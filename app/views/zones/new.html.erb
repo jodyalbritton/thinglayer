@@ -1,8 +1,18 @@
-<h1>New zone</h1>
+  <% content_for :page_header do %>
+    New Zone
+  <% end %>
+  <% content_for :page_actions do %>
+    <%= link_to location_zones_path(@location), :class => 'btn btn-primary btn-labeled', :style=>"width: 100%;" do %>
+                <span class="btn-label icon fa fa-chevron-left"></span>Back
+    <% end %>
+  <% end %>
+  <% content_for :page_search do %>
 
-<div class="col-md-6">
+  <% end %>
+<%= render 'shared/header' %>
+
 <%= render 'form' %>
 
-</div>
+
 
 
