@@ -384,28 +384,28 @@ $('.dimmer_<%= dimmer.uid %>').slider(colorful_sliders_options);
 
 <script>
   // init Isotope
-var $dimmerContainer = $('#switch_row').isotope({
+var $dimmerContainer = $('#dimmer_row').isotope({
   // options
 });
 // filter items on button click
-$('#switch_filters').on( 'click', 'button', function() {
+$('#dimmer_filters').on( 'click', 'button', function() {
 
-  var filterValue = $(this).attr('data-filter');
-  $dimmerContainer.isotope({ filter: filterValue });
+  var dimmerFilterValue = $(this).attr('data-filter');
+  $dimmerContainer.isotope({ filter: dimmerFilterValue });
   
 });
 </script>
 
 <script>
   // init Isotope
-var $switchContainer = $('#dimmer_row').isotope({
+var $switchContainer = $('#switch_row').isotope({
   // options
 });
 // filter items on button click
-$('#dimmer_filters').on( 'click', 'button', function() {
+$('#switch_filters').on( 'click', 'button', function() {
 
-  var filterValue = $(this).attr('data-filter');
-  $switchContainer.isotope({ filter: filterValue });
+  var switchFilterValue = $(this).attr('data-filter');
+  $switchContainer.isotope({ filter: switchFilterValue });
   
 });
 </script>
