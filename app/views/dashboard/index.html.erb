@@ -380,32 +380,20 @@ $('.dimmer_<%= dimmer.uid %>').slider(colorful_sliders_options);
 </script>
 
 
-   
+<% @grouped_things.each do |device_type, things| %>
 
 <script>
   // init Isotope
-var $dimmerContainer = $('#dimmer_row').isotope({
+var $<%= device_type %>Container = $('#<%= device_type %>_row').isotope({
   // options
 });
 // filter items on button click
-$('#dimmer_filters').on( 'click', 'button', function() {
+$('#<%= device_type %>_filters').on( 'click', 'button', function() {
 
-  var dimmerFilterValue = $(this).attr('data-filter');
-  $dimmerContainer.isotope({ filter: dimmerFilterValue });
+  var <%= device_type %>FilterValue = $(this).attr('data-filter');
+  $<%= device_type %>Container.isotope({ filter: <%= device_type %>FilterValue });
   
 });
 </script>
 
-<script>
-  // init Isotope
-var $switchContainer = $('#switch_row').isotope({
-  // options
-});
-// filter items on button click
-$('#switch_filters').on( 'click', 'button', function() {
-
-  var switchFilterValue = $(this).attr('data-filter');
-  $switchContainer.isotope({ filter: switchFilterValue });
-  
-});
-</script>
+<% end %>
