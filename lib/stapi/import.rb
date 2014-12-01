@@ -11,6 +11,7 @@ module Stapi
 			 locs = locks.parsed_response 
 			 bats = batteries.parsed_response
 
+
 			
 
              unless locs == nil 
@@ -102,7 +103,8 @@ module Stapi
 					stuff.save
 			  end
 			
-			end 
+			end
+			
 			unless conts == nil 
              @user = User.find(@thing_user)
              devices = conts 
