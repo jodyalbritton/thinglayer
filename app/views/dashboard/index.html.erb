@@ -133,65 +133,58 @@
 
            
 <div class="container">
-  <div id="ui-accordion">
-    <% @grouped_things.each do |device_type, things| %>
-        <div class="group">
-          <% if device_type == "dimmer" %>
-            <h3>Dimmers</h3>
-          <% elsif device_type == "switch"%>
-            <h3>Switches</h3>
-          <% elsif device_type == "temperatureMeasurement"%>
-            <h3>Temperatures</h3>
-          <% elsif device_type == "relativeHumidityMeasurement"%>
-            <h3>Humidities</h3>
-          <% elsif device_type == "contact"%>
-            <h3>Doors and Windows</h3>
-          <% elsif device_type == "motion"%>
-            <h3>Motion</h3>
-          <% elsif device_type == "illuminant"%>
-            <h3>Light Levels</h3>
-          <% elsif device_type == "lock"%>
-            <h3>Locks</h3>
-          <% elsif device_type == "battery"%>
-            <h3>Batteries</h3>
-          <% else %>
-            <h3>Unknown</h3>
-          <% end %>
-            <div class="row">
-              <% sub_things = things.group_by(&:zone_id) %>
-              <% sub_things.each do |id, things| %>
-                <% zone = Zone.find(id) %>
-                <div class="row text-center"><h4><%= zone.name %></h4></div>
-                <div class="row grid">
-                  <% things.each do |thing| %>
-                <% if thing.zone_id != nil %>
-                  <% if thing.device_type == "dimmer" %>
-                    <%= render partial: "tiles/dimmer", locals: {dimmer: thing}%>
-                  <% elsif thing.device_type == "switch" %>
-                    <%= render partial: "tiles/switch", locals: {switch: thing}%>
-                  <% elsif thing.device_type == "lock" %>
-                    <%= render partial: "tiles/lock", locals: {lock: thing}%>
-                  <% elsif thing.device_type == "temperatureMeasurement" %>
-                    <%= render partial: "tiles/temperature", locals: {temp: thing}%>
-                  <% elsif thing.device_type == "relativeHumidityMeasurement" %>
-                    <%= render partial: "tiles/humidity", locals: {humidity: thing}%>
-                  <% elsif thing.device_type == "motion" %>
-                    <%= render partial: "tiles/motion", locals: {motion: thing}%>
-                  <% elsif thing.device_type == "contact" %>
-                    <%= render partial: "tiles/contact", locals: {contact: thing}%>
-                  <% elsif thing.device_type == "battery" %>
-                    <%= render partial: "tiles/battery", locals: {battery: thing}%>
-                  <% elsif thing.device_type == "illuminant" %>
-                    <%= render partial: "tiles/illuminant", locals: {illuminant: thing}%>
-                  <% end %>
+        <div id="ui-accordion">
+          <% @grouped_things.each do |device_type, things| %>
+              <div class="group">
+                <% if device_type == "dimmer" %>
+                  <h3>Dimmers</h3>
+                <% elsif device_type == "switch"%>
+                  <h3>Switches</h3>
+                <% elsif device_type == "temperatureMeasurement"%>
+                  <h3>Temperatures</h3>
+                <% elsif device_type == "relativeHumidityMeasurement"%>
+                  <h3>Humidities</h3>
+                <% elsif device_type == "contact"%>
+                  <h3>Doors and Windows</h3>
+                <% elsif device_type == "motion"%>
+                  <h3>Motion</h3>
+                <% elsif device_type == "illuminant"%>
+                  <h3>Light Levels</h3>
+                <% elsif device_type == "lock"%>
+                  <h3>Locks</h3>
+                <% elsif device_type == "battery"%>
+                  <h3>Batteries</h3>
+                <% else %>
+                  <h3>Unknown</h3>
                 <% end %>
-              <% end %>
+                  <div class="row grid">
+                    <% things.each do |thing| %>
+                      <% if thing.zone_id != nil %>
+                        <% if thing.device_type == "dimmer" %>
+                          <%= render partial: "tiles/dimmer", locals: {dimmer: thing}%>
+                        <% elsif thing.device_type == "switch" %>
+                          <%= render partial: "tiles/switch", locals: {switch: thing}%>
+                        <% elsif thing.device_type == "lock" %>
+                          <%= render partial: "tiles/lock", locals: {lock: thing}%>
+                        <% elsif thing.device_type == "temperatureMeasurement" %>
+                          <%= render partial: "tiles/temperature", locals: {temp: thing}%>
+                        <% elsif thing.device_type == "relativeHumidityMeasurement" %>
+                          <%= render partial: "tiles/humidity", locals: {humidity: thing}%>
+                        <% elsif thing.device_type == "motion" %>
+                          <%= render partial: "tiles/motion", locals: {motion: thing}%>
+                        <% elsif thing.device_type == "contact" %>
+                          <%= render partial: "tiles/contact", locals: {contact: thing}%>
+                        <% elsif thing.device_type == "battery" %>
+                          <%= render partial: "tiles/battery", locals: {battery: thing}%>
+                        <% elsif thing.device_type == "illuminant" %>
+                          <%= render partial: "tiles/illuminant", locals: {illuminant: thing}%>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
                 </div>
-              <% end %>
-            </div>
-          </div>
-      <% end %> 
-  </div>
+              <% end %> 
+        </div>
 </div>
 
 <script>
