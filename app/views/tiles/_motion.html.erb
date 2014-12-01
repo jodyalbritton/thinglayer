@@ -1,0 +1,16 @@
+
+<%= content_tag_for :div, motion, :class=> "tile col-md-2 col-sm-4 col-xs-10" do %>
+
+    <div class="dummy"></div>
+        <div class="thumbnail">
+            <div class="widget-title handle">
+            <h4><%= motion.zone.name %></h4>
+
+            </div>
+            <div class="temp motion_<%= motion.uid %> img-circle">
+             <%= motion.device_value %>
+            </div>
+             <h5><%= motion.label %></h5>
+        </div>
+
+<% end %>

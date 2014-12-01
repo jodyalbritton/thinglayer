@@ -1,0 +1,23 @@
+
+<div id="thing_<%= switch.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
+<div class="dummy"></div>
+  <div class="thumbnail">
+      <div class="widget-title handle">
+      <h4><%= switch.zone.name %></h4>
+
+      </div>
+      <div class= "device-wrapper">
+        <%= form_for switch, :remote=> true do |t| %>
+             <div class="toggle">
+              <%= t.check_box(:switch_value, {data: {"toggle"=> "toggle","onstyle"=>"success", "offstyle"=>"default"}, class: 'switch_'+switch.uid+' switch_class', :checked => false}, "off", "on") %>
+             </div>
+            
+             <%= t.text_field :switch_type, :value => "", :hidden => true %>
+             <%= t.text_field :source, :value => "remote", :hidden => true %>
+        <% end %>
+      </div>
+      <div class="device-footer">
+        <h5><%= switch.label %></h5>
+      </div>
+  </div>
+</div>

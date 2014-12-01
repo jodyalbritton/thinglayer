@@ -1,0 +1,13 @@
+
+<div id="thing_<%= temp.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
+  <div class="dummy"></div>
+    <div class="thumbnail">
+        <div class="widget-title handle">
+        <h4><%= temp.zone.name %></h4>
+        </div>
+        <div class="temp temperature_<%= temp.uid %>">
+          <%= temp.device_value %> °F
+        </div>
+         <h5><%= link_to temp.label, thing_path(temp) %></h5>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+
+<div id="thing_<%= lock.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
+  <div class="dummy"></div>
+      <div class="thumbnail">
+          <div class="widget-title handle">
+          <h4><%= lock.zone.name %></h4>
+
+          </div>
+          <div class= "device-wrapper">
+            <%= form_for lock, :remote=> true do |t| %>
+                 <div class="toggle">
+                  <%= t.check_box(:lock_value, {data: {"toggle"=> "toggle", "on"=>"Locked", "off" => "Unlocked", "onstyle"=>"success", "offstyle"=>"warning"}, class: 'lock_'+lock.uid+' lock_class', :checked => false}, "off", "on") %>
+                 </div>
+                 <%= t.text_field :source, :value => "remote", :hidden => true %>
+            <% end %>
+          </div>
+          <div class="device-footer">
+            <h5><%= lock.label %></h5>
+          </div>
+      </div>
+</div>
