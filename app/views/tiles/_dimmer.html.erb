@@ -1,0 +1,33 @@
+
+<div id="thing_<%= dimmer.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
+<div class="dummy"></div>
+    <div class="thumbnail">
+        <div class="widget-title handle">
+        <h4><%= dimmer.zone.name %></h4>
+       
+
+        </div>
+          <% dimmer_switch = Thing.find_by(:device_type => "switch", :uid=> dimmer.uid ) %>
+          <div class="device-wrapper">
+            <% if dimmer_switch %>
+              <%= form_for dimmer_switch, :remote=> true do |t| %>
+                    <div class="toggle">
+                      <%= t.check_box(:switch_value, {data: {"toggle"=> "toggle", "onstyle"=>"success", "offstyle"=>"default"}, class: 'switch_'+dimmer_switch.uid+' switch_class', :checked => false}, "off", "on") %>
+                   </div>    
+                   <%= t.text_field :switch_type, :value => 0, :hidden => true %>
+                   <%= t.text_field :source, :value => "remote", :hidden => true %>
+              <% end %>
+            <% end %>
+
+            <%= form_for dimmer, :remote=> true do |t| %>
+                 <%= t.text_field :dimmer_value, :value => 0 , :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
+                 <%= t.text_field :source, :value => "remote", :hidden => true %>
+                 <div class="ui-slider-success ui-slider-colors-demo dimmer_<%= dimmer.uid%>"></div>
+               
+            <% end %>
+        </div>
+        <div class="device-footer">
+            <h5><%= dimmer.label %></h5>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+
+<div id="thing_<%= humidity.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
+  <div class="dummy"></div>
+    <div class="thumbnail">
+        <div class="widget-title handle">
+        <h4><%= humidity.zone.name %></h4>
+
+        </div>
+        <div class="temp humidity_<%= humidity.uid %> widget-profile-avatar">
+          <%= humidity.device_value %> %
+        </div>
+         <h5><%= link_to humidity.label, thing_path(humidity) %></h5>
+    </div>
+</div>
