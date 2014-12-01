@@ -14,6 +14,8 @@
       };
       mic.onready = function () {
         info("Microphone is ready to record");
+        
+         
       };
       mic.onaudiostart = function () {
         info("Recording started");
@@ -24,19 +26,26 @@
       };
       mic.onresult = function (intent, entities) {
         var r = kv("intent", intent);
-
+        var speech = "";
         for (var k in entities) {
           var e = entities[k];
+          speech += e.value;
+          speech += " ";
+
+          
 
           if (!(e instanceof Array)) {
             r += kv(k, e.value);
+            utterance += e.value;
           } else {
             for (var i = 0; i < e.length; i++) {
               r += kv(k, e[i].value);
+               
             }
           }
         }
-
+        var utterance = new SpeechSynthesisUtterance("Did you say?"+speech);
+        window.speechSynthesis.speak(utterance);
         document.getElementById("result").innerHTML = r;
       };
       mic.onerror = function (err) {
