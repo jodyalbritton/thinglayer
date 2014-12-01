@@ -17,7 +17,7 @@
 //= require jquery-ui/draggable
 //= require jquery-ui/accordion
 //= require jquery.jcrop
-//= require packery.min
+//= require isotope
 //= require pixel-admin
 //= require events
 //= require respond.min
