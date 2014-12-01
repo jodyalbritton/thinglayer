@@ -7,6 +7,7 @@ module Stapi
    		require 'stapi/dimmers'
    		require 'stapi/temperatures'
    		require 'stapi/motions'
+         require 'stapi/meters'
          require 'stapi/contacts'
          require 'stapi/illuminants'
          require 'stapi/humidities'
