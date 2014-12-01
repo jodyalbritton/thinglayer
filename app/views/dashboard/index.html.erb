@@ -42,7 +42,15 @@
 
 }
 
-
+.isotope-row {
+  padding-right: 1%;
+  padding-left:  1%;
+}
+.button-group{
+  padding-right:  5%;
+  padding-left: 5%;
+  text-align: center;
+}
 .device-footer{
   margin: auto;
   height: 40%;
@@ -157,14 +165,14 @@
                 <% else %>
                   <h3>Unknown</h3>
                 <% end %>
-                  <div class="panel">
+                  <div class="row">
                   <div id="<%=device_type%>_filters" class="button-group">
                         <button data-filter="*" class="btn btn-default btn-xs">show all</button>
                       <% @user.zones.each do |zone| %>
                         <button data-filter=".zone_<%= zone.id %>" class="btn btn-default btn-xs"><%= zone.name %></button>
                       <% end %>
                   </div>
-                  <div id="<%=device_type%>_row row">
+                  <div id="<%=device_type%>_row" class="isotope-row">
 
                     <% things.each do |thing| %>
                       <% if thing.zone_id != nil %>
