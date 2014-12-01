@@ -137,9 +137,9 @@
     <div class="row grid" data-update-url='<%= sort_location_zones_url(@location) %>'>
     
     <% @things.each do |thing| %>
-                  <% if thing.device_type == "dimmer" %>
+   <% if thing.device_type == "dimmer" %>
                       <% dimmer = thing %>
-                      <div id="thing_<%= dimmer.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                      <div id="thing_<%= dimmer.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                       <div class="dummy"></div>
                           <div class="thumbnail">
                               <div class="widget-title handle">
@@ -152,7 +152,7 @@
                                   <% if dimmer_switch %>
                                     <%= form_for dimmer_switch, :remote=> true do |t| %>
                                           <div class="toggle">
-                                            <%= t.check_box(:switch_value, {data: {"toggle"=> "toggle"}, class: 'switch_'+dimmer_switch.uid+' switch_class', :checked => false}, "off", "on") %>
+                                            <%= t.check_box(:switch_value, {data: {"toggle"=> "toggle", "onstyle"=>"success", "offstyle"=>"default"}, class: 'switch_'+dimmer_switch.uid+' switch_class', :checked => false}, "off", "on") %>
                                          </div>    
                                          <%= t.text_field :switch_type, :value => 0, :hidden => true %>
                                          <%= t.text_field :source, :value => "remote", :hidden => true %>
@@ -174,7 +174,7 @@
 
                     <% elsif thing.device_type == "switch" %>
                     <% switch = thing %>
-                    <div id="thing_<%= switch.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                    <div id="thing_<%= switch.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                       <div class="dummy"></div>
                           <div class="thumbnail">
                               <div class="widget-title handle">
@@ -184,7 +184,7 @@
                               <div class= "device-wrapper">
                                 <%= form_for switch, :remote=> true do |t| %>
                                      <div class="toggle">
-                                      <%= t.check_box(:switch_value, {data: {"toggle"=> "toggle"}, class: 'switch_'+switch.uid+' switch_class', :checked => false}, "off", "on") %>
+                                      <%= t.check_box(:switch_value, {data: {"toggle"=> "toggle","onstyle"=>"success", "offstyle"=>"default"}, class: 'switch_'+switch.uid+' switch_class', :checked => false}, "off", "on") %>
                                      </div>
                                     
                                      <%= t.text_field :switch_type, :value => "", :hidden => true %>
@@ -196,55 +196,70 @@
                               </div>
                           </div>
                     </div>
+                     <% elsif thing.device_type == "lock" %>
+                      <% lock = thing %>
+                      <div id="thing_<%= lock.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
+                        <div class="dummy"></div>
+                            <div class="thumbnail">
+                                <div class="widget-title handle">
+                                <h4><%= lock.zone.name %></h4>
 
+                                </div>
+                                <div class= "device-wrapper">
+                                  <%= form_for lock, :remote=> true do |t| %>
+                                       <div class="toggle">
+                                        <%= t.check_box(:lock_value, {data: {"toggle"=> "toggle", "on"=>"Locked", "off" => "Unlocked", "onstyle"=>"success", "offstyle"=>"warning"}, class: 'lock_'+lock.uid+' lock_class', :checked => false}, "off", "on") %>
+                                       </div>
+                                       <%= t.text_field :source, :value => "remote", :hidden => true %>
+                                  <% end %>
+                                </div>
+                                <div class="device-footer">
+                                  <h5><%= lock.label %></h5>
+                                </div>
+                            </div>
+                      </div>
 
-                  <% elsif thing.device_type == "temperatureMeasurement" %>
+                    <% elsif thing.device_type == "temperatureMeasurement" %>
                       <% temp = thing %>
-                        <div id="thing_<%= temp.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                        <div id="thing_<%= temp.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= temp.zone.name %></h4>
-                                <h5><%= temp.display_type %></h5>
                                 </div>
                                 <div class="temp temperature_<%= temp.uid %>">
-
-                                  °F
+                                  <%= temp.device_value %> °F
                                 </div>
-                                 <div class="device-footer">
                                  <h5><%= link_to temp.label, thing_path(temp) %></h5>
-                                 </div>
                             </div>
                       </div>
                       <% elsif thing.device_type == "relativeHumidityMeasurement" %>
                       <% humidity = thing %>
-                        <div id="thing_<%= humidity.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                        <div id="thing_<%= humidity.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= humidity.zone.name %></h4>
-                                <h5><%= humidity.display_type %></h5>
 
                                 </div>
                                 <div class="temp humidity_<%= humidity.uid %> widget-profile-avatar">
-                                  %
+                                  <%= humidity.device_value %> %
                                 </div>
                                  <h5><%= link_to humidity.label, thing_path(humidity) %></h5>
                             </div>
                       </div>
                     <% elsif thing.device_type == "motion" %>
                     <% motion = thing %>
-                    <%= content_tag_for :div, motion, :class=> "tile col-md-2 col-sm-4 col-xs-6" do %>
+                    <%= content_tag_for :div, motion, :class=> "tile col-md-2 col-sm-4 col-xs-10" do %>
                     
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= motion.zone.name %></h4>
-                               
 
                                 </div>
                                 <div class="temp motion_<%= motion.uid %> img-circle">
-                                 
+                                 <%= motion.device_value %>
                                 </div>
                                  <h5><%= motion.label %></h5>
                             </div>
@@ -252,51 +267,38 @@
                     <% end %>
                     <% elsif thing.device_type == "contact" %>
                     <% contact = thing %>
-                     <div id="thing_<%= contact.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                     <div id="thing_<%= contact.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                         <div class="dummy"></div>
                             <div class="thumbnail">
                                 <div class="widget-title handle">
                                 <h4><%= contact.zone.name %></h4>
-                               
 
                                 </div>
                                 <div class="temp contact_<%= contact.uid %> img-circle">
-                                 
+                                  <%= contact.device_value %>
                                 </div>
-                                <h5><%= contact.label %></h5>
+                                <h5><%= link_to contact.label, thing_path(contact) %></h5>
                             </div>
                       </div>
-                    <% elsif thing.device_type == "lock" %>
-                    <% lock = thing %>
-                     <div id="thing_<%= lock.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
-                        <div class="dummy"></div>
-                            <div class="thumbnail">
-                                <div class="widget-title handle">
-                                <h4><%= lock.zone.name %></h4>
-                               
-                                </div>
-                                <div class="temp lock_<%= lock.uid %> img-circle">
-                                 
-                                </div>
-                                <h5><%= lock.label %></h5>
-                            </div>
-                      </div>
-                     <% elsif thing.device_type == "battery" %>
+                     
+              
+                    <% elsif thing.device_type == "battery" %>
                     <% battery = thing %>
-                     <div id="thing_<%= battery.id %>" class="tile col-md-2 col-sm-4 col-xs-6">
+                     <div id="thing_<%= battery.id %>" class="tile col-md-2 col-sm-4 col-xs-10">
                         <div class="dummy"></div>
+
                             <div class="thumbnail">
+                             
                                 <div class="widget-title handle">
+                                
                                 <h4><%= battery.zone.name %></h4>
-                                <h5><%= battery.display_type %></h5>
 
                                 </div>
+                                
                                 <div class="temp battery_<%= battery.uid %>">
                                   <%= battery.device_value %> %
-                                </div>
-                                <div class="device-footer">
-                                  <h5><%= battery.label %></h5>
-                                </div>
+                              </div>
+                               <h5><%= link_to battery.label, thing_path(battery) %></h5>
                             </div>
                       </div>
                     <% elsif thing.device_type == "illuminant" %>
