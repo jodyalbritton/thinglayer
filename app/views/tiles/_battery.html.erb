@@ -6,7 +6,7 @@
          
             <div class="widget-title handle">
             
-            <h4 class="hidden-xs"><%= battery.zone.name %></h4>
+            <h4 class="hidden-xs"><%= link_to battery.zone.name, location_zone_path(battery.zone.location, battery.zone) %></h4>
 
             </div>
             

@@ -3,7 +3,7 @@
 <div class="dummy"></div>
     <div class="thumbnail">
         <div class="widget-title handle">
-        <h4 class="hidden-xs"><%= dimmer.zone.name %></h4>
+        <h4 class="hidden-xs"><%= link_to dimmer.zone.name, location_zone_path(dimmer.zone.location, dimmer.zone) %></h4>
         </div>
           <% dimmer_switch = Thing.find_by(:device_type => "switch", :uid=> dimmer.uid ) %>
           <div class="device-wrapper">
