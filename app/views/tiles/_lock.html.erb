@@ -3,7 +3,7 @@
   <div class="dummy"></div>
       <div class="thumbnail">
           <div class="widget-title handle">
-          <h4 class="hidden-xs"><%= lock.zone.name %></h4>
+          <h4 class="hidden-xs"><%= link_to lock.zone.name, location_zone_path(lock.zone.location, lock.zone) %></h4>
 
           </div>
           <div class= "device-wrapper">

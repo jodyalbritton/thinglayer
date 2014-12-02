@@ -3,7 +3,7 @@
   <div class="dummy"></div>
       <div class="thumbnail">
           <div class="widget-title handle">
-          <h4 class="hidden-xs"><%= illuminant.zone.name %></h4>
+          <h4 class="hidden-xs"><%= link_to illuminant.zone.name, location_zone_path(illuminant.zone.location, illuminant.zone) %></h4>
 
           </div>
           <div class="temp illuminant_<%= illuminant.uid %>">

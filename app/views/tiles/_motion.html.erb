@@ -4,7 +4,7 @@
     <div class="dummy"></div>
         <div class="thumbnail">
             <div class="widget-title handle">
-            <h4 class="hidden-xs"><%= motion.zone.name %></h4>
+            <h4 class="hidden-xs"><%= link_to motion.zone.name, location_zone_path(motion.zone.location, motion.zone) %></h4>
 
             </div>
             <div class="temp motion_<%= motion.uid %> img-circle">

@@ -3,7 +3,7 @@
   <div class="dummy"></div>
       <div class="thumbnail">
           <div class="widget-title handle">
-          <h4 class="hidden-xs"><%= contact.zone.name %></h4>
+          <h4 class="hidden-xs"><%= link_to contact.zone.name, location_zone_path(contact.zone.location, contact.zone) %></h4>
 
           </div>
           <div class="temp contact_<%= contact.uid %> img-circle">

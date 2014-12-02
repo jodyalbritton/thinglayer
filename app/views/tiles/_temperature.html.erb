@@ -3,7 +3,7 @@
   <div class="dummy"></div>
     <div class="thumbnail">
         <div class="widget-title handle">
-        <h4 class="hidden-xs"><%= temp.zone.name %></h4>
+        <h4 class="hidden-xs"><%= link_to temp.zone.name, location_zone_path(temp.zone.location, temp.zone) %></h4>
         </div>
         <div class="temp temperature_<%= temp.uid %>">
           <%= temp.device_value %>
