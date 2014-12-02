@@ -1,10 +1,10 @@
 
-<%= content_tag_for :div, motion, :class=> "tile col-md-2 col-lg-2 col-md-3 col-sm-5 col-xs-6 zone_"+motion.zone_id.to_s+" item" do %>
+<%= content_tag_for :div, motion, :class=> "tile col-lg-2 col-md-3 col-sm-6 col-xs-6 zone_"+motion.zone_id.to_s+" item" do %>
 
     <div class="dummy"></div>
         <div class="thumbnail">
             <div class="widget-title handle">
-            <h4><%= motion.zone.name %></h4>
+            <h4 class="hidden-xs"><%= motion.zone.name %></h4>
 
             </div>
             <div class="temp motion_<%= motion.uid %> img-circle">
