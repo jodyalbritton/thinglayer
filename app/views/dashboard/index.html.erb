@@ -19,12 +19,7 @@
     text-align: center;
     padding-top:calc(24% - 34px);
 }
-.handle {
-  font-size: 12px;
-  color: #777;
-  cursor: move;
-   height: 20%;
-}
+
 .device-wrapper{
 
   height: 50%;
@@ -42,15 +37,7 @@
 
 }
 
-.isotope-row {
-  padding-right: 1%;
-  padding-left:  1%;
-}
-.button-group{
-  padding-right:  5%;
-  padding-left: 5%;
-  text-align: center;
-}
+
 .device-footer{
   margin: auto;
   height: 40%;
@@ -109,6 +96,7 @@
 }
 
 
+
 .motion-active {
   background-color: #00CC66;
   color: white;
@@ -134,45 +122,54 @@
   color: white;
 }
 
+.isotope-container: {
+  width: 95%;
+}
 
 
 
 </style>
 
+
            
 <div class="container">
+
+
         <div id="ui-accordion">
           <% @grouped_things.each do |device_type, things| %>
               <div class="group">
-                <% if device_type == "dimmer" %>
-                  <h3>Dimmers</h3>
-                <% elsif device_type == "switch"%>
-                  <h3>Switches</h3>
-                <% elsif device_type == "temperatureMeasurement"%>
-                  <h3>Temperatures</h3>
-                <% elsif device_type == "relativeHumidityMeasurement"%>
-                  <h3>Humidities</h3>
-                <% elsif device_type == "contact"%>
-                  <h3>Doors and Windows</h3>
-                <% elsif device_type == "motion"%>
-                  <h3>Motion</h3>
-                <% elsif device_type == "illuminant"%>
-                  <h3>Light Levels</h3>
-                <% elsif device_type == "lock"%>
-                  <h3>Locks</h3>
-                <% elsif device_type == "battery"%>
-                  <h3>Batteries</h3>
-                <% else %>
-                  <h3>Unknown</h3>
-                <% end %>
-                  <div class="row">
-                  <div id="<%=device_type%>_filters" class="button-group">
+              <% if device_type == "dimmer" %>
+                    <h3>Dimmers</h3>
+                  <% elsif device_type == "switch"%>
+                    <h3>Switches</h3>
+                  <% elsif device_type == "temperatureMeasurement"%>
+                    <h3>Temperatures</h3>
+                  <% elsif device_type == "relativeHumidityMeasurement"%>
+                    <h3>Humidities</h3>
+                  <% elsif device_type == "contact"%>
+                    <h3>Doors and Windows</h3>
+                  <% elsif device_type == "motion"%>
+                    <h3>Motion</h3>
+                  <% elsif device_type == "illuminant"%>
+                    <h3>Light Levels</h3>
+                  <% elsif device_type == "lock"%>
+                    <h3>Locks</h3>
+                  <% elsif device_type == "battery"%>
+                    <h3>Batteries</h3>
+                  <% else %>
+                    <h3>Unknown</h3>
+                  <% end %>
+              <div class="row">
+        
+                  
+                
+                  <div id="<%=device_type%>_filters">
                         <button data-filter="*" class="btn btn-default btn-xs">show all</button>
                       <% @user.zones.each do |zone| %>
                         <button data-filter=".zone_<%= zone.id %>" class="btn btn-default btn-xs"><%= zone.name %></button>
                       <% end %>
                   </div>
-                  <div id="<%=device_type%>_row" class="isotope-row">
+                  <div id="<%=device_type%>_row" class="isotope-container">
 
                     <% things.each do |thing| %>
                       <% if thing.zone_id != nil %>
@@ -204,18 +201,9 @@
         </div>
 </div>
 
-<script>
 
-init.push(function () {
-  $( "#ui-accordion" ).accordion({
-              heightStyle: "content",
-              header: "> .group > h3"
 
-  });            
-});
 
-   
-</script>
 <% @things.each do |thing| %>
 <script>
  
@@ -393,7 +381,8 @@ $('.dimmer_<%= dimmer.uid %>').slider(colorful_sliders_options);
 <script>
   // init Isotope
 var $<%= device_type %>Container = $('#<%= device_type %>_row').isotope({
-  // options
+  itemSelector: '.item',
+  layoutMode: 'fitRows'
 });
 // filter items on button click
 $('#<%= device_type %>_filters').on( 'click', 'button', function() {
@@ -402,6 +391,47 @@ $('#<%= device_type %>_filters').on( 'click', 'button', function() {
   $<%= device_type %>Container.isotope({ filter: <%= device_type %>FilterValue });
   
 });
+
+
+init.push(function () {
+            $( "#ui-accordion" ).accordion({
+              heightStyle: "content",
+            
+              header: "> div > h3",
+              create: function(event, ui) { 
+                 $switchContainer.isotope({filter: "*"});
+                 $dimmerContainer.isotope({ filter: "*" });
+                 $motionContainer.isotope({filter: "*"});
+                 $temperatureMeasurementContainer.isotope({ filter: "*" });
+                 $relativeHumidityMeasurementContainer.isotope({ filter: "*" });
+                 $lockContainer.isotope({filter: "*"});
+                 $batteryContainer.isotope({filter: "*"});
+                 $illuminantContainer.isotope({filter: "*"});
+                 $contactContainer.isotope({filter: "*"});
+              }
+            }).sortable({
+              axis: "y",
+              handle: "h3",
+              stop: function( event, ui ) {
+                // IE doesn't register the blur when sorting
+                // so trigger focusout handlers to remove .ui-state-focus
+                ui.item.children( "h3" ).triggerHandler( "focusout" );
+              }
+            });
+          });
+          
+
+          $( "#ui-accordion" ).on( "accordionactivate", function( event, ui ) {
+             $switchContainer.isotope({filter: "*"});
+             $dimmerContainer.isotope({ filter: "*" });
+             $motionContainer.isotope({filter: "*"});
+             $temperatureMeasurementContainer.isotope({ filter: "*" });
+             $relativeHumidityMeasurementContainer.isotope({ filter: "*" });
+             $lockContainer.isotope({filter: "*"});
+             $batteryContainer.isotope({filter: "*"});
+             $illuminantContainer.isotope({filter: "*"});
+             $contactContainer.isotope({filter: "*"});
+          } );
 </script>
 
 <% end %>
