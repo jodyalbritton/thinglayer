@@ -3,8 +3,13 @@
 <div class="dummy"></div>
   <div class="thumbnail">
       <div class="widget-title handle">
-      <h4 class="hidden-xs"><%= link_to switch.zone.name, location_zone_path(switch.zone.location, switch.zone) %></h4>
-
+      <% if @location && @zone %>
+          <% if current_page?(location_zone_path(@location, @zone)) %>
+            <h4>Switch</h4>
+          <% end %>
+        <% else %>
+            <h4 class="hidden-xs"><%= link_to switch.zone.name, location_zone_path(switch.zone.location, switch.zone) %></h4>
+        <% end %>
       </div>
       <div class= "device-wrapper">
         <%= form_for switch, :remote=> true do |t| %>

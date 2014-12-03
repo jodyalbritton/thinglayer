@@ -3,8 +3,13 @@
   <div class="dummy"></div>
       <div class="thumbnail">
           <div class="widget-title handle">
-          <h4 class="hidden-xs"><%= link_to contact.zone.name, location_zone_path(contact.zone.location, contact.zone) %></h4>
-
+          <% if @location  && @zone%>
+            <% if current_page?(location_zone_path(@location, @zone)) %>
+              <h4>Contact</h4>
+            <% end %>
+          <% else %>
+            <h4 class="hidden-xs"><%= link_to contact.zone.name, location_zone_path(contact.zone.location, contact.zone) %></h4>
+          <% end %>
           </div>
           <div class="temp contact_<%= contact.uid %> img-circle">
             <%= contact.device_value %>
