@@ -155,6 +155,10 @@
                           <%= render partial: "tiles/battery", locals: {battery: thing}%>
                         <% elsif thing.device_type == "illuminant" %>
                           <%= render partial: "tiles/illuminant", locals: {illuminant: thing}%>
+                        <% elsif thing.device_type == "power" %>
+                          <%= render partial: "tiles/power", locals: {power: thing}%>
+                        <% elsif thing.device_type == "energy" %>
+                          <%= render partial: "tiles/energy", locals: {energy: thing}%>
                         <% end %>
                       <% end %>
                     <% end %>  
@@ -233,6 +237,10 @@ init.push(function () {
     var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/battery");
     <% elsif thing.device_type == "lock" %>
     var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/lock");
+    <% elsif thing.device_type == "power" %>
+    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/power");
+    <% elsif thing.device_type == "energy" %>
+    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/energy");
     <% end %>
 
 
@@ -298,6 +306,24 @@ init.push(function () {
 
              if (value.name == "battery"){
               $('.battery_'+value.device).html(value.value+ " %");
+
+            }
+
+             if (value.name == "energy"){
+              $('.energy_'+value.device).html(value.value+ " kWh");
+
+            }
+
+            if (value.name == "power"){
+              
+                if(value.unit == undefined){
+                 var display_unit = "watts"
+                  
+                }else{
+                 var display_unit = value.unit 
+                }
+
+                $('.power_'+value.device).html(value.value+ " "+display_unit);
 
             }
 

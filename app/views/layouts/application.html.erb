@@ -205,7 +205,7 @@ Use search to find needed section.
 					<ul>
 						<% current_user.locations.each do |location| %>
 						<li class="mm-dropdown">
-							<a tabindex="-1" href="#"><span class="mm-text"><%= location.name %></span></a>
+							<a tabindex="-1" href="<%= location_path(location) %>"><span class="mm-text"><%= location.name %></span></a>
 							<ul>
 								<% location.zones.each do |zone| %>
 								<li>
