@@ -14,6 +14,7 @@ module Stapi
          require 'stapi/humidities'
          require 'stapi/locks'
          require 'stapi/batteries'
+         require 'stapi/presence'
    		require 'stapi/import'
 		   require 'stapi/client'
 

@@ -1,0 +1,26 @@
+
+
+ <div id="thing_<%= presence.id %>" class="tile col-lg-2 col-md-3 col-sm-6 col-xs-6  zone_<%= presence.zone_id %> item">
+    <div class="dummy"></div>
+
+        <div class="thumbnail">
+         
+            <div class="widget-title handle">
+            <% if @location && @zone %>
+              <% if current_page?(location_zone_path(@location, @zone)) %>
+                <h4>Presence</h4>
+              <% end %>
+             <% else %>
+                <h4 class="hidden-xs"><%= link_to presence.zone.name, location_zone_path(presence.zone.location, presence.zone) %></h4>
+            <% end %>
+
+          
+           
+            </div>
+            
+            <div class="temp presence_<%= presence.uid %>">
+              <%= presence.device_value %> %
+          </div>
+           <h5><%= link_to presence.label, thing_path(presence) %></h5>
+        </div>
+  </div>

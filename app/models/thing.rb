@@ -22,6 +22,21 @@ class Thing < ActiveRecord::Base
         @user.smartthings.show_contact(self.uid)
     end
 
+    def power_details
+        @user ||= User.find(user_id)
+        @user.smartthings.show_power(self.uid)
+    end
+
+    def energy_details
+        @user ||= User.find(user_id)
+        @user.smartthings.show_energy(self.uid)
+    end
+
+    def presence_details
+        @user ||= User.find(user_id)
+        @user.smartthings.show_presence(self.uid)
+    end
+
     def dimmer_details
         @user ||= User.find(user_id)
         @user.smartthings.show_dimmer(self.uid)
