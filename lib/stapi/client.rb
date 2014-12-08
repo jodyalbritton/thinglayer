@@ -13,6 +13,7 @@ module Stapi
 		include Batteries
 		include Powers
 		include Energies
+		include Presence
 		include Import
 		attr_reader :oauth_token, :thing_user
 

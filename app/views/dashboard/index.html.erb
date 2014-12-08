@@ -158,6 +158,8 @@
                     Power Consumption
                   <% elsif device_type == "energy"%>
                     Energy Usage
+                  <% elsif device_type == "presence"%>
+                    Presence
                   <% else %>
                     Unknown
                   <% end %>
@@ -198,6 +200,8 @@
                           <%= render partial: "tiles/power", locals: {power: thing}%>
                         <% elsif thing.device_type == "energy" %>
                           <%= render partial: "tiles/energy", locals: {energy: thing}%>
+                        <% elsif thing.device_type == "presence" %>
+                          <%= render partial: "tiles/presence", locals: {presence: thing}%>
                         <% end %>
                       <% end %>
                     <% end %>  
@@ -236,6 +240,8 @@
     var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/power");
     <% elsif thing.device_type == "energy" %>
     var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/energy");
+    <% elsif thing.device_type == "presence" %>
+    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/presence");
     <% end %>
 
 
@@ -317,6 +323,11 @@
 
             if (value.name == "energy"){
               $('.energy_'+value.device).html(value.value+ " %");
+
+            }
+
+            if (value.name == "presence"){
+              $('.presence_'+value.device).html(value.value+ " ");
 
             }
 
@@ -433,6 +444,7 @@ $('#accordion-example').on('shown.bs.collapse', function () {
              $contactContainer.isotope({filter: "*"});
              $powerContainer.isotope({filter: "*"});
              $energyContainer.isotope({filter: "*"});
+             $presenceContainer.isotope({filter: "*"});
 })
 </script>
 

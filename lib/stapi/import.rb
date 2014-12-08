@@ -12,6 +12,7 @@ module Stapi
 			 bats = batteries.parsed_response
 			 eners = energies.parsed_response
 			 pows = powers.parsed_response
+			 pres = presence.parsed_response
 
 
 			
@@ -19,6 +20,22 @@ module Stapi
              unless locs == nil 
              @user = User.find(@thing_user)
              devices = locs 
+             devices.each do |it|
+        
+			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
+			        stuff.uid = it["id"]
+					stuff.device_type = it["type"]
+					stuff.label = it["name"]
+					stuff.provider = "smartthings"
+					stuff.user = @user
+					stuff.save
+			  end
+			
+			end
+
+			unless pres == nil 
+             @user = User.find(@thing_user)
+             devices = pres 
              devices.each do |it|
         
 			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
