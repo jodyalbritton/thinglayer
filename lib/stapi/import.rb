@@ -10,6 +10,8 @@ module Stapi
 			 hums = humidities.parsed_response 
 			 locs = locks.parsed_response 
 			 bats = batteries.parsed_response
+			 eners = energies.parsed_response
+			 pows = powers.parsed_response
 
 
 			
@@ -29,6 +31,39 @@ module Stapi
 			  end
 			
 			end
+			
+			unless  eners == nil 
+             @user = User.find(@thing_user)
+             devices = eners 
+             devices.each do |it|
+        
+			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
+			        stuff.uid = it["id"]
+					stuff.device_type = it["type"]
+					stuff.label = it["name"]
+					stuff.provider = "smartthings"
+					stuff.user = @user
+					stuff.save
+			  end
+			
+			end
+
+			unless  pows == nil 
+             @user = User.find(@thing_user)
+             devices = pows 
+             devices.each do |it|
+        
+			        stuff = Thing.find_or_initialize_by(device_type: it["type"], uid: it["id"])
+			        stuff.uid = it["id"]
+					stuff.device_type = it["type"]
+					stuff.label = it["name"]
+					stuff.provider = "smartthings"
+					stuff.user = @user
+					stuff.save
+			  end
+			
+			end
+
 			unless dims == nil 
              @user = User.find(@thing_user)
              devices = dims 

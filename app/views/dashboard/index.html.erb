@@ -154,6 +154,10 @@
                     Locks
                   <% elsif device_type == "battery"%>
                     Batteries
+                  <% elsif device_type == "power"%>
+                    Power Consumption
+                  <% elsif device_type == "energy"%>
+                    Energy Usage
                   <% else %>
                     Unknown
                   <% end %>
@@ -190,6 +194,10 @@
                           <%= render partial: "tiles/battery", locals: {battery: thing}%>
                         <% elsif thing.device_type == "illuminant" %>
                           <%= render partial: "tiles/illuminant", locals: {illuminant: thing}%>
+                        <% elsif thing.device_type == "power" %>
+                          <%= render partial: "tiles/power", locals: {power: thing}%>
+                        <% elsif thing.device_type == "energy" %>
+                          <%= render partial: "tiles/energy", locals: {energy: thing}%>
                         <% end %>
                       <% end %>
                     <% end %>  
@@ -224,6 +232,10 @@
     var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/battery");
     <% elsif thing.device_type == "lock" %>
     var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/lock");
+     <% elsif thing.device_type == "power" %>
+    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/power");
+    <% elsif thing.device_type == "energy" %>
+    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/energy");
     <% end %>
 
 
@@ -303,6 +315,23 @@
 
             }
 
+            if (value.name == "energy"){
+              $('.energy_'+value.device).html(value.value+ " %");
+
+            }
+
+            if (value.name == "power"){
+              
+                if(value.unit == undefined){
+                   var display_unit = "watts"
+                  
+                }else{
+                 var display_unit = value.unit 
+                }
+
+                $('.power_'+value.device).html(value.value+ " "+display_unit);
+
+            }
             if (value.name == "temperature"){
               if(value.unit == undefined){
                    var display_unit = "F"
@@ -402,6 +431,8 @@ $('#accordion-example').on('shown.bs.collapse', function () {
              $batteryContainer.isotope({filter: "*"});
              $illuminantContainer.isotope({filter: "*"});
              $contactContainer.isotope({filter: "*"});
+             $powerContainer.isotope({filter: "*"});
+             $energyContainer.isotope({filter: "*"});
 })
 </script>
 

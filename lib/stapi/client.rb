@@ -11,7 +11,8 @@ module Stapi
 		include Humidities
 		include Locks
 		include Batteries
-		include Meters
+		include Powers
+		include Energies
 		include Import
 		attr_reader :oauth_token, :thing_user
 

@@ -1,0 +1,25 @@
+
+ <div id="thing_<%= power.id %>" class="tile col-lg-2 col-md-3 col-sm-6 col-xs-6  zone_<%= power.zone_id %> item">
+    <div class="dummy"></div>
+
+        <div class="thumbnail">
+         
+            <div class="widget-title handle">
+            <% if @location && @zone %>
+              <% if current_page?(location_zone_path(@location, @zone)) %>
+                <h4>Power</h4>
+              <% end %>
+             <% else %>
+                <h4 class="hidden-xs"><%= link_to power.zone.name, location_zone_path(power.zone.location, power.zone) %></h4>
+            <% end %>
+
+          
+           
+            </div>
+            
+            <div class="temp power_<%= power.uid %>">
+              <%= power.device_value %> %
+          </div>
+           <h5><%= link_to power.label, thing_path(power) %></h5>
+        </div>
+  </div>

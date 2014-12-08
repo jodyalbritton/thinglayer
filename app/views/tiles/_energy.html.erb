@@ -1,0 +1,25 @@
+
+ <div id="thing_<%= energy.id %>" class="tile col-lg-2 col-md-3 col-sm-6 col-xs-6  zone_<%= energy.zone_id %> item">
+    <div class="dummy"></div>
+
+        <div class="thumbnail">
+         
+            <div class="widget-title handle">
+            <% if @location && @zone %>
+              <% if current_page?(location_zone_path(@location, @zone)) %>
+                <h4>Energy</h4>
+              <% end %>
+             <% else %>
+                <h4 class="hidden-xs"><%= link_to energy.zone.name, location_zone_path(energy.zone.location, energy.zone) %></h4>
+            <% end %>
+
+          
+           
+            </div>
+            
+            <div class="temp energy_<%= energy.uid %>">
+              <%= energy.device_value %> 
+          </div>
+           <h5><%= link_to energy.label, thing_path(energy) %></h5>
+        </div>
+  </div>
