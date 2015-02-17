@@ -16,7 +16,7 @@
 <% uri = "https://dazzling-heat-3134.firebaseio.com" %>
 <% firebase = Firebase::Client.new(uri) %>
 <% temps = firebase.get("events/"+@thing.uid+"/temperature") %>
-<% results = JSON.parse(temps.body) %>
+<% results = temps.body %>
 
 
 <style>
@@ -133,7 +133,7 @@ function zoomChart() {
 <% uri = "https://dazzling-heat-3134.firebaseio.com" %>
 <% firebase = Firebase::Client.new(uri) %>
 <% hums = firebase.get("events/"+@thing.uid+"/humidity") %>
-<% results = JSON.parse(hums.response.response_body).to_hash %>
+<% results = hums.body %>
 
 
 <style>
@@ -243,7 +243,7 @@ function zoomChart() {
 <% uri = "https://dazzling-heat-3134.firebaseio.com" %>
 <% firebase = Firebase::Client.new(uri) %>
 <% bats = firebase.get("events/"+@thing.uid+"/battery") %>
-<% results = JSON.parse(bats.response.response_body).to_hash %>
+<% results = bats.body %>
 
 
 <style>
@@ -353,7 +353,7 @@ function zoomChart() {
 <% uri = "https://dazzling-heat-3134.firebaseio.com" %>
 <% firebase = Firebase::Client.new(uri) %>
 <% conts = firebase.get("events/"+@thing.uid+"/contact") %>
-<% results = JSON.parse(conts.response.response_body).to_hash %>
+<% results = conts.body %>
 
 
 <style>
@@ -470,7 +470,7 @@ function zoomChart() {
 <% uri = "https://dazzling-heat-3134.firebaseio.com" %>
 <% firebase = Firebase::Client.new(uri) %>
 <% bats = firebase.get("events/"+@thing.uid+"/power") %>
-<% results = JSON.parse(bats.response.response_body).to_hash %>
+<% results = bats.body %>
 
 
 <style>
