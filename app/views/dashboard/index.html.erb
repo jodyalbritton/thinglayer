@@ -424,15 +424,19 @@ var $<%= device_type %>Container = $('#<%= device_type %>_row').isotope({
   layoutMode: 'fitRows'
 });
 
-$<%= device_type %>Container.isotope('layout');
+ if ($("#collapse<%= device_type %>").length > 0){
+  $<%= device_type %>Container.isotope('layout');
+ }
 
 // filter items on button click
-$('#<%= device_type %>_filters').on( 'click', 'button', function() {
+if ($("#collapse<%= device_type %>").length > 0){
+  $('#<%= device_type %>_filters').on( 'click', 'button', function() {
 
-  var <%= device_type %>FilterValue = $(this).attr('data-filter');
-  $<%= device_type %>Container.isotope({ filter: <%= device_type %>FilterValue });
-  
-});
+    var <%= device_type %>FilterValue = $(this).attr('data-filter');
+    $<%= device_type %>Container.isotope({ filter: <%= device_type %>FilterValue });
+    
+  });
+}
 
 
   $('#accordion-example').on('shown.bs.collapse', function () {
