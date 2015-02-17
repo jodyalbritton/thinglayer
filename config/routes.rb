@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :dashboard
   resources :speech
   resources :messages, only: [:new, :create]
+  resources :charges
 
   match '/dashboard/search/:query' => 'dashboard#search', :as => 'search', via: [:get, :post]
   match "/auth/:provider/callback" => "omniauth_callbacks#create", via: [:get, :post]

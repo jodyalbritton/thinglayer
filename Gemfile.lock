@@ -30,6 +30,15 @@ GIT
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.1)
 
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: 62e110a33e5c742b2729e5191cb4335c1c6f517f
+  specs:
+    stripe (1.16.1)
+      json (~> 1.8.1)
+      mime-types (>= 1.25, < 3.0)
+      rest-client (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -297,6 +306,7 @@ DEPENDENCIES
   rolify
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  stripe!
   therubyracer
   turbolinks
   uglifier (>= 1.3.0)
