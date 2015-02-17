@@ -16,7 +16,7 @@
 <% uri = "https://dazzling-heat-3134.firebaseio.com" %>
 <% firebase = Firebase::Client.new(uri) %>
 <% temps = firebase.get("events/"+@thing.uid+"/temperature") %>
-<% results = JSON.parse(temps.response.response_body).to_hash %>
+<% results = JSON.parse(temps.body) %>
 
 
 <style>
