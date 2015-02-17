@@ -435,19 +435,55 @@ $('#<%= device_type %>_filters').on( 'click', 'button', function() {
 });
 
 
-$('#accordion-example').on('shown.bs.collapse', function () {
-   $switchContainer.isotope({filter: "*"});
-   $dimmerContainer.isotope({ filter: "*" });
-   $motionContainer.isotope({filter: "*"});
-   $temperatureMeasurementContainer.isotope({ filter: "*" });
-   $relativeHumidityMeasurementContainer.isotope({ filter: "*" });
-   $lockContainer.isotope({filter: "*"});
-   $batteryContainer.isotope({filter: "*"});
-   $illuminantContainer.isotope({filter: "*"});
-   $contactContainer.isotope({filter: "*"});
-   $powerContainer.isotope({filter: "*"});
-   $energyContainer.isotope({filter: "*"});
-   $presenceContainer.isotope({filter: "*"});
+  $('#accordion-example').on('shown.bs.collapse', function () {
+    if ($("#collapseswitch").length > 0){
+      $switchContainer.isotope({filter: "*"});
+    }
+
+    if ($("#collapsedimmer").length > 0){
+      $dimmerContainer.isotope({filter: "*"});
+    }
+
+    if ($("#collapsemotion").length > 0){
+      $motionContainer.isotope({filter: "*"});
+    }
+
+    if ($("#collapsetemperatureMeasurement").length > 0){
+      $temperatureMeasurementContainer.isotope({filter: "*"});
+    }
+
+    if ($("#collapserelativeHumidityMeasurementContainer").length > 0){
+       $relativeHumidityMeasurementContainer.isotope({ filter: "*" });
+    }
+
+    if ($("#collapselock").length > 0){
+      $lockContainer.isotope({filter: "*"});
+    } 
+     
+    if ($("#collapsebattery").length > 0){
+      $batteryContainer.isotope({filter: "*"});
+    }
+    
+    if ($("#collapseillluminant").length > 0){
+      $illuminantContainer.isotope({filter: "*"});
+    }
+
+    if ($("#collapsecontact").length > 0){
+      $contactContainer.isotope({filter: "*"});
+    }
+
+    if ($("#collapsepower").length > 0){
+      $powerContainer.isotope({filter: "*"});
+    }
+
+    if ($("#collapseenegy").length > 0){
+      $energyContainer.isotope({filter: "*"});
+    }
+
+
+    if ($("#collapsepresence").length > 0){
+      $presenceContainer.isotope({filter: "*"});
+    }
 })
 </script>
 
