@@ -418,11 +418,14 @@ $('.dimmer_<%= dimmer.uid %>').slider(colorful_sliders_options);
 <% @grouped_things.each do |device_type, things| %>
 
 <script>
-  // init Isotope
+// init Isotope
 var $<%= device_type %>Container = $('#<%= device_type %>_row').isotope({
   itemSelector: '.item',
   layoutMode: 'fitRows'
 });
+
+$<%= device_type %>Container.isotope('layout');
+
 // filter items on button click
 $('#<%= device_type %>_filters').on( 'click', 'button', function() {
 
@@ -433,18 +436,18 @@ $('#<%= device_type %>_filters').on( 'click', 'button', function() {
 
 
 $('#accordion-example').on('shown.bs.collapse', function () {
-  $switchContainer.isotope({filter: "*"});
-             $dimmerContainer.isotope({ filter: "*" });
-             $motionContainer.isotope({filter: "*"});
-             $temperatureMeasurementContainer.isotope({ filter: "*" });
-             $relativeHumidityMeasurementContainer.isotope({ filter: "*" });
-             $lockContainer.isotope({filter: "*"});
-             $batteryContainer.isotope({filter: "*"});
-             $illuminantContainer.isotope({filter: "*"});
-             $contactContainer.isotope({filter: "*"});
-             $powerContainer.isotope({filter: "*"});
-             $energyContainer.isotope({filter: "*"});
-             $presenceContainer.isotope({filter: "*"});
+   $switchContainer.isotope({filter: "*"});
+   $dimmerContainer.isotope({ filter: "*" });
+   $motionContainer.isotope({filter: "*"});
+   $temperatureMeasurementContainer.isotope({ filter: "*" });
+   $relativeHumidityMeasurementContainer.isotope({ filter: "*" });
+   $lockContainer.isotope({filter: "*"});
+   $batteryContainer.isotope({filter: "*"});
+   $illuminantContainer.isotope({filter: "*"});
+   $contactContainer.isotope({filter: "*"});
+   $powerContainer.isotope({filter: "*"});
+   $energyContainer.isotope({filter: "*"});
+   $presenceContainer.isotope({filter: "*"});
 })
 </script>
 

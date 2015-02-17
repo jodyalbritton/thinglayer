@@ -50,6 +50,7 @@ gem 'rest-firebase', :git => 'git://github.com/CodementorIO/rest-firebase.git',
                      :submodules => true
 gem 'acts_as_list'
 gem 'resque', :require => "resque/server"
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
