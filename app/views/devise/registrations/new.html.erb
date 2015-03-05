@@ -1,145 +1,48 @@
-<body class="theme-default page-signup">
-
-<script>
-	var init = [];
-	init.push(function () {
-		
-	});
-</script>
 
 
-	<!-- Page background -->
-	<div id="page-signup-bg">
-		<!-- Background overlay -->
-		<div class="overlay"></div>
-		<!-- Replace this with your bg image -->
-		
-	</div>
-	<!-- / Page background -->
+	 <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Please Sign Up</h3>
+                    </div>
+                    <div class="panel-body">
+                       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                            <fieldset>
+                               	<div class="form-group">
 
-	<!-- Container -->
-	<div class="signup-container">
-		<!-- Header -->
-		<div class="signup-header">
-			<%= link_to root_path,  :class=>"logo" do %>
-				
-				Thing Layer
-			<% end %> <!-- / .logo -->
-			<div class="slogan">
-				Alpha
-			</div> <!-- / .slogan -->
-		</div>
-		<!-- / Header -->
+									<%= f.text_field :email, :class=> "form-control input-lg", :placeholder=> "E-mail", :required => true%>
+								
+								</div>
 
-		<!-- Form -->
-		<div class="signup-form">
-			<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-			
-				
-				<div class="signup-text">
-					<span>Create an account</span>
-				</div>
+								<div class="form-group">
+									<%= f.text_field :username, :class=> "form-control input-lg", :placeholder=> "Username", :required => true%>
+									
+								
+								</div>
+								 <div class="form-group">
+				   			    	 <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.all, {:default=> "Pacific Time (US & Canada)"}, {:class => 'form-control'}  %>
+				   			    	
+				   			    </div>
 
-				<div class="form-group w-icon">
-					<%= f.text_field :full_name, :class=> "form-control input-lg", :placeholder=> "Full Name", :required => true%>
-					
-					<span class="fa fa-info signup-form-icon"></span>
-				</div>
-				<div class="form-group w-icon">
-
-					<%= f.text_field :email, :class=> "form-control input-lg", :placeholder=> "E-mail", :required => true%>
-					<span class="fa fa-envelope signup-form-icon"></span>
-					
-				</div>
-
-				<div class="form-group w-icon">
-					<%= f.text_field :username, :class=> "form-control input-lg", :placeholder=> "Username", :required => true%>
-					
-					<span class="fa fa-user signup-form-icon"></span>
-				</div>
-				 <div class="form-group w-icon">
-   			    	 <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.all, {:default=> "Pacific Time (US & Canada)"}, {:class => 'form-control'}  %>
-   			    	 <span class="fa fa-clock signup-form-icon"></span>
-   			    </div>
-
-				<div class="form-group w-icon">
-					<%= f.password_field :password, :class=> "form-control input-lg", :placeholder=> "Password", :label=> false %>
-					<span class="fa fa-lock signup-form-icon"></span>
-				</div>
-				<div class="form-group w-icon">
-					<%= f.password_field :password_confirmation, :class=> "form-control input-lg", :placeholder=> "Confirm Password", :label=> false %>
-					<span class="fa fa-lock signup-form-icon"></span>
-				</div>
-
-				
-
-				<div class="form-actions">
-					<%= f.submit "Sign up", :class=> "signup-btn bg-primary" %>
-					
-				</div>
-			<% end %>
-			<!-- / Form -->
-		</div>
-		<!-- Right side -->
-	</div>
-
-		<div class="have-account">
-		<%= render "devise/shared/links" %>
-	</div>
-
-</body>
-
-
-
-
-
-<script type="text/javascript">
-	// Resize BG
-	init.push(function () {
-		var $ph  = $('#page-signup-bg'),
-		    $img = $ph.find('> img');
-
-		$(window).on('resize', function () {
-			$img.attr('style', '');
-			if ($img.height() < $ph.height()) {
-				$img.css({
-					height: '100%',
-					width: 'auto'
-				});
-			}
-		});
-
-		$("#new_user").validate({ focusInvalid: true, errorPlacement: function () {} });
-
-		// Validate name
-		$("#user_full_name").rules("add", {
-			required: true,
-			minlength: 1
-		});
-
-		// Validate email
-		$("#user_email").rules("add", {
-			required: true,
-			email: true
-		});
-		
-		// Validate username
-		$("#user_username").rules("add", {
-			required: true,
-			minlength: 3
-		});
-
-		// Validate password
-		$("#user_password").rules("add", {
-			required: true,
-			minlength: 6
-		});
-
-		// Validate confirm checkbox
-		$("#user_password_confirmation").rules("add", {
-			required: true
-		});
-	});
-
-	window.PixelAdmin.start(init);
-</script>
+								<div class="form-group">
+									<%= f.password_field :password, :class=> "form-control input-lg", :placeholder=> "Password", :label=> false %>
+									
+								</div>
+								<div class="form-group">
+									<%= f.password_field :password_confirmation, :class=> "form-control input-lg", :placeholder=> "Confirm Password", :label=> false %>
+									
+								</div>
+                                <div class="form-actions">
+									<%= f.submit "Sign up", :class=> "btn btn-primary" %>
+									
+								</div>
+                              
+                            </fieldset>
+                       <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

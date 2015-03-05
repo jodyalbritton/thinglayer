@@ -65,244 +65,35 @@ Use search to find needed section.
 
 <!-- 1. $BODY ======================================================================================
 
-	Body
 
-	Classes:
-	* 'theme-{THEME NAME}'
-	* 'right-to-left'      - Sets text direction to right-to-left
-	* 'main-menu-right'    - Places the main menu on the right side
-	* 'no-main-menu'       - Hides the main menu
-	* 'main-navbar-fixed'  - Fixes the main navigation
-	* 'main-menu-fixed'    - Fixes the main menu
-	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated">
+<body>
+ 
+ <div id="wrapper">
+ <%= render 'shared/nav' %>
+	
 
-<script>var init = [];</script>
+	 <div id="page-wrapper">
+	 	<div class="row">
+            <div class="col-lg-12">
+               <%= render 'shared/header' %>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+		<div class="notifications-bar">
+		<% flash.each do |name, msg| %>
+		  <%= content_tag :div, :class => "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable" do %>
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <%= msg %>
+		  <% end %>
+		<% end %>
+		</div><!-- / .notifications bar -->
 
+		<%= yield %>
 
-<div id="main-wrapper">
-
-
-<!-- 2. $MAIN_NAVIGATION ===========================================================================
-
-	Main navigation
--->
-	<div id="main-navbar" class="navbar navbar-inverse hidden-print " role="navigation">
-		<!-- Main menu toggle -->
-		<button type="button" id="main-menu-toggle"><i class="navbar-icon fa fa-bars icon"></i><span class="hide-menu-text">HIDE MENU</span></button>
-
-		<div class="navbar-inner">
-			<!-- Main navbar header -->
-			<div class="navbar-header">
-
-				<!-- Logo -->
-
-				<%= link_to root_path, :class=>"navbar-brand"  do %>
-
-
-					Thing Layer
-			    <% end %>
-
-				<!-- Main navbar toggle -->
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse"><i class="navbar-icon fa fa-bars"></i></button>
-
-			</div> <!-- / .navbar-header -->
-
-			<div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
-				<div>
-					<ul class="nav navbar-nav">
-						<li>
-					       <%= link_to "Home", root_path %>
-						</li>
-						<li>
-					       <%= link_to "Services", services_path %>
-						</li>
-						<li>
-					       <%= link_to "Help", page_path('help') %>
-						</li>
-
-					</ul> <!-- / .navbar-nav -->
-
-					<div class="right clearfix">
-						<ul class="nav navbar-nav pull-right right-navbar-nav">
-
-<!-- 3. $NAVBAR_ICON_BUTTONS =======================================================================
-
-							Navbar Icon Buttons
-
-							NOTE: .nav-icon-btn triggers a dropdown menu on desktop screens only. On small screens .nav-icon-btn acts like a hyperlink.
-
-							Classes:
-							* 'nav-icon-btn-info'
-							* 'nav-icon-btn-success'
-							* 'nav-icon-btn-warning'
-							* 'nav-icon-btn-danger'
--->
-
-
-
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
-									<i class="dropdown-icon fa fa-user"></i>
-									<span><%= current_user.username %></span>
-								</a>
-								<ul class="dropdown-menu">
-									<li>
-										<%= link_to edit_user_registration_path(current_user)  do %>
-											<i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings
-										<% end %>
-									</li>
-									<li>
-										<%= link_to destroy_user_session_path, :method => :delete  do%>
-											<i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out
-										<% end %>
-									</li>
-								</ul>
-							</li>
-						</ul> <!-- / .navbar-nav -->
-					</div> <!-- / .right -->
-				</div>
-			</div> <!-- / #main-navbar-collapse -->
-		</div> <!-- / .navbar-inner -->
-	</div> <!-- / #main-navbar -->
-<!-- /2. $END_MAIN_NAVIGATION -->
-
-
-<!-- 4. $MAIN_MENU =================================================================================
-
-		Main menu
-
-		Notes:
-		* to make the menu item active, add a class 'active' to the <li>
-		  example: <li class="active">...</li>
-		* multilevel submenu example:
-			<li class="mm-dropdown">
-			  <a href="#"><span class="mm-text">Submenu item text 1</span></a>
-			  <ul>
-				<li>...</li>
-				<li class="mm-dropdown">
-				  <a href="#"><span class="mm-text">Submenu item text 2</span></a>
-				  <ul>
-					<li>...</li>
-					...
-				  </ul>
-				</li>
-				...
-			  </ul>
-			</li>
--->
-	<div id="main-menu" role="navigation" class="hidden-print">
-		<div id="main-menu-inner">
-			<ul class="navigation">
-				<li>
-					<%= link_to  dashboard_index_path do%>
-					<i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span>
-					<% end %>
-				</li>
-				<li class="mm-dropdown">
-					<a tabindex="-1" href="#"><i class="menu-icon fa fa-home"></i><span class="mm-text">Locations</span></a>
-					<ul>
-						<% current_user.locations.each do |location| %>
-						<li class="mm-dropdown">
-							<a tabindex="-1" href="<%= location_path(location) %>"><span class="mm-text"><%= location.name %></span></a>
-							<ul>
-								<% location.zones.each do |zone| %>
-								<li>
-									<%= link_to location_zone_path(zone.location, zone) do %>
-										<span class="mm-text"><%= zone.name %></span></a>
-									<% end %>
-								</li>
-								<% end %>
-								<li>
-									<%= link_to new_location_zone_path(location) do %>
-										<span class="mm-text">Add Zone</span>
-									<% end %>
-								</li>
-								<li>
-									<%= link_to location_zones_path(location) do %>
-										<span class="mm-text">Manage Zones</span>
-									<% end %>
-								</li>
-							</ul>
-						</li>
-						<% end %>
-						<li>
-							<%= link_to new_location_path do %>
-								<span class="mm-text">Add Location</span>
-							<% end %>
-						</li>
-						<li>
-							<%= link_to locations_path do %>
-								<span class="mm-text">Manage Locations</span>
-							<% end %>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<%= link_to  speech_index_path do%>
-					<i class="menu-icon fa fa-microphone"></i><span class="mm-text">Voice Command</span>
-					<% end %>
-				</li>
-				<li>
-					<%= link_to  things_path do%>
-					<i class="menu-icon fa fa-cloud"></i><span class="mm-text">Things</span>
-					<% end %>
-				</li>
-				<% if user_signed_in? %>
-					<% if current_user.has_role? :admin %>
-						<li class="mm-dropdown">
-							<a tabindex="-1" href="#"><i class="menu-icon fa fa-home"></i><span class="mm-text">Admin</span></a>
-							<ul>
-								<li>
-								<%= link_to admin_messages_path do %>
-									<span class="mm-text">Messages</span>
-								<% end %>
-								</li>
-								<li>
-									<%= link_to admin_users_path do %>
-									<span class="mm-text">Users</span>
-									<% end %>
-								</li>
-								<li>
-									<%= link_to admin_faqs_path do %>
-									<span class="mm-text">Faqs</span>
-									<% end %>
-								</li>
-							</ul>
-						</li>
-					<% end %>
-				<% end %>
-			</ul>
-		</ul> <!-- / .navigation -->
-	</div> <!-- / #main-menu-inner -->
-</div> <!-- / #main-menu -->
-<!-- /4. $MAIN_MENU -->
-
-	<div id="content-wrapper" class="hidden-print">
-
-				        <div class="notifications-bar">
-				         <% flash.each do |name, msg| %>
-				              <%= content_tag :div, :class => "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable" do %>
-				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				                <%= msg %>
-				              <% end %>
-				         <% end %>
-				        </div><!-- / .notifications bar -->
-					<%= yield %>
-
-	<div id="main-menu-bg" class="hidden-print"></div>
-	</div> <!-- / #main-wrapper -->
-
-
-<script type="text/javascript">
-
-
-
-
-
-
-</script>
+	</div>
+</div>
 
 
 

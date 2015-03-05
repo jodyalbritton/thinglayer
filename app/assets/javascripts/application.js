@@ -16,50 +16,20 @@
 //= require jquery-ui/slider
 //= require jquery-ui/draggable
 //= require jquery-ui/accordion
-//= require jquery.jcrop
 //= require isotope
-//= require pixel-admin
-//= require events
 //= require respond.min
-//= require utils
-//= require pixel-tasks
-//= require jquery.slimscroll
-//= require pixel-slimscroll
 //= require raphael.min
-//= require morris
 //= require amcharts
 //= require serial
-//= require themes/light
-//= require papercrop
 //= require bootstrap
-//= require main-navbar
-//= require main-menu
+//= require dashboard
+//= require metisMenu
 //= require microphone.min
 //= require bootstrap-toggle
-//= require fastclick
 //= require jquery.searchable
-//= require jquery.timer
-//= require jquery.ui.touch-punch
-//= require jquery.tokeninput
-//= require file-input
-//= require expanding-input
-//= require froala-editor.min.js
 //= require jquery.bind_with_delay
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require dataTables/extras/dataTables.responsive
 //= require dataTables/extras/dataTables.tableTools
-//= require jquery-fileupload/basic
-//= require jquery-fileupload/vendor/tmpl
-//= require eventPause
 //= require_self
-
-
-var ready;
-ready = function() {
-
-  PixelAdmin.start(init);
-};
-
-$(document).ready(ready);
-$(window).on('page:load', ready);

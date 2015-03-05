@@ -9,8 +9,8 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
+ *
  *= require_self 
- *= require jquery.jcrop
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require dataTables/extras/dataTables.responsive
  *= require dataTables/extras/dataTables.tableTools
@@ -18,11 +18,12 @@
 
 
 @import "bootstrap";
-@import "pixel-admin";
-@import "themes";
-@import "pages";
-@import "widgets";
 @import "bootstrap-toggle";
+@import "dashboard";
+@import "metisMenu";
 @import "material-design-iconic-font";
+@import "jquery-ui-1.10.0.custom";
 @import "microphone";
-@import "token-input-facebook";
+@import "fa"
+
+

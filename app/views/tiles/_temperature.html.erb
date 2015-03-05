@@ -12,8 +12,10 @@
         <% end %>
 
         </div>
-        <div class="temp temperature_<%= temp.uid %>">
-          <%= temp.device_value %>
+        <div class="temperature_<%= temp.uid %>">
+          <button type='button' class='btn btn-success btn-circle btn-xl temp-button disabled'>
+            <%= temp.device_value %>
+          </button>
         </div>
          <h5><%= link_to temp.label, thing_path(temp) %></h5>
     </div>

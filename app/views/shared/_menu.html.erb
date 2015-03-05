@@ -1,0 +1,109 @@
+<!-- 4. $MAIN_MENU =================================================================================
+
+		Main menu
+
+		Notes:
+		* to make the menu item active, add a class 'active' to the <li>
+		  example: <li class="active">...</li>
+		* multilevel submenu example:
+			<li class="mm-dropdown">
+			  <a href="#"><span class="mm-text">Submenu item text 1</span></a>
+			  <ul>
+				<li>...</li>
+				<li class="mm-dropdown">
+				  <a href="#"><span class="mm-text">Submenu item text 2</span></a>
+				  <ul>
+					<li>...</li>
+					...
+				  </ul>
+				</li>
+				...
+			  </ul>
+			</li>
+-->
+	<div id="main-menu" role="navigation" class="hidden-print">
+		<div id="main-menu-inner">
+			<ul class="navigation">
+				<li>
+					<%= link_to  dashboard_index_path do%>
+					<i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span>
+					<% end %>
+				</li>
+				<li class="mm-dropdown">
+					<a tabindex="-1" href="#"><i class="menu-icon fa fa-home"></i><span class="mm-text">Locations</span></a>
+					<ul>
+						<% current_user.locations.each do |location| %>
+						<li class="mm-dropdown">
+							<a tabindex="-1" href="<%= location_path(location) %>"><span class="mm-text"><%= location.name %></span></a>
+							<ul>
+								<% location.zones.each do |zone| %>
+								<li>
+									<%= link_to location_zone_path(zone.location, zone) do %>
+										<span class="mm-text"><%= zone.name %></span></a>
+									<% end %>
+								</li>
+								<% end %>
+								<li>
+									<%= link_to new_location_zone_path(location) do %>
+										<span class="mm-text">Add Zone</span>
+									<% end %>
+								</li>
+								<li>
+									<%= link_to location_zones_path(location) do %>
+										<span class="mm-text">Manage Zones</span>
+									<% end %>
+								</li>
+							</ul>
+						</li>
+						<% end %>
+						<li>
+							<%= link_to new_location_path do %>
+								<span class="mm-text">Add Location</span>
+							<% end %>
+						</li>
+						<li>
+							<%= link_to locations_path do %>
+								<span class="mm-text">Manage Locations</span>
+							<% end %>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<%= link_to  speech_index_path do%>
+					<i class="menu-icon fa fa-microphone"></i><span class="mm-text">Voice Command</span>
+					<% end %>
+				</li>
+				<li>
+					<%= link_to  things_path do%>
+					<i class="menu-icon fa fa-cloud"></i><span class="mm-text">Things</span>
+					<% end %>
+				</li>
+				<% if user_signed_in? %>
+					<% if current_user.has_role? :admin %>
+						<li class="mm-dropdown">
+							<a tabindex="-1" href="#"><i class="menu-icon fa fa-home"></i><span class="mm-text">Admin</span></a>
+							<ul>
+								<li>
+								<%= link_to admin_messages_path do %>
+									<span class="mm-text">Messages</span>
+								<% end %>
+								</li>
+								<li>
+									<%= link_to admin_users_path do %>
+									<span class="mm-text">Users</span>
+									<% end %>
+								</li>
+								<li>
+									<%= link_to admin_faqs_path do %>
+									<span class="mm-text">Faqs</span>
+									<% end %>
+								</li>
+							</ul>
+						</li>
+					<% end %>
+				<% end %>
+			</ul>
+		</ul> <!-- / .navigation -->
+	</div> <!-- / #main-menu-inner -->
+</div> <!-- / #main-menu -->
+<!-- /4. $MAIN_MENU -->

@@ -1,5 +1,5 @@
 
-<div id="thing_<%= dimmer.id %>" class="tile col-lg-2 col-md-3 col-sm-6 col-xs-6 zone_<%= dimmer.zone_id %> item">
+<div id="thing_<%= dimmer.id %>" class="tile col-lg-2 col-md-4 col-sm-6 col-xs-6 zone_<%= dimmer.zone_id %> item">
 <div class="dummy"></div>
     <div class="thumbnail">
         <div class="widget-title handle">
@@ -24,10 +24,10 @@
               <% end %>
             <% end %>
 
-            <%= form_for dimmer, :remote=> true do |t| %>
+              <%= form_for dimmer, :remote=> true do |t| %>
                  <%= t.text_field :dimmer_value, :value => 0 , :hidden => true, :class=> "dimmer_value_"+dimmer.uid %>
                  <%= t.text_field :source, :value => "remote", :hidden => true %>
-                 <div class="ui-slider-success ui-slider-colors-demo dimmer_<%= dimmer.uid%>"></div>
+                 <div class="dimmer_<%= dimmer.uid%> ui-slider-style"></div>
                
             <% end %>
         </div>

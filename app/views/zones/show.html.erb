@@ -69,11 +69,11 @@
 .real-first-child {
     margin-left:0 !important;
 }
-.ui-slider-colors-demo { 
+.ui-slider-style { 
 
-    width: 80%;
-
+    margin-top: 5%;
     margin-left: 10%;
+    width: 80%;
 }
 
 .switcher{
@@ -124,6 +124,10 @@
 .door-unlocked {
   background-color: #FF6600;
   color: white;
+}
+
+.btn-circle.btn-xl.temp-button {
+  font-size: 18px !important;
 }
 
 
@@ -197,10 +201,7 @@ $(function () {
     });
 });
 
-init.push(function () {
 
-            
-});
 
    
 </script>
@@ -280,13 +281,12 @@ init.push(function () {
 
             }
             if (value.name == "contact"){
-              $('.contact_'+value.device).html(value.value);
+            
               if(value.value == "open"){
-                  $('.contact_'+value.device).removeClass("door-closed");
-                  $('.contact_'+value.device).addClass("door-"+value.value);
+                  $('#contact_'+value.device).html("<button type='button' class='btn btn-warning btn-circle btn-xl'><i class='fa fa-times'></i></button>");
+                 
                 }else{
-                   $('.contact_'+value.device).removeClass("door-open");
-                   $('.contact_'+value.device).addClass("door-"+value.value);
+                  $('#contact_'+value.device).html("<button type='button' class='btn btn-success btn-circle btn-xl'><i class='fa fa-check'></i></button>");
                 }
 
             }
@@ -337,7 +337,13 @@ init.push(function () {
             }
 
             if (value.name == "temperature"){
-              $('.temperature_'+value.device).html(value.value+" °F");
+              if(value.unit == undefined){
+                   var display_unit = "F"
+                  
+                }else{
+                 var display_unit = value.unit 
+                }
+                $('.temperature_'+value.device).html("<button type='button' class='btn btn-success btn-circle btn-xl disabled temp-button'>"+value.value+"</br>"+display_unit+"</button>");
 
             }
 

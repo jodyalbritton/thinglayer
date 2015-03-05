@@ -11,9 +11,8 @@
             <h4 class="hidden-xs"><%= link_to contact.zone.name, location_zone_path(contact.zone.location, contact.zone) %></h4>
           <% end %>
           </div>
-          <div class="temp contact_<%= contact.uid %> img-circle">
-            <%= contact.device_value %>
-          </div>
+          <div id="contact_<%=contact.uid%>"></div>
+         
           <h5><%= link_to contact.label, thing_path(contact) %></h5>
       </div>
 </div>
