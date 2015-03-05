@@ -223,29 +223,29 @@ $(function () {
 <script>
  
    <% if thing.device_type == "switch" %>
-    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/switch");
+    var myFirebaseRef_<%=thing.id%> = new Firebase("<%= ENV["FIREBASE_URL"] %>/events/<%= thing.uid %>/switch");
     <% elsif thing.device_type == "dimmer" %>
-    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/level");
+    var myFirebaseRef_<%=thing.id%> = new Firebase("<%= ENV["FIREBASE_URL"] %>/events/<%= thing.uid %>/level");
     <% elsif thing.device_type == "temperatureMeasurement" %>
-    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/temperature");
+    var myFirebaseRef_<%=thing.id%> = new Firebase("<%= ENV["FIREBASE_URL"] %>/events/<%= thing.uid %>/temperature");
     <% elsif thing.device_type == "relativeHumidityMeasurement" %>
-    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/humidity");
+    var myFirebaseRef_<%=thing.id%> = new Firebase("<%= ENV["FIREBASE_URL"] %>/events/<%= thing.uid %>/humidity");
     <% elsif thing.device_type == "motion" %>
-    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/motion");
+    var myFirebaseRef_<%=thing.id%> = new Firebase("<%= ENV["FIREBASE_URL"] %>/events/<%= thing.uid %>/motion");
     <% elsif thing.device_type == "contact" %>
-    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/contact");
+    var myFirebaseRef_<%=thing.id%> = new Firebase("<%= ENV["FIREBASE_URL"] %>/events/<%= thing.uid %>/contact");
     <% elsif thing.device_type == "illuminant" %>
-    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/illuminance");
+    var myFirebaseRef_<%=thing.id%> = new Firebase("<%= ENV["FIREBASE_URL"] %>/events/<%= thing.uid %>/illuminance");
     <% elsif thing.device_type == "battery" %>
-    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/battery");
+    var myFirebaseRef_<%=thing.id%> = new Firebase("<%= ENV["FIREBASE_URL"] %>/events/<%= thing.uid %>/battery");
     <% elsif thing.device_type == "lock" %>
-    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/lock");
+    var myFirebaseRef_<%=thing.id%> = new Firebase("<%= ENV["FIREBASE_URL"] %>/events/<%= thing.uid %>/lock");
     <% elsif thing.device_type == "power" %>
-    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/power");
+    var myFirebaseRef_<%=thing.id%> = new Firebase("<%= ENV["FIREBASE_URL"] %>/events/<%= thing.uid %>/power");
     <% elsif thing.device_type == "energy" %>
-    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/energy");
+    var myFirebaseRef_<%=thing.id%> = new Firebase("<%= ENV["FIREBASE_URL"] %>/events/<%= thing.uid %>/energy");
     <% elsif thing.device_type == "presence" %>
-    var myFirebaseRef_<%=thing.id%> = new Firebase("https://dazzling-heat-3134.firebaseio.com/events/<%= thing.uid %>/presence");
+    var myFirebaseRef_<%=thing.id%> = new Firebase("<%= ENV["FIREBASE_URL"] %>/events/<%= thing.uid %>/presence");
     <% end %>
 
 
