@@ -1,3 +1,17 @@
+  <% content_for :page_header do %>
+    <%= @zone.name %>
+  <% end %>
+  
+  <% content_for :page_actions do %>
+   
+  <% end %>
+
+  <% content_for :page_search do %>
+
+  <% end %>
+
+
+
 <% @switch_state_changed = false %>
 <% @dimmer_state_changed = false %>
 <script src="https://cdn.firebase.com/js/client/1.1.3/firebase.js"></script>
