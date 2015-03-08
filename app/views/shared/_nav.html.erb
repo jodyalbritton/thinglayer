@@ -15,7 +15,7 @@
 
     
       <ul class="nav navbar-top-links navbar-right">
-	
+	  <% if user_signed_in? %>
 		<!-- Right Nav -->
            <li class="dropdown">
 			<a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
@@ -35,11 +35,17 @@
 				</li>
 			</ul>
 		</li>
+		<% else %>
+			<li><%= link_to "Sign Up", new_user_registration_path %> </li>
+			<li><%= link_to "Sign In", new_user_session_path %> </li>
+
+		<% end %>
       </ul>
       
 
-      
-    <%= render "shared/sidebar" %>
+    <% if user_signed_in? %>
+    	<%= render "shared/sidebar" %>
+    <% end %>
   
 </nav>
 

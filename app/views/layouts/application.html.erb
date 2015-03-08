@@ -71,28 +71,42 @@ Use search to find needed section.
  
  <div id="wrapper">
  <%= render 'shared/nav' %>
-	
+	<% if user_signed_in? %>
 
-	 <div id="page-wrapper">
-	 	<div class="row">
-            <div class="col-lg-12">
-               <%= render 'shared/header' %>
-            </div>
-            <!-- /.col-lg-12 -->
-        </div>
-        <!-- /.row -->
+		<div id="page-wrapper">
+		 	<div class="row">
+	            <div class="col-lg-12">
+	               <%= render 'shared/header' %>
+	            </div>
+	            <!-- /.col-lg-12 -->
+	        </div>
+	        <!-- /.row -->
+			<div class="notifications-bar">
+			<% flash.each do |name, msg| %>
+			  <%= content_tag :div, :class => "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable" do %>
+			    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			    <%= msg %>
+			  <% end %>
+			<% end %>
+			</div><!-- / .notifications bar -->
+
+			<%= yield %>
+
+		</div>
+	<% else %>
 		<div class="notifications-bar">
-		<% flash.each do |name, msg| %>
-		  <%= content_tag :div, :class => "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable" do %>
-		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <%= msg %>
-		  <% end %>
-		<% end %>
-		</div><!-- / .notifications bar -->
+			<% flash.each do |name, msg| %>
+			  <%= content_tag :div, :class => "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable" do %>
+			    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			    <%= msg %>
+			  <% end %>
+			<% end %>
+			</div><!-- / .notifications bar -->
 
-		<%= yield %>
+			<%= yield %>
 
-	</div>
+	<% end %>
+
 </div>
 
 

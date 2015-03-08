@@ -10,11 +10,11 @@ module Thinglayer
   class Application < Rails::Application
 
     config.to_prepare do
-    Devise::SessionsController.layout "devise"
-    Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application"   : "devise" }
-    Devise::ConfirmationsController.layout "devise"
-    Devise::UnlocksController.layout "devise"            
-    Devise::PasswordsController.layout "devise"        
+    Devise::SessionsController.layout "application"
+    Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application"   : "application" }
+    Devise::ConfirmationsController.layout "application"
+    Devise::UnlocksController.layout "application"            
+    Devise::PasswordsController.layout "application"        
     end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
