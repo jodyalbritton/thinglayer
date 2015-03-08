@@ -153,9 +153,9 @@ $(function () {
               $('.motion_'+value.device).html(value.value);
 
                 if(value.value == "active"){
-                  $('.motion_'+value.device).addClass("motion-"+value.value);
+                  $('.motion_'+value.device).html("<button type='button' class='btn btn-warning btn-circle btn-xl disabled'><i class='fa fa-angle-double-right '></i></button>");
                 }else{
-                   $('.motion_'+value.device).removeClass("motion-active");
+                   $('.motion_'+value.device).html("<button type='button' class='btn btn-success btn-circle btn-xl disabled'><i class='fa fa-pause '></i></button>");
                 }
               
 
@@ -163,50 +163,65 @@ $(function () {
             if (value.name == "contact"){
             
               if(value.value == "open"){
-                  $('#contact_'+value.device).html("<button type='button' class='btn btn-warning btn-circle btn-xl'><i class='fa fa-times'></i></button>");
+                  $('#contact_'+value.device).html("<button type='button' class='btn btn-warning btn-circle btn-xl disabled'><i class='fa fa-times'></i></button>");
                  
                 }else{
-                  $('#contact_'+value.device).html("<button type='button' class='btn btn-success btn-circle btn-xl'><i class='fa fa-check'></i></button>");
+                  $('#contact_'+value.device).html("<button type='button' class='btn btn-success btn-circle btn-xl disabled'><i class='fa fa-check'></i></button>");
                 }
 
             }
-
             if (value.name == "lock"){
-              $('.lock_'+value.device).html(value.value);
-              if(value.value == "unlocked"){
-                  $('.lock_'+value.device).removeClass("door-locked");
-                  $('.lock_'+value.device).addClass("door-"+value.value);
+                if(value.value == "locked"){
+                  $('.lock_'+value.device).bootstrapToggle("on")
+                     console.log("changed lock value")
                 }else{
-                   $('.lock_'+value.device).removeClass("door-unlocked");
-                   $('.lock_'+value.device).addClass("door-"+value.value);
+                   $('.lock_'+value.device).bootstrapToggle("off")
+                     console.log("changed lock value")
                 }
-
+                       
             }
+          
 
             if (value.name == "illuminance"){
-              $('.illuminant_'+value.device).html(value.value+ " Lux");
+                if(value.unit == undefined){
+                   var display_unit = "Lux"
+                  
+                }else{
+                 var display_unit = value.unit 
+                }
+              $('.illuminant_'+value.device).html(value.value+" "+display_unit);
 
             }
 
              if (value.name == "battery"){
-              $('.battery_'+value.device).html(value.value+ " %");
+              if(value.unit == undefined){
+                   var display_unit = "%"
+                  
+                }else{
+                 var display_unit = value.unit 
+                }
+              $('.battery_'+value.device).html(value.value+" "+display_unit);
 
             }
 
-             if (value.name == "energy"){
-              $('.energy_'+value.device).html(value.value+ " kWh");
+            if (value.name == "energy"){
+              $('.energy_'+value.device).html(value.value+ " %");
 
             }
 
             if (value.name == "presence"){
-              $('.presence_'+value.device).html(value.value);
-
+                if (value.value == "present"){
+                  $('.presence_'+value.device).html("<button type='button' class='btn btn-success btn-circle btn-xl disabled'><i class='fa fa-user'></i></button>");
+                }else{
+                  $('.presence_'+value.device).html("<button type='button' class='btn btn-warning btn-circle btn-xl disabled'><i class='fa fa-user-times'></i></button>");
+                }
+              
             }
 
             if (value.name == "power"){
               
                 if(value.unit == undefined){
-                 var display_unit = "watts"
+                   var display_unit = "watts"
                   
                 }else{
                  var display_unit = value.unit 
@@ -215,7 +230,6 @@ $(function () {
                 $('.power_'+value.device).html(value.value+ " "+display_unit);
 
             }
-
             if (value.name == "temperature"){
               if(value.unit == undefined){
                    var display_unit = "F"
@@ -224,15 +238,22 @@ $(function () {
                  var display_unit = value.unit 
                 }
                 $('.temperature_'+value.device).html("<button type='button' class='btn btn-success btn-circle btn-xl disabled temp-button'>"+value.value+"</br>"+display_unit+"</button>");
+              
 
             }
 
             if (value.name == "humidity"){
-              $('.humidity_'+value.device).html(value.value+" %");
+              if(value.unit == undefined){
+                   var display_unit = "%"
+                  
+                }else{
+                 var display_unit = value.unit 
+                }
+              $('.humidity_'+value.device).html(value.value+" "+display_unit);
 
             }
            
-        console.log(value.device+' '+value.value);
+        console.log(value.device+' '+value.value+' '+value.unit);
         
     });
 </script>
