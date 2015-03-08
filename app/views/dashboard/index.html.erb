@@ -14,133 +14,6 @@
 <% @dimmer_state_changed = false %>
 <script src="https://cdn.firebase.com/js/client/1.1.3/firebase.js"></script>
 
-  <style>
-.dummy {
-    margin-top: 100%;
-}
-.tile {
-    vertical-align: middle;
-}
-.thumbnail {
-    position: absolute;
-    top: 15px;
-    bottom: 0;
-    left: 15px;
-    right: 0;
-    text-align: center;
-    padding-top:calc(14% - 20px);
-}
-.handle {
-  font-size: 12px;
-  color: #777;
-  cursor: move;
-  height: 20%;
-}
-.device-wrapper{
-
-  height: 50%;
-  margin: auto;
-  padding-top: 5%;
-  
-}
-.temp {
-  width:  45%;
-  height: 50%;
-  margin: auto;
-  font-size: 120%;
-  padding-top: 5%;
-
-
-}
-
-
-.device-footer{
-  margin: auto;
-  height: 40%;
-}
-.placeholder {
-    left: 5px;
-    top: 15px;
-    height: 140px;
-    border: 1px solid grey;
-    background-color: white;
-    -webkit-box-shadow: 0px 0px 10px #888;
-    -moz-box-shadow: 0px 0px 10px #888;
-    box-shadow: 0px 0px 10px #888;
-}
-.placeholder:after {
-            position: absolute;
-            z-index: 10;
-            content: " ";
-            height: 120px;
-            background: #f9f9f9;
-            left: 0;
-            right: 0;
-}
-.real-first-child {
-    margin-left:0 !important;
-}
-
-.switcher{
-   
-}
-
-.widget-title {
-    height: 22%;
-}
-
-.ui-slider-style { 
-    margin-top: 5%;
-    margin-left: 10%;
-    width: 80%;
-}
-
-.temp {
-  width:  40%;
-  height: 45%;
-  margin: auto;
-  font-size: 120%;
-  padding-top: 10%;
-
-
-}
-
-
-.motion-active {
-  background-color: #00CC66;
-  color: white;
-}
-
-.door-closed {
-  background-color: #00CC66;
-  color: white;
-}
-
-.door-open {
-  background-color: #FF6600;
-  color: white;
-}
-
-.door-locked {
-  background-color: #00CC66;
-  color: white;
-}
-
-.door-unlocked {
-  background-color: #FF6600;
-  color: white;
-}
-
-.btn-circle.btn-xl.temp-button {
-  font-size: 18px !important;
-}
-
-
-
-
-
-</style>
-
 
   
 
@@ -285,9 +158,9 @@
               $('.motion_'+value.device).html(value.value);
 
                 if(value.value == "active"){
-                  $('.motion_'+value.device).addClass("motion-"+value.value);
+                  $('.motion_'+value.device).html("<button type='button' class='btn btn-warning btn-circle btn-xl disabled'><i class='fa fa-angle-double-right '></i></button>");
                 }else{
-                   $('.motion_'+value.device).removeClass("motion-active");
+                   $('.motion_'+value.device).html("<button type='button' class='btn btn-success btn-circle btn-xl disabled'><i class='fa fa-pause '></i></button>");
                 }
               
 
@@ -342,8 +215,12 @@
             }
 
             if (value.name == "presence"){
-              $('.presence_'+value.device).html(value.value+ " ");
-
+                if (value.value == "present"){
+                  $('.presence_'+value.device).html("<button type='button' class='btn btn-success btn-circle btn-xl disabled'><i class='fa fa-user'></i></button>");
+                }else{
+                  $('.presence_'+value.device).html("<button type='button' class='btn btn-warning btn-circle btn-xl disabled'><i class='fa fa-user-times'></i></button>");
+                }
+              
             }
 
             if (value.name == "power"){
