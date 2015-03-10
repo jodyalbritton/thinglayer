@@ -62,6 +62,8 @@ Rails.application.routes.draw do
      resources :users, :only => [:show]
     end
   end
+
+  get "/pages/*id" => 'pages#show', as: :page, format: false
   # Example resource route with options:
   #   resources :products do
   #     member do
@@ -87,14 +89,22 @@ Rails.application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
+  devise_scope :user do
+    authenticated :user do
+      root 'dashboard#index', as: :authenticated_root
+    end
 
+    unauthenticated do
+      root 'pages#show', id: 'home', as: :unauthenticated_root
+    end
+  end
+  
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
   #   end
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable
-  root :to => "dashboard#index"
   # Example resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController

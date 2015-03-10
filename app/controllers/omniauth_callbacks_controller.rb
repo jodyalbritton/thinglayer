@@ -1,5 +1,5 @@
 class OmniauthCallbacksController < ApplicationController
-
+  before_filter :authenticate_user!
 
   def create    
     @user = User.find(current_user) 

@@ -1,0 +1,81 @@
+ <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>All Your Things.</h1>
+        <p>
+          <%= link_to "Learn More", page_path("help"), :class=> "btn btn-primary btn-lg" %>
+          <%= link_to "Get Started", new_user_session_path, :class=> "btn btn-success btn-lg" %>
+        </p>
+        <p>An open source platform for real time control and analysis of your internet connected devices.</p>
+       <p>
+        <iframe src="https://ghbtns.com/github-btn.html?user=jodyalbritton&amp;repo=thinglayer&amp;type=star&amp;count=true&amp;size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+        <iframe src="https://ghbtns.com/github-btn.html?user=jodyalbritton&amp;repo=thinglayer&amp;type=fork&amp;count=true&amp;size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+      </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <i class="fa fa-list fa-fw fa-lg"></i>
+              ThingLayer Features
+            </h3>
+          </div>
+          <div class="panel-body front-page-info">
+            <ul>
+              <li>Open</li>
+              <li>Real-time</li>
+              <li>Event Storage</li>
+              <li>Analysis</li>
+              <li>Charts</li>
+              <li>Multiple Platform Integrations</li>
+            </ul>
+          </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <i class="fa fa-gear fa-fw fa-lg"></i>
+              Integrations
+            </h3>
+          </div>
+          <div class="panel-body front-page-info">
+            <ul>
+              <li>SmartThings</li>
+              <li>Wink(Comning Soon)</li>
+              <li>The Ubi(Coming Soon)</li>
+              <li>Arduino</li>
+              <li>Spark.io</li>
+              <li>And More</li>
+            </ul>
+          </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <i class="fa fa-globe fa-fw fa-lg"></i>
+              Hosting Available
+            </h3>
+          </div>
+          <div class="panel-body front-page-info">
+            <p>If you don't want to host your own server there are several hosting options to choose from.</p>
+            <p class="text-center"><%= link_to "Sign Up", new_user_registration_path, :class=> "btn btn-lg btn-success" %></p>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Optimus Labs, INC. 2015</p>
+      </footer>
+    </div> <!-- /container -->

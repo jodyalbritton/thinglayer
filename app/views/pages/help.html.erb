@@ -7,6 +7,7 @@
 -->
 
 		<!-- Modal -->
+		<% if user_signed_in? %>
 		<div id="modal-faq" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
 			<div class="modal-dialog ">
 				<div class="modal-content">
@@ -21,7 +22,7 @@
 			</div> <!-- / .modal-dialog -->
 		</div>
 		<!-- / Modal -->
-
+		<% end %>
 
 		<div class="row">
 			<h2 class="col-sm-8 text-center text-left-sm text-slim">
@@ -38,7 +39,13 @@
 							Can't find the answer?
 						</p>
 						<div style="margin-top: 20px;">
-							<a href="#" class="btn btn-lg btn-primary btn-flat" data-toggle="modal" data-target="#modal-faq">Contact Us</a>
+							<% if user_signed_in? %>
+								<a href="#" class="btn btn-lg btn-primary btn-flat" data-toggle="modal" data-target="#modal-faq">Contact Us</a>
+							<% else %>
+								<%= link_to "Sign Up", new_user_registration_path, :class=> "btn btn-primary btn-lg" %>
+								<p> To Submit a Question </p>
+							<% end %>
+
 						</div>
 					</div>
 				</div>
