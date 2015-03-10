@@ -19,6 +19,7 @@
 //= require isotope
 //= require respond.min
 //= require raphael.min
+//= require screenfull
 //= require amcharts
 //= require serial
 //= require bootstrap
