@@ -110,6 +110,27 @@ var target = $('#page-wrapper')[0]; // Get DOM element from jQuery collection
 $('.fa-expand').click(function () {
     if (screenfull.enabled) {
         screenfull.request(target);
+    $(function() {
+
+    function fullScreen() {
+
+        $('#page-wrapper').css({
+            width: $(window).width(),
+            height: $(window).height()
+            
+        });
+
+    }
+
+    $(window).resize(function() {
+        fullScreen();         
+    });
+
+    abso();
+
+});
+
+
     }
 });
 </script>
