@@ -9,51 +9,55 @@
 
                         <li>    
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Locations<span class="fa arrow"></span></a>
-                            <% current_user.locations.each do |location| %>
+                           
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#"><%= location.name %> <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <% location.zones.each do |zone| %>
+                                <% current_user.locations.each do |location| %>
+                                    <li>
+
+                                        <a href="#"><%= location.name %> <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <% location.zones.each do |zone| %>
+                                                <li>
+                                                    <%= link_to location_zone_path(zone.location, zone) do %>
+                                                        <span><%= zone.name %></span></a>
+                                                    <% end %>
+                                                </li>
+                                            <% end %>
+                                          
                                             <li>
-                                                <%= link_to location_zone_path(zone.location, zone) do %>
-                                                    <span><%= zone.name %></span></a>
+                                                <%= link_to new_location_zone_path(location) do %>
+                                                    <span>Add Zone</span>
                                                 <% end %>
                                             </li>
-                                            <% end %>
-                                        <li>
-                                            <%= link_to new_location_zone_path(location) do %>
-                                                <span>Add Zone</span>
-                                            <% end %>
-                                        </li>
-                                        <li>
-                                            <%= link_to location_zones_path(location) do %>
-                                                <span>Manage Zones</span>
-                                            <% end %>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
+                                            <li>
+                                                <%= link_to location_zones_path(location) do %>
+                                                    <span>Manage Zones</span>
+                                                <% end %>
+                                            </li>
+                                        </ul>
+                                        <!-- /.nav-third-level -->
+                                    </li>
                              
-                            
+                                 <% end %>
+                                 <li>
+                                    <%= link_to new_location_path do %>
+                                        <span>Add Location</span>
+                                    <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to locations_path do %>
+                                        <span>Manage Locations</span>
+                                    <% end %>
+                                </li>
                             </ul>
-                            <% end %>
+                           
                            
                                     
-                                        <li>
-                                            <%= link_to new_location_path do %>
-                                                <span>Add Location</span>
-                                            <% end %>
-                                        </li>
-                                        <li>
-                                            <%= link_to locations_path do %>
-                                                <span>Manage Locations</span>
-                                            <% end %>
-                                        </li>
+                                       
                         
                          
                             <!-- /.nav-second-level -->
-                           </li>
+                           
                             
                             <li> 
                                <%= link_to "Manage Things", things_path %>
