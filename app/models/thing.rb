@@ -62,12 +62,11 @@ class Thing < ActiveRecord::Base
     end
     def import_events
         self.firebase_events.to_hash.each do |x|
-            thing = Thing.find_by(:uid == x[1]["device"])
             event = Event.find_or_initialize_by(name: x[0])
             event.update(name: x[0])
             event.update(date: x[1]["date"])
             event.update(value: x[1]["value"])
-            event.update(thing_id: thing.id)
+            event.update(thing_id: self.id)
             event.save!
      
         end 
