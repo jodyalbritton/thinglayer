@@ -12,6 +12,9 @@ class Thing < ActiveRecord::Base
     end
     def dimmer_value
     end
+    
+    
+
 
     def firebase_events
     
@@ -19,44 +22,57 @@ class Thing < ActiveRecord::Base
         
         if self.device_type == "temperatureMeasurement"
             temps = client.get("events/"+self.uid+"/temperature")
-            puts temps.body
+            return temps.body
         elsif self.device_type == "switch"
             switches = client.get("events/"+self.uid+"/switch")
-            puts switches.body
+            return switches.body
         elsif self.device_type == "dimmer"
             dimmers = client.get("events/"+self.uid+"/dimmder")
-            puts dimmers.body
+            return dimmers.body
         elsif self.device_type == "relativeHumidityMeasurement"
             hums = client.get("events/"+self.uid+"/humidity")
-            puts hums.body
+            return hums.body
         elsif self.device_type == "motion"
             mots = client.get("events/"+self.uid+"/motion")
-            puts mots.body
+            return mots.body
         elsif self.device_type == "illuminant"
             illums = client.get("events/"+self.uid+"/illuminant")
-            puts illums.body
+            return illums.body
         elsif self.device_type == "contact"
             conts = client.get("events/"+self.uid+"/contact")
-            puts conts.body
+            return conts.body
         elsif self.device_type == "battery"
             bats = client.get("events/"+self.uid+"/battery")
-            puts bats.body
+            return bats.body
         elsif self.device_type == "lock"
             locks = client.get("events/"+self.uid+"/lock")
-            puts locks.body
+            return locks.body
         elsif self.device_type == "power"
             pows = client.get("events/"+self.uid+"/power")
-            puts pows.body
+            return pows.body
         elsif self.device_type == "energy"
             engs = client.get("events/"+self.uid+"/enrgy")
-            puts engs.body
+            return engs.body
         elsif self.device_type == "presence"
             pres = client.get("events/"+self.uid+"/presence")
-            puts pres.body
+            return pres.body
 
         end 
             
     end
+    def import_events
+        self.firebase_events.to_hash.each do |x|
+            thing = Thing.find_by(:uid == x[1]["device"])
+            event = Event.find_or_initialize_by(name: x[0])
+            event.update(name: x[0])
+            event.update(date: x[1]["date"])
+            event.update(value: x[1]["value"])
+            event.update(thing_id: thing.id)
+            event.save!
+     
+        end 
+
+    end 
 
     def remove_firebase
         client = Firebase::Client.new(ENV["FIREBASE_URL"])
