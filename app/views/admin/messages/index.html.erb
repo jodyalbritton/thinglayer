@@ -13,7 +13,12 @@
   <tbody>
     <% @messages.each do |message| %>
       <tr>
-        <td><%= message.user.email %></td>
+        <td>
+            <% if @message.user? %>
+              <%= message.user.email %>
+            <% end %>
+
+        </td>
         <td><%= message.subject %></td>
         <td><%= message.body %></td>
         <td><%= link_to 'Show', ([:admin, message]) %></td>
