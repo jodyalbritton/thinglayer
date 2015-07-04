@@ -97,7 +97,7 @@ class Thing < ActiveRecord::Base
         elsif self.device_type == "power"
             client.delete("events/"+self.uid+"/power")
         elsif self.device_type == "energy"
-            client.delete("events/"+self.uid+"/enrgy")
+            client.delete("events/"+self.uid+"/energy")
         elsif self.device_type == "presence"
             client.delete("events/"+self.uid+"/presence")
         end 
