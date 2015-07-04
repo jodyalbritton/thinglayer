@@ -9,10 +9,10 @@ class User < ActiveRecord::Base
 
    attr_accessor :login
 
-  has_many :services
-  has_many :things
-  has_many :locations
-  has_many :messages
+  has_many :services, dependent: :destroy
+  has_many :things, dependent: :destroy
+  has_many :locations, dependent: :destroy
+  has_many :messages, dependent: :destroy
   has_many :zones, through: :locations
 
   validates :username,
