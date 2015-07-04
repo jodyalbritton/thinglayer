@@ -73,7 +73,7 @@ class ZonesController < ApplicationController
   def destroy
     @zone.destroy
     respond_to do |format|
-      format.html { redirect_to @location, notice: 'Zone was successfully destroyed.' }
+      format.html { redirect_to location_zones_path(@location), notice: 'Zone was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

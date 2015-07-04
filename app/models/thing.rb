@@ -2,15 +2,91 @@ class Thing < ActiveRecord::Base
 	belongs_to :user
     belongs_to :zone
     has_many :events
-    
     acts_as_list :scope => :zone
+
+    before_destroy :remove_firebase
     
     def switch_value 
     end
     def lock_value
     end
     def dimmer_value
-    end    
+    end
+
+    def firebase_events
+    
+        client = Firebase::Client.new(ENV["FIREBASE_URL"])
+        
+        if self.device_type == "temperatureMeasurement"
+            temps = client.get("events/"+self.uid+"/temperature")
+            puts temps.body
+        elsif self.device_type == "switch"
+            switches = client.get("events/"+self.uid+"/switch")
+            puts switches.body
+        elsif self.device_type == "dimmer"
+            dimmers = client.get("events/"+self.uid+"/dimmder")
+            puts dimmers.body
+        elsif self.device_type == "relativeHumidityMeasurement"
+            hums = client.get("events/"+self.uid+"/humidity")
+            puts hums.body
+        elsif self.device_type == "motion"
+            mots = client.get("events/"+self.uid+"/motion")
+            puts mots.body
+        elsif self.device_type == "illuminant"
+            illums = client.get("events/"+self.uid+"/illuminant")
+            puts illums.body
+        elsif self.device_type == "contact"
+            conts = client.get("events/"+self.uid+"/contact")
+            puts conts.body
+        elsif self.device_type == "battery"
+            bats = client.get("events/"+self.uid+"/battery")
+            puts bats.body
+        elsif self.device_type == "lock"
+            locks = client.get("events/"+self.uid+"/lock")
+            puts locks.body
+        elsif self.device_type == "power"
+            pows = client.get("events/"+self.uid+"/power")
+            puts pows.body
+        elsif self.device_type == "energy"
+            engs = client.get("events/"+self.uid+"/enrgy")
+            puts engs.body
+        elsif self.device_type == "presence"
+            pres = client.get("events/"+self.uid+"/presence")
+            puts pres.body
+
+        end 
+            
+    end
+
+    def remove_firebase
+        client = Firebase::Client.new(ENV["FIREBASE_URL"])
+        
+        if self.device_type == "temperatureMeasurement"
+            client.delete("events/"+self.uid+"/temperature")
+        elsif self.device_type == "switch"
+            client.delete("events/"+self.uid+"/switch")
+        elsif self.device_type == "dimmer"
+            client.delete("events/"+self.uid+"/dimmder")
+        elsif self.device_type == "relativeHumidityMeasurement"
+            client.delete("events/"+self.uid+"/humidity")
+        elsif self.device_type == "motion"
+            client.delete("events/"+self.uid+"/motion")
+        elsif self.device_type == "illuminant"
+            client.delete("events/"+self.uid+"/illuminant")
+        elsif self.device_type == "contact"
+            client.delete("events/"+self.uid+"/contact")
+        elsif self.device_type == "battery"
+            client.delete("events/"+self.uid+"/battery")
+        elsif self.device_type == "lock"
+            client.delete("events/"+self.uid+"/lock")
+        elsif self.device_type == "power"
+            client.delete("events/"+self.uid+"/power")
+        elsif self.device_type == "energy"
+            client.delete("events/"+self.uid+"/enrgy")
+        elsif self.device_type == "presence"
+            client.delete("events/"+self.uid+"/presence")
+        end 
+    end      
     
     def switch_details
         @user ||= User.find(user_id)
