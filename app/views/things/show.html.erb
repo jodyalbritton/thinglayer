@@ -6,152 +6,71 @@
 
   <% end %>
   <% content_for :page_search do %>
+        <form action="" class="pull-right col-xs-12 col-sm-6">
+          <div class="input-group no-margin">
+            <span class="input-group-addon" style="border:none;background: #fff;background: rgba(0,0,0,.05);"><i class="fa fa-search"></i></span>
+            <input type="search" id="search" placeholder="Search..." class="form-control no-padding-hr" style="border:none;background: #fff;background: rgba(0,0,0,.05);">
+          </div>
+        </form>
 
   <% end %>
 
 
+    <div class="table-primary">
+        <table class="table table-striped table-bordered table-hover" id="table">
+            <thead>
+                <tr>
+                    <th>Event ID</th>
+                    <th>Date</th>
+                    <th>Value</th>
+                    <th></th>
+                    
 
-<% if @thing.device_type == "temperatureMeasurement" %>
-
-
-
-<style>
-#chartdiv {
-    width   : 100%;
-    height  : 600px;
-}                           
-</style>
-
-
-
+                </tr>
+            </thead>
+            <tbody>
+                <% @thing.events.each do |event| %>
                 
+                <tr class="gradeX">
+                    <td><%= event.name %></td>
+                    <td><%= event.date.to_date %></td>
+                    <td><%= event.value %></td>
+                    <td class="text-center"></td>
+                    
+                    
+                </tr>
+            
+            <% end %>
+            </tbody>
+        </table>
+    </div>
+      
+<!-- /11. $JQUERY_DATA_TABLES -->
 
 
 
-               
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <span class="panel-title">Recent Temperatures</span>
-                    </div>
-                    <div class="panel-body">
+                <!-- Javascript -->
+                <script>
+                    oTable = $('#table').dataTable({
+                       "stateSave": true,
+                       "dom": 'T<"clear">lfrtip',
+                       "pagingType": "full_numbers",
+                       "sDom": '<"H"lr>t<"F"ip>',
+                       "aoColumnDefs" : [ {
+                                'bSortable' : false,
+                                'aTargets' : ["no-sort"]
+                            } ]
+                            
+                    });
+                    var rswfPath = "<%= asset_url('copy_csv_xls_pdf.swf') %>"
+                    var tt = new $.fn.dataTable.TableTools( oTable, {
+                        "sRowSelect": "os",
+                        "sSwfPath": rswfPath
+                    });
 
-                        <div class="graph-container">
-                          
-                            <div id="chartdiv"></div>                           
+                    $( tt.fnContainer() ).insertAfter('div.dataTables_length');
 
-
-
-<% end %>
-
-
-<% if @thing.device_type == "relativeHumidityMeasurement" %>
-
-
-
-<style>
-#chartdiv {
-    width   : 100%;
-    height  : 600px;
-}                           
-</style>
-
-
-               
-                <div class="panel">
-                    <div class="panel-heading">
-                        <span class="panel-title">Recent Humidities </span>
-                    </div>
-                    <div class="panel-body">
-
-                        <div class="graph-container">
-                          
-                            <div id="chartdiv"></div>                           
-
-
-
-<% end %>
-
-
-<% if @thing.device_type == "battery" %>
-
-
-<style>
-#chartdiv {
-    width   : 100%;
-    height  : 600px;
-}                           
-</style>
-
-
-               
-                <div class="panel">
-                    <div class="panel-heading">
-                        <span class="panel-title">Battery Stats </span>
-                    </div>
-                    <div class="panel-body">
-
-                        <div class="graph-container">
-                          
-                            <div id="chartdiv"></div>                           
-
-
-
-<% end %>
-
-
-
-<% if @thing.device_type == "contact" %>
-
-
-
-<style>
-#chartdiv {
-    width   : 100%;
-    height  : 600px;
-}                           
-</style>
-
-
-               
-                <div class="panel">
-                    <div class="panel-heading">
-                        <span class="panel-title">Contact Stats </span>
-                    </div>
-                    <div class="panel-body">
-
-                        <div class="graph-container">
-                          
-                            <div id="chartdiv"></div>                           
-
-
-
-<% end %>
-
-
-
-<% if @thing.device_type == "power" %>
-
-
-
-<style>
-#chartdiv {
-    width   : 100%;
-    height  : 600px;
-}                           
-</style>
-
-
-               
-                <div class="panel">
-                    <div class="panel-heading">
-                        <span class="panel-title">Power Stats </span>
-                    </div>
-                    <div class="panel-body">
-
-                        <div class="graph-container">
-                          
-                            <div id="chartdiv"></div>                           
-
-
-
-<% end %>
+                    $("#search").keyup(function() {
+                        oTable.fnFilter(this.value);
+                    });
+                </script>

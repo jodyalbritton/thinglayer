@@ -30,7 +30,7 @@
 //= require jquery.searchable
 //= require jquery.bind_with_delay
 //= require dataTables/jquery.dataTables
+//= require dataTables/extras/dataTables.tableTools
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require dataTables/extras/dataTables.responsive
-//= require dataTables/extras/dataTables.tableTools
 //= require_self
