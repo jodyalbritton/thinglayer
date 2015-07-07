@@ -1,6 +1,9 @@
 		<div>
 			<div class="row">
 				<!-- Page header, center on small screens -->
+				<div class="col-md-2 page-actions">
+					<%= yield :page_actions %>
+				</div>
 				<div class="col-md-3">
 					<h1>
 						<%= yield :page_header %>
@@ -13,10 +16,8 @@
 
 			   
 
-				<!-- Search field -->
-				<div class="col-md-2 page-actions">
-					<%= yield :page_actions %>
-				</div>
+			
+				
 				 <!-- Search field -->
 				<div class="col-md-7 search-box">
 					<%= yield :page_search %>

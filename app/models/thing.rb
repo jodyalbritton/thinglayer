@@ -60,6 +60,8 @@ class Thing < ActiveRecord::Base
         end 
             
     end
+
+
     def import_events
         self.firebase_events.to_hash.each do |x|
             event = Event.find_or_initialize_by(name: x[0])
@@ -101,7 +103,12 @@ class Thing < ActiveRecord::Base
         elsif self.device_type == "presence"
             client.delete("events/"+self.uid+"/presence")
         end 
-    end      
+    end
+
+    def remove_firebase_item
+        client = Firebase::Client.new(ENV["FIREBASE_URL"])
+        client.delete("events/"+self.uid)
+    end 
     
     def switch_details
         @user ||= User.find(user_id)
