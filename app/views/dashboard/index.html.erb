@@ -241,6 +241,12 @@ $('.fa-expand').click(function () {
             }
 
             if (value.name == "energy"){
+               if(value.unit == undefined){
+                   var display_unit = "kWh"
+                  
+                }else{
+                 var display_unit = value.unit 
+                }
               $('.energy_'+value.device).html(value.value+ " "+display_unit);
 
             }
