@@ -16,10 +16,15 @@
 
                                         <a href="#"><%= location.name %> <span class="fa arrow"></span></a>
                                         <ul class="nav nav-third-level">
+                                            <li>
+                                                 <%= link_to location_path(location) do %>
+                                                        <span>Location Overview</span>
+                                                    <% end %>
+                                            </li>
                                             <% location.zones.each do |zone| %>
                                                 <li>
                                                     <%= link_to location_zone_path(zone.location, zone) do %>
-                                                        <span><%= zone.name %></span></a>
+                                                        <span><%= zone.name %></span>
                                                     <% end %>
                                                 </li>
                                             <% end %>

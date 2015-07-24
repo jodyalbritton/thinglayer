@@ -1,7 +1,7 @@
 class GetIlluminant
 	@queue = :illuminants_queue 
 	def self.perform(device_id)
-		base_uri = '<%= ENV["FIREBASE_URL"] %>/'
+		base_uri = ENV["FIREBASE_URL"]+"/" 
 		firebase = Firebase::Client.new(base_uri)
 		device = Thing.find(device_id)
 		device_event = device.illuminant_details.parsed_response

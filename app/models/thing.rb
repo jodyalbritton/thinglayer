@@ -14,7 +14,7 @@ class Thing < ActiveRecord::Base
     end
     
     
-
+    # Gather events from firebase by device
 
     def firebase_events
     
@@ -61,19 +61,26 @@ class Thing < ActiveRecord::Base
             
     end
 
-
+    
+    # Import events into local mysql from firebase 
+    
     def import_events
-        self.firebase_events.to_hash.each do |x|
-            event = Event.find_or_initialize_by(name: x[0])
-            event.update(name: x[0])
-            event.update(date: x[1]["date"])
-            event.update(value: x[1]["value"])
-            event.update(thing_id: self.id)
-            event.save!
+        unless self.firebase_events == nil
+            self.firebase_events.to_hash.each do |x|
+                event = Event.find_or_initialize_by(name: x[0])
+                event.update(name: x[0])
+                event.update(date: x[1]["date"])
+                event.update(value: x[1]["value"])
+                event.update(thing_id: self.id)
+                event.save!
+            end
      
         end 
 
     end 
+
+
+    # Delete device specific events from firebase 
 
     def remove_firebase
         client = Firebase::Client.new(ENV["FIREBASE_URL"])
@@ -104,12 +111,18 @@ class Thing < ActiveRecord::Base
             client.delete("events/"+self.uid+"/presence")
         end 
     end
+    
+    # Remove a device from firebase completely (Used when user deletes a device or their account)
 
     def remove_firebase_item
         client = Firebase::Client.new(ENV["FIREBASE_URL"])
         client.delete("events/"+self.uid)
     end 
     
+
+
+    # Methods for collecting device information from SmartThings
+
     def switch_details
         @user ||= User.find(user_id)
         @user.smartthings.show_switch(self.uid)
@@ -176,6 +189,9 @@ class Thing < ActiveRecord::Base
     end
       
     
+    # Enqueue a value retrieval from ST and send it to firebase. Useful for devices that do not update very often or when a user intially logs in. 
+    # You can find the workers in /thinglayer/app/workers
+
     def device_value        
            if self.device_type == "dimmer"
                 Resque.enqueue(GetDimmer, self.id)
@@ -204,9 +220,21 @@ class Thing < ActiveRecord::Base
             elsif self.device_type == "illuminant" 
                 Resque.enqueue(GetIlluminant, self.id)
                 return nil
+            elsif self.device_type == "power" 
+                Resque.enqueue(GetPower, self.id)
+                return nil
+            elsif self.device_type == "energy" 
+                Resque.enqueue(GetEnergy, self.id)
+                return nil
+            elsif self.device_type == "presence" 
+                Resque.enqueue(GetPresence, self.id)
+                return nil
             end
     end
+    
 
+    # Format the display output for a device type 
+    
     def display_type
         if self.device_type == "relativeHumidityMeasurement" 
             return "Humidity"
