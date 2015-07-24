@@ -1,4 +1,4 @@
-class GetPower
+class GetEnergy
 	@queue = :energys_queue 
 	def self.perform(device_id)
 		base_uri = ENV["FIREBASE_URL"]+"/" 
