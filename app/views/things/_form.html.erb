@@ -1,7 +1,7 @@
 <%= form_for([@thing], :class=> "panel form-horizontal form-bordered" ) do |f| %>
-
+        <div class="panel panel-default">
           <div class="panel-heading">
-            <span class="panel-title"></span>
+            <span class="panel-title">Edit Thing</span>
           </div>
           <div class="panel-body no-padding-hr">
             <% if @thing.errors.any? %>
@@ -62,4 +62,5 @@
             <%= f.submit :class=> "btn btn-primary" %>
           </div>
         </form>
+      </div>
 <% end %>

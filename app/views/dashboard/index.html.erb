@@ -15,9 +15,7 @@
 <% @dimmer_state_changed = false %>
 <script src="https://cdn.firebase.com/js/client/1.1.3/firebase.js"></script>
 
-            <div class="row">
-              <i class="fa fa-expand pull-right" id="fullScreen"></i>
-            </div>
+            
   
 
             
@@ -63,7 +61,9 @@
                     <div id="<%=device_type%>_filters">
                         <button data-filter="*" class="btn btn-default btn-xs">show all</button>
                       <% @user.zones.each do |zone| %>
-                        <button data-filter=".zone_<%= zone.id %>" class="btn btn-default btn-xs"><%= zone.name %></button>
+                        <% if zone.things.size > 0 %>
+                         <button data-filter=".zone_<%= zone.id %>" class="btn btn-default btn-xs"><%= zone.name %></button>
+                        <% end %>
                       <% end %>
                    </div>
                    <% end %>
@@ -105,35 +105,7 @@
             </div> <!-- / .panel-group -->
 
 
-<script>
-var target = $('#page-wrapper')[0]; // Get DOM element from jQuery collection
-$('.fa-expand').click(function () {
-    if (screenfull.enabled) {
-        screenfull.request(target);
-    $(function() {
 
-    function fullScreen() {
-
-        $('#page-wrapper').css({
-            width: $(window).width(),
-            height: $(window).height()
-            
-        });
-
-    }
-
-    $(window).resize(function() {
-        fullScreen();         
-    });
-
-    abso();
-
-});
-
-
-    }
-});
-</script>
 
 <% @things.each do |thing| %>
 <script>
