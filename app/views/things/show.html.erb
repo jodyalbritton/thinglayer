@@ -15,35 +15,8 @@
 
   <% end %>
 
-
-    <div class="table-primary">
-        <table class="table table-striped table-bordered table-hover" id="table">
-            <thead>
-                <tr>
-                    <th>Event ID</th>
-                    <th>Date</th>
-                    <th>Value</th>
-                    <th></th>
-                    
-
-                </tr>
-            </thead>
-            <tbody>
-                <% @thing.events.each do |event| %>
-                
-                <tr class="gradeX">
-                    <td><%= event.name %></td>
-                    <td><%= event.date.to_datetime %></td>
-                    <td><%= event.value %></td>
-                    <td class="text-center"></td>
-                    
-                    
-                </tr>
-            
-            <% end %>
-            </tbody>
-        </table>
-    </div>
+    
+    
     
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -53,7 +26,41 @@
         <%= render 'things/charts/chart' %>
       </div>
     </div>
-    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Details
+      </div>
+      <div class="panel-body">
+        <div class="table-primary">
+          <table class="table table-striped table-bordered table-hover" id="table">
+              <thead>
+                  <tr>
+                      <th>Event ID</th>
+                      <th>Date</th>
+                      <th>Value</th>
+                      <th></th>
+                      
+
+                  </tr>
+              </thead>
+              <tbody>
+                  <% @thing.events.each do |event| %>
+                  
+                  <tr class="gradeX">
+                      <td><%= event.name %></td>
+                      <td><%= event.date.to_datetime %></td>
+                      <td><%= event.value %></td>
+                      <td class="text-center"></td>
+                      
+                      
+                  </tr>
+              
+              <% end %>
+              </tbody>
+          </table>
+      </div>
+    </div>
+    </div>
 <!-- /11. $JQUERY_DATA_TABLES -->
 
 
