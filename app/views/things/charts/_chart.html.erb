@@ -1,5 +1,5 @@
 <% if @thing.device_type == "temperatureMeasurement" %>
-<% uri = "https://thinglayer.firebaseio.com" %>
+<% uri = ENV["FIREBASE_URL"]+"/"  %>
 <% firebase = Firebase::Client.new(uri) %>
 <% temps = firebase.get("events/"+@thing.uid+"/temperature") %>
 <% results = temps.body %>
@@ -110,7 +110,7 @@ function zoomChart() {
 
 
 <% if @thing.device_type == "relativeHumidityMeasurement" %>
-<% uri = "https://thinglayer.firebaseio.com" %>
+<% uri = ENV["FIREBASE_URL"]+"/"  %>
 <% firebase = Firebase::Client.new(uri) %>
 <% hums = firebase.get("events/"+@thing.uid+"/humidity") %>
 <% results = hums.body %>
@@ -213,7 +213,7 @@ function zoomChart() {
 
 
 <% if @thing.device_type == "battery" %>
-<% uri = "https://thinglayer.firebaseio.com" %>
+<% uri = ENV["FIREBASE_URL"]+"/"  %>
 <% firebase = Firebase::Client.new(uri) %>
 <% bats = firebase.get("events/"+@thing.uid+"/battery") %>
 <% results = bats.body %>
@@ -317,7 +317,7 @@ function zoomChart() {
 
 
 <% if @thing.device_type == "contact" %>
-<% uri = "https://thinglayer.firebaseio.com" %>
+<% uri = ENV["FIREBASE_URL"]+"/"  %>
 <% firebase = Firebase::Client.new(uri) %>
 <% conts = firebase.get("events/"+@thing.uid+"/contact") %>
 <% results = conts.body %>
@@ -428,7 +428,7 @@ function zoomChart() {
 
 
 <% if @thing.device_type == "power" %>
-<% uri = "https://thinglayer.firebaseio.com" %>
+<% uri = ENV["FIREBASE_URL"]+"/"  %>
 <% firebase = Firebase::Client.new(uri) %>
 <% bats = firebase.get("events/"+@thing.uid+"/power") %>
 <% results = bats.body %>
