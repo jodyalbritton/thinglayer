@@ -37,7 +37,7 @@ module Stapi
    		def url
    			@response = HTTParty.get('http://graph.api.smartthings.com/api/smartapps/endpoints/'+ENV['ST_CLIENT_ID']+'?access_token='+self.oauth_token)
 			@parsed ||= @response.parsed_response
-		  	@url ||= api_url + @parsed[0]["url"] 
+		  	@url ||= @parsed[0]["uri"] 
    		end
 
    		def token

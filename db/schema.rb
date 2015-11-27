@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717095917) do
+ActiveRecord::Schema.define(version: 20151117055455) do
 
   create_table "events", force: :cascade do |t|
     t.string   "date",       limit: 255
@@ -69,6 +69,9 @@ ActiveRecord::Schema.define(version: 20150717095917) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "provider",   limit: 255
+    t.string   "uri",        limit: 255
+    t.string   "url",        limit: 255
+    t.string   "base_url",   limit: 255
   end
 
   add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
